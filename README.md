@@ -5,3 +5,5 @@ https://docs.google.com/document/d/1plzW6thZmznE2rN8DBzbYn9_CNLueZ-ej91S2GZPQ-s/
 https://docs.google.com/document/d/177jSHZ0mI-GO689xs5Pat41uUsq2IBkvG83JD-1_9s8/edit
 
 Mai aveti si pozele cu ce am discutat si enuntul problemei :)
+
+Q&A ul de la dl. profesor: https://docs.google.com/document/d/1iJmTdwD0AgzuwV1ebNqSgKj34Mvn4QCdMnTDZVKNI1s/edit
