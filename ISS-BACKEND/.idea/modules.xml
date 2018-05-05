@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/ISS-BACKEND.iml" filepath="$PROJECT_DIR$/ISS-BACKEND.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ISS-BACKEND_main.iml" filepath="$PROJECT_DIR$/.idea/modules/ISS-BACKEND_main.iml" group="ISS-BACKEND" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ISS-BACKEND_test.iml" filepath="$PROJECT_DIR$/.idea/modules/ISS-BACKEND_test.iml" group="ISS-BACKEND" />
+    </modules>
+  </component>
+</project>
