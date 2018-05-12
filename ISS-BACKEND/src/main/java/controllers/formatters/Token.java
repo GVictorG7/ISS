@@ -1,11 +1,13 @@
 package controllers.formatters;
 
+import model.PersonType;
+
 public class Token {
     private long id;
     private String firstname;
-    private String personType;
+    private PersonType personType;
 
-    public Token(long id, String firstname, String personType) {
+    public Token(long id, String firstname, PersonType personType) {
         this.id = id;
         this.firstname = firstname;
         this.personType = personType;
@@ -27,11 +29,11 @@ public class Token {
         this.firstname = firstname;
     }
 
-    public String getPersonType() {
+    public PersonType getPersonType() {
         return personType;
     }
 
-    public void setPersonType(String personType) {
+    public void setPersonType(PersonType personType) {
         this.personType = personType;
     }
 }
