@@ -17,11 +17,13 @@ public class Person implements Serializable {
     @Column(name = "id")
     private final long id = 1L;
 
-    @Size(min=3, max=25)
+    @NotNull
+    @Size(min = 1, max = 25)
     @Column(name = "first_name")
     private String firstName;
 
-    @Size(min=3, max=40)
+    @NotNull
+    @Size(min = 1, max = 40)
     @Column(name = "last_name")
     private String lastName;
 
@@ -39,9 +41,19 @@ public class Person implements Serializable {
     private String gender;
 
     @Column(name = "person_type")
-    private String personType;
+    @Enumerated(EnumType.STRING)
+    private PersonType personType;
 
     public Person() {
+    }
+
+    public Person(String firstName, String lastName, String password, String cnp, String gender, PersonType personType) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.password = password;
+        this.cnp = cnp;
+        this.gender = gender;
+        this.personType = personType;
     }
 
     public Person(String firstName, String lastName, String password, String cnp, String gender, String personType) {
@@ -50,7 +62,7 @@ public class Person implements Serializable {
         this.password = password;
         this.cnp = cnp;
         this.gender = gender;
-        this.personType = personType;
+        this.personType = PersonType.valueOf(personType);
     }
 
     public long getId() {
@@ -97,12 +109,11 @@ public class Person implements Serializable {
         this.gender = gender;
     }
 
-    public String getPersonType() {
+    public PersonType getPersonType() {
         return personType;
     }
 
-    public void setPersonType(String personType) {
+    public void setPersonType(PersonType personType) {
         this.personType = personType;
     }
-
 }
