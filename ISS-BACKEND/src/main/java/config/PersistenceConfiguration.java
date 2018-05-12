@@ -59,5 +59,4 @@ public class PersistenceConfiguration {
     public PersistenceExceptionTranslationPostProcessor exceptionTranslation(){
         return new PersistenceExceptionTranslationPostProcessor();
     }
-
 }
