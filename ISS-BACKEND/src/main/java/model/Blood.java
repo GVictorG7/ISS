@@ -6,6 +6,9 @@ import validators.BloodValidator;
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 @Validated(value = BloodValidator.class)
@@ -86,19 +89,31 @@ public class Blood implements Serializable{
         this.expireDate = expireDate;
     }
 
-    public int getExpireDate() {
+    public Date getExpireDate() {
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Calendar c = Calendar.getInstance();
+        try{
+            //Setting the date to the given date
+            c.setTime(sdf.parse(String.valueOf(collectionDate)));
+        }catch(ParseException e){
+            e.printStackTrace();
+        }
+
         switch (this.bloodType) {
             case PLASMA:
-                return PLASMA_EXPIRATION_DATE;
+                c.add(Calendar.DAY_OF_MONTH,  PLASMA_EXPIRATION_DATE);
+                break;
             case REDCELL:
-                return REDCELL_EXPIRATION_DATE;
+                c.add(Calendar.DAY_OF_MONTH,  REDCELL_EXPIRATION_DATE);
+                break;
             case THROMBOCYTE:
-                return THROMBOCYTE_EXPIRATION_DATE;
+                c.add(Calendar.DAY_OF_MONTH,  THROMBOCYTE_EXPIRATION_DATE);
+                break;
             case WHOLE:
-                return Math.min(Math.min(PLASMA_EXPIRATION_DATE, REDCELL_EXPIRATION_DATE), THROMBOCYTE_EXPIRATION_DATE);
-            default:
-                return 0;
+                c.add(Calendar.DAY_OF_MONTH, Math.min(Math.min(PLASMA_EXPIRATION_DATE, REDCELL_EXPIRATION_DATE), THROMBOCYTE_EXPIRATION_DATE) );
         }
+        return c.getTime();
     }
 
 
