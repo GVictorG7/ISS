@@ -2,52 +2,58 @@ package model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
+
 @Entity
 @Table(name = "donation")
 public class Donation {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
-    private final long id = 1L;
+    @Column(name = "id_donation")
+    private final long idDonation = 1L;
+
 
     @NotNull
-    @Column
-    @OneToMany
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "id")
     private Person person;
-
+    @NotNull
     @Column(name = "pregnant")
     private boolean pregnant;
+    @NotNull
     @Column(name = "menstruating")
     private boolean menstruating;
-    @Column(name = "consumedDrinks")
+    @NotNull
+    @Column(name = "consumed_drinks")
     private boolean consumedDrinks;
+    @NotNull
     @Column(name = "systolic")
     private int systolic;
+    @NotNull
     @Column(name = "pulse")
     private int pulse;
-    @Column(name = "forPerson")
+    @NotNull
+    @Column(name = "for_person")
     private String forPerson;
+    @NotNull
     @Column(name = "smoked")
     private boolean smoked;
-    @Column(name = "wellSlept")
+    @NotNull
+    @Column(name = "well_slept")
     private boolean wellSlept;
     @NotNull
-    @Column(name = "bloodType")
+    @Column(name = "blood_type")
     private BloodType bloodType;
     @NotNull
     @Column(name = "rh")
     private boolean rh;
     @NotNull
     @Column
-    private Date colectionDate;
+    private DiseaseReport diseaseReport;
 
-    public Donation(Person person, boolean pregnant, boolean menstruating, boolean consumedDrinks, int systolic, int pulse, String forPerson, boolean smoked, boolean wellSlept, BloodType bloodType, boolean rh, Date colectionDate) {
-        this.person=person;
+
+    public Donation(Person person, boolean pregnant, boolean menstruating, boolean consumedDrinks, int systolic, int pulse, String forPerson, boolean smoked, boolean wellSlept, BloodType bloodType, boolean rh, DiseaseReport diseaseReport) {
+        this.person = person;
         this.pregnant = pregnant;
         this.menstruating = menstruating;
         this.consumedDrinks = consumedDrinks;
@@ -58,11 +64,11 @@ public class Donation {
         this.wellSlept = wellSlept;
         this.bloodType = bloodType;
         this.rh = rh;
-        this.colectionDate = colectionDate;
+        this.diseaseReport = diseaseReport;
     }
 
     public long getId() {
-        return id;
+        return idDonation;
     }
 
 
@@ -73,7 +79,6 @@ public class Donation {
     public void setPerson(Person person) {
         this.person = person;
     }
-
 
 
 //
@@ -94,8 +99,11 @@ public class Donation {
 //
 
 
+<<<<<<< HEAD
 //    }
 
+=======
+>>>>>>> GradinariuGeorge
     public boolean isPregnant() {
         return pregnant;
     }
@@ -166,5 +174,13 @@ public class Donation {
 
     public void setBloodType(BloodType bloodType) {
         this.bloodType = bloodType;
+    }
+
+    public DiseaseReport getDiseaseReport() {
+        return diseaseReport;
+    }
+
+    public void setDiseaseReport(DiseaseReport diseaseReport) {
+        this.diseaseReport = diseaseReport;
     }
 }
