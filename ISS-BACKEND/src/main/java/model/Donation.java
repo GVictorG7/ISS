@@ -2,10 +2,7 @@ package model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
+
 @Entity
 @Table(name = "donation")
 public class Donation {
@@ -19,21 +16,28 @@ public class Donation {
     @Column
     @OneToMany
     private Person person;
-
+    @NotNull
     @Column(name = "pregnant")
     private boolean pregnant;
+    @NotNull
     @Column(name = "menstruating")
     private boolean menstruating;
+    @NotNull
     @Column(name = "consumedDrinks")
     private boolean consumedDrinks;
+    @NotNull
     @Column(name = "systolic")
     private int systolic;
+    @NotNull
     @Column(name = "pulse")
     private int pulse;
+    @NotNull
     @Column(name = "forPerson")
     private String forPerson;
+    @NotNull
     @Column(name = "smoked")
     private boolean smoked;
+    @NotNull
     @Column(name = "wellSlept")
     private boolean wellSlept;
     @NotNull
@@ -43,10 +47,13 @@ public class Donation {
     @Column(name = "rh")
     private boolean rh;
     @NotNull
-    @Column
-    private Date colectionDate;
+    @OneToOne
+    @JoinColumn(name = "id")
+    private DiseaseReport diseaseReport;
 
-    public Donation(Person person, boolean pregnant, boolean menstruating, boolean consumedDrinks, int systolic, int pulse, String forPerson, boolean smoked, boolean wellSlept, BloodType bloodType, boolean rh, Date colectionDate) {
+
+
+    public Donation(Person person, boolean pregnant, boolean menstruating, boolean consumedDrinks, int systolic, int pulse, String forPerson, boolean smoked, boolean wellSlept, BloodType bloodType, boolean rh, DiseaseReport diseaseReport) {
         this.person=person;
         this.pregnant = pregnant;
         this.menstruating = menstruating;
@@ -58,7 +65,7 @@ public class Donation {
         this.wellSlept = wellSlept;
         this.bloodType = bloodType;
         this.rh = rh;
-        this.colectionDate = colectionDate;
+        this.diseaseReport = diseaseReport;
     }
 
     public long getId() {
@@ -94,7 +101,6 @@ public class Donation {
 //
 
 
-    }
 
     public boolean isPregnant() {
         return pregnant;
@@ -166,5 +172,13 @@ public class Donation {
 
     public void setBloodType(BloodType bloodType) {
         this.bloodType = bloodType;
+    }
+
+    public DiseaseReport getDiseaseReport() {
+        return diseaseReport;
+    }
+
+    public void setDiseaseReport(DiseaseReport diseaseReport) {
+        this.diseaseReport = diseaseReport;
     }
 }
