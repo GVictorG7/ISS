@@ -5,7 +5,15 @@ import {LoginComponent} from "./login/login.component";
 import {RegisterComponent} from "./register/register.component";
 import {AuthService} from "./auth.service";
 import {HttpClientModule} from "@angular/common/http";
-import {MatButtonModule, MatInputModule,MatFormFieldModule} from "@angular/material";
+import {
+  MatButtonModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatSelectModule,
+  MatSnackBarModule
+} from "@angular/material";
+import {FormsModule} from "@angular/forms";
+import {SharedModule} from "../shared/shared.module";
 
 @NgModule({
   imports: [
@@ -14,7 +22,11 @@ import {MatButtonModule, MatInputModule,MatFormFieldModule} from "@angular/mater
     AuthRoutingModule,
     MatFormFieldModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+    MatSelectModule,
+    FormsModule,
+    SharedModule,
+    MatSnackBarModule
 
   ],
   declarations: [
