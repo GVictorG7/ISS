@@ -1,6 +1,6 @@
 <mat-sidenav-container>
   <mat-toolbar color="warn">
-    Blood donation
+    <a href="/home"><span>Blood donation</span></a>
     <span class="example-fill-remaining-space"></span>
     <mat-nav-list>
       <a *ngFor="let menuItem of mainMenuItems"
@@ -9,7 +9,7 @@
       </a>
     </mat-nav-list>
     <div *ngIf="loggedUser">
-    <button mat-button color="warn" [matMenuTriggerFor]="dropdownMenu">
+    <button mat-raised-button color="primary" [matMenuTriggerFor]="dropdownMenu">
       {{loggedUser.firstName}}
     </button>
       <mat-menu #dropdownMenu x-position="before">

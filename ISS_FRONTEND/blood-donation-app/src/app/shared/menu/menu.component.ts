@@ -8,7 +8,7 @@ import {Person} from "../../core/model/Person";
 })
 export class MenuComponent implements OnInit {
   loggedUser: Person = null;
-  mainMenuItems: any[] = [{title: "Acasa", path: '/home'}];
+  mainMenuItems: any[] = [];
 
   constructor() {
   }
@@ -20,7 +20,7 @@ export class MenuComponent implements OnInit {
   private verifyLoggedUser() {
     let token = JSON.parse(localStorage.getItem('token'));
     if (token) {
-      this.loggedUser = {id: token.id, firstName: token.firstname, personType: token.personType};
+      this.loggedUser = token;
       this.mainMenuItems.push(...this.getMenuItems(this.loggedUser.personType));
     }
     else {
