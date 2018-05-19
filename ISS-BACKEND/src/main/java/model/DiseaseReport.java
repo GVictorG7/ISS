@@ -13,7 +13,7 @@ public class DiseaseReport implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
-    private int id;
+    private long id = 1L;
 
     @NotNull
     @Column(name = "hepatitis")
@@ -70,7 +70,7 @@ public class DiseaseReport implements Serializable {
     public DiseaseReport() {
     }
 
-    public DiseaseReport(int id, boolean hepatitis, boolean tbc, boolean pox, boolean malaria, boolean epilepsy, boolean mentalIllness, boolean brucellosis, boolean ulcer, boolean diabetes, boolean heartDisease, boolean skinDisease, boolean myopia, boolean cancer) {
+    public DiseaseReport(long id, boolean hepatitis, boolean tbc, boolean pox, boolean malaria, boolean epilepsy, boolean mentalIllness, boolean brucellosis, boolean ulcer, boolean diabetes, boolean heartDisease, boolean skinDisease, boolean myopia, boolean cancer) {
         this.id = id;
         this.hepatitis = hepatitis;
         this.tbc = tbc;
@@ -87,7 +87,7 @@ public class DiseaseReport implements Serializable {
         this.cancer = cancer;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
