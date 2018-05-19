@@ -99,11 +99,7 @@ public class Donation {
 //
 
 
-<<<<<<< HEAD
-//    }
 
-=======
->>>>>>> GradinariuGeorge
     public boolean isPregnant() {
         return pregnant;
     }
