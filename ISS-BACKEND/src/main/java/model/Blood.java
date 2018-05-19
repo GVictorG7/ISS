@@ -30,10 +30,18 @@ public class Blood {
     @Column(name = "rh")
     private boolean rh;
 
-    public Blood(BloodType bloodType, String group, boolean rh) {
+    @Column(name="collectionDate")
+    private Date collectionDate;
+
+    @Column(name="expireDate")
+    private Date expireDate;
+
+    public Blood(BloodType bloodType, String group, boolean rh, Date collectionDate, Date expireDate) {
         this.bloodType = bloodType;
         this.group = group;
         this.rh = rh;
+        this.collectionDate = collectionDate;
+        this.expireDate = expireDate;
     }
 
     public long getId() {
@@ -65,6 +73,18 @@ public class Blood {
         this.rh = rh;
     }
 
+    public Date getCollectionDate() {
+        return collectionDate;
+    }
+
+    public void setCollectionDate(Date collectionDate) {
+        this.collectionDate = collectionDate;
+    }
+
+    public void setExpireDate(Date expireDate) {
+        this.expireDate = expireDate;
+    }
+
     public int getExpireDate() {
         switch (this.bloodType) {
             case PLASMA:
@@ -79,4 +99,6 @@ public class Blood {
                 return 0;
         }
     }
+
+
 }
