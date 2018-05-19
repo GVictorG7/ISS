@@ -8,6 +8,7 @@ import repositories.PersonRepository;
 @Service
 public class PersonService implements IPersonService {
     private final PersonRepository personRepository;
+
     @Autowired
     public PersonService(PersonRepository personRepository) {
         this.personRepository = personRepository;
@@ -27,7 +28,6 @@ public class PersonService implements IPersonService {
 
     @Override
     public Person save(Person person) {
-
         return personRepository.save(person);
     }
 }

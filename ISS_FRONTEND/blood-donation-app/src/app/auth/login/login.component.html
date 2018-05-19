@@ -1,0 +1,12 @@
+<p>
+  login works!
+</p>
+<form class="example-form">
+  <mat-form-field>
+    <input matInput placeholder="Username" #username required>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Password" #password required type="password">
+  </mat-form-field>
+</form>
+<button mat-button (click)="login(username.value,password.value)">Login</button>

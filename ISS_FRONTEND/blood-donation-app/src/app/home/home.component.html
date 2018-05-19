@@ -1,0 +1,9 @@
+home works!
+<nav *ngIf="!loggedUser">
+  <a routerLink="/auth/login" routerLinkActive="active">Login</a><br>
+  <a routerLink="/auth/register" routerLinkActive="active">Register</a>
+</nav>
+
+<p *ngIf="loggedUser">
+  Hello, {{loggedUser.firstName}}
+</p>
