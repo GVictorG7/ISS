@@ -94,7 +94,7 @@ public class Donation {
 //
 
 
-    }
+//    }
 
     public boolean isPregnant() {
         return pregnant;

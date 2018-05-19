@@ -5,11 +5,12 @@ import validators.BloodValidator;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 import java.util.Date;
 
 @Validated(value = BloodValidator.class)
 @Entity
-public class Blood {
+public class Blood implements Serializable{
     private static final int PLASMA_EXPIRATION_DATE = 112;
     private static final int REDCELL_EXPIRATION_DATE = 42;
     private static final int THROMBOCYTE_EXPIRATION_DATE = 5;
