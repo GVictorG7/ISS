@@ -9,11 +9,13 @@ public class Donation {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
-    private final long id = 1L;
+    @Column(name = "id_donation")
+    private final long idDonation = 1L;
+
 
     @NotNull
-    @Column
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "id")
     private Person person;
     @NotNull
     @Column(name = "pregnant")
@@ -22,7 +24,7 @@ public class Donation {
     @Column(name = "menstruating")
     private boolean menstruating;
     @NotNull
-    @Column(name = "consumedDrinks")
+    @Column(name = "consumed_drinks")
     private boolean consumedDrinks;
     @NotNull
     @Column(name = "systolic")
@@ -31,29 +33,27 @@ public class Donation {
     @Column(name = "pulse")
     private int pulse;
     @NotNull
-    @Column(name = "forPerson")
+    @Column(name = "for_person")
     private String forPerson;
     @NotNull
     @Column(name = "smoked")
     private boolean smoked;
     @NotNull
-    @Column(name = "wellSlept")
+    @Column(name = "well_slept")
     private boolean wellSlept;
     @NotNull
-    @Column(name = "bloodType")
+    @Column(name = "blood_type")
     private BloodType bloodType;
     @NotNull
     @Column(name = "rh")
     private boolean rh;
     @NotNull
-    @OneToOne
-    @JoinColumn(name = "id")
+    @Column
     private DiseaseReport diseaseReport;
 
 
-
     public Donation(Person person, boolean pregnant, boolean menstruating, boolean consumedDrinks, int systolic, int pulse, String forPerson, boolean smoked, boolean wellSlept, BloodType bloodType, boolean rh, DiseaseReport diseaseReport) {
-        this.person=person;
+        this.person = person;
         this.pregnant = pregnant;
         this.menstruating = menstruating;
         this.consumedDrinks = consumedDrinks;
@@ -68,7 +68,7 @@ public class Donation {
     }
 
     public long getId() {
-        return id;
+        return idDonation;
     }
 
 
@@ -79,7 +79,6 @@ public class Donation {
     public void setPerson(Person person) {
         this.person = person;
     }
-
 
 
 //
@@ -98,7 +97,6 @@ public class Donation {
 //        c.add(Calendar.DAY_OF_MONTH, blood.getExpireDate());
 //        return c.getTime();
 //
-
 
 
     public boolean isPregnant() {

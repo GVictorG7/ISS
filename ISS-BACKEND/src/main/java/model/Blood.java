@@ -4,12 +4,12 @@ import org.springframework.validation.annotation.Validated;
 import validators.BloodValidator;
 
 import javax.persistence.*;
-import javax.validation.constraints.Size;
-import java.util.Date;
+import java.io.Serializable;
+
 
 @Validated(value = BloodValidator.class)
 @Entity
-public class Blood {
+public class Blood implements Serializable {
     private static final int PLASMA_EXPIRATION_DATE = 112;
     private static final int REDCELL_EXPIRATION_DATE = 42;
     private static final int THROMBOCYTE_EXPIRATION_DATE = 5;
@@ -19,26 +19,24 @@ public class Blood {
     @Column(name = "id")
     private final long id = 1L;
 
-    @Enumerated(EnumType.STRING)
     @Column(name = "bloodType")
-    private BloodType bloodType;
+    private String bloodType;
 
-    @Size(min = 1, max = 2)
-    @Column(name = "group")
-    private String group;
+    @Column(name = "blood_group")
+    private String bloodGroup;
 
     @Column(name = "rh")
     private boolean rh;
 
     @Column(name="collectionDate")
-    private Date collectionDate;
+    private String collectionDate;
 
     @Column(name="expireDate")
-    private Date expireDate;
+    private String expireDate;
 
-    public Blood(BloodType bloodType, String group, boolean rh, Date collectionDate, Date expireDate) {
+    public Blood(String bloodType, String group, boolean rh, String collectionDate, String expireDate) {
         this.bloodType = bloodType;
-        this.group = group;
+        this.bloodGroup = group;
         this.rh = rh;
         this.collectionDate = collectionDate;
         this.expireDate = expireDate;
@@ -49,20 +47,20 @@ public class Blood {
     }
 
 
-    public BloodType getBloodType() {
+    public String getBloodType() {
         return bloodType;
     }
 
-    public void setBloodType(BloodType bloodType) {
+    public void setBloodType(String bloodType) {
         this.bloodType = bloodType;
     }
 
     public String getGroup() {
-        return group;
+        return bloodGroup;
     }
 
     public void setGroup(String group) {
-        this.group = group;
+        this.bloodGroup = group;
     }
 
     public boolean isRh() {
@@ -73,27 +71,27 @@ public class Blood {
         this.rh = rh;
     }
 
-    public Date getCollectionDate() {
+    public String getCollectionDate() {
         return collectionDate;
     }
 
-    public void setCollectionDate(Date collectionDate) {
+    public void setCollectionDate(String collectionDate) {
         this.collectionDate = collectionDate;
     }
 
-    public void setExpireDate(Date expireDate) {
+    public void setExpireDate(String expireDate) {
         this.expireDate = expireDate;
     }
 
     public int getExpireDate() {
         switch (this.bloodType) {
-            case PLASMA:
+            case "PLASMA":
                 return PLASMA_EXPIRATION_DATE;
-            case REDCELL:
+            case "REDCELL":
                 return REDCELL_EXPIRATION_DATE;
-            case THROMBOCYTE:
+            case "THROMBOCYTE":
                 return THROMBOCYTE_EXPIRATION_DATE;
-            case WHOLE:
+            case "WHOLE":
                 return Math.min(Math.min(PLASMA_EXPIRATION_DATE, REDCELL_EXPIRATION_DATE), THROMBOCYTE_EXPIRATION_DATE);
             default:
                 return 0;
