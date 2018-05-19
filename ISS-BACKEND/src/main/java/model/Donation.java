@@ -14,7 +14,6 @@ public class Donation {
 
     @NotNull
     @Column
-    @OneToMany
     private Person person;
     @NotNull
     @Column(name = "pregnant")
