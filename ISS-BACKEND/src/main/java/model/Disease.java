@@ -6,7 +6,6 @@ import java.io.Serializable;
 @Entity
 @Table(name = "Diseases")
 public class Disease implements Serializable {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -52,7 +51,6 @@ public class Disease implements Serializable {
     private boolean cancer;
 
     public Disease() {
-
     }
 
     public Disease(boolean hepatitis, boolean pox, boolean tbc, boolean mallaria, boolean epilepsy, boolean mentalIllness, boolean brucellosis, boolean ulcer, boolean diabetes, boolean hearDisease, boolean skinDisease, boolean myopia, boolean cancer) {

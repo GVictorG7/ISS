@@ -30,7 +30,6 @@ public class Treatment implements Serializable {
     private boolean endocrineAffection;
 
     public Treatment() {
-
     }
 
     public Treatment(boolean hypertension, boolean heartDisease, boolean kidneyDisease, boolean mentalIllness, boolean bloodDisease, boolean endocrineAffection) {

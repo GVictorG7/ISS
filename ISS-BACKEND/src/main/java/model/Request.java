@@ -39,7 +39,6 @@ public class Request implements Serializable {
     private Blood blood;
 
     public Request() {
-
     }
 
     public Request(String person, Date requestDate, int priority, String bloodCategory, String bloodType, int bloodQuantity, Medic medic, Blood blood) {

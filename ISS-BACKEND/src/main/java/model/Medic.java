@@ -26,7 +26,6 @@ public class Medic implements Serializable {
     private Hospital hospital;
 
     public Medic() {
-
     }
 
     public Medic(String firstName, String lastName, User user, Hospital hospital) {

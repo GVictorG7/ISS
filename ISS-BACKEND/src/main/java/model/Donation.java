@@ -60,7 +60,6 @@ public class Donation implements Serializable {
     private Disease disease;
 
     public Donation() {
-
     }
 
     public Donation(boolean pregnant, String menstruating, String consumedAlcohol, int systolicValue, int pulse, String forPerson, boolean smoked, boolean wellSlept, String harvestDate, int donorAge, int donorWeight, String status, Donor donor, Treatment treatment, Disease disease) {

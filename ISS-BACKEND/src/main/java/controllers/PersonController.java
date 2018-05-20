@@ -6,7 +6,6 @@ import controllers.formatters.Token;
 import model.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,7 +15,6 @@ import services.IPersonService;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.io.IOException;
-import java.util.List;
 
 @RestController
 @RequestMapping(value = "/auth")
@@ -36,7 +34,7 @@ public class PersonController {
             return null;
         }
         response.setStatus(HttpServletResponse.SC_OK);// 200
-        return new Token(person.getId(),person.getFirstName(),person.getPersonType());
+        return new Token(person.getId(), person.getFirstName(), person.getPersonType());
     }
 
     @PostMapping(value = "/signup")

@@ -7,11 +7,9 @@ import java.util.Date;
 @Entity
 @Table(name = "Blood")
 public class Blood implements Serializable {
-
     private static final int PLASMA_EXPIRATION_DATE = 112;
     private static final int REDCELL_EXPIRATION_DATE = 42;
     private static final int THROMBOCYTE_EXPIRATION_DATE = 5;
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,7 +32,6 @@ public class Blood implements Serializable {
     private Date expireDate;
 
     public Blood() {
-
     }
 
     public Blood(String bloodType, String bloodRh, String bloodCategory, Date harvestDate, Date expireDate) {

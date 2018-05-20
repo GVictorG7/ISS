@@ -19,7 +19,6 @@ public class Hospital implements Serializable {
     private List<Medic> medics;
 
     public Hospital() {
-
     }
 
     public Hospital(String name, List<Medic> medics) {

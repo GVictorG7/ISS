@@ -43,7 +43,6 @@ public class Donor implements Serializable {
     private User user;
 
     public Donor() {
-
     }
 
     public Donor(String firstName, String lastName, String cnp, String gender, String birthday, String address, String localAddress, String email, String phone, User user) {
