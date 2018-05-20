@@ -1,10 +1,13 @@
 package model;
 
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.validation.annotation.Validated;
+import validators.UserValidator;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
+@Validated(value = UserValidator.class)
 @Entity
 @Table(name = "Users")
 public class User implements Serializable {

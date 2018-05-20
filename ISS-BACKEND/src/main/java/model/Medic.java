@@ -1,8 +1,12 @@
 package model;
 
+import org.springframework.validation.annotation.Validated;
+import validators.MedicValidator;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
+@Validated(value = MedicValidator.class)
 @Entity
 @Table(name = "Medics")
 public class Medic implements Serializable {

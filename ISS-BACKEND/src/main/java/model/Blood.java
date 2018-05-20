@@ -1,9 +1,13 @@
 package model;
 
+import org.springframework.validation.annotation.Validated;
+import validators.BloodValidator;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
+@Validated(value = BloodValidator.class)
 @Entity
 @Table(name = "Blood")
 public class Blood implements Serializable {

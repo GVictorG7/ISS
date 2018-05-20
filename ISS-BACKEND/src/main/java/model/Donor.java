@@ -1,8 +1,12 @@
 package model;
 
+import org.springframework.validation.annotation.Validated;
+import validators.DonorValidator;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
+@Validated(value = DonorValidator.class)
 @Entity
 @Table(name = "Donors")
 public class Donor implements Serializable {

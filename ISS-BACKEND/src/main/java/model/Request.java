@@ -1,9 +1,13 @@
 package model;
 
+import org.springframework.validation.annotation.Validated;
+import validators.RequestValidator;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
+@Validated(value = RequestValidator.class)
 @Entity
 @Table(name = "Requests")
 public class Request implements Serializable {
