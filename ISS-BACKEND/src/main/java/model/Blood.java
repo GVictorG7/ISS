@@ -21,86 +21,63 @@ public class Blood implements Serializable {
     private final long id = 1L;
 
     @Column(name = "bloodType")
-    private String bloodType;
+    @Enumerated(EnumType.STRING)
+    private BloodType bloodType;
 
-    @Column(name = "blood_group")
-    private String bloodGroup;
+    @Column(name = "bloodRH")
+    @Enumerated(EnumType.STRING)
+    private BloodRH bloodRH;
 
-    @Column(name = "rh")
-    private boolean rh;
+    @Column(name = "bloodCategory")
+    @Enumerated(EnumType.STRING)
+    private BloodCategory bloodCategory;
 
-    @Column(name="collectionDate")
-    private String collectionDate;
+    public Blood() {
+    }
 
-    @Column(name="expireDate")
-    private String expireDate;
-
-    public Blood(String bloodType, String group, boolean rh, String collectionDate, String expireDate) {
+    public Blood(BloodType bloodType, BloodRH bloodRH) {
         this.bloodType = bloodType;
-        this.bloodGroup = group;
-        this.rh = rh;
-        this.collectionDate = collectionDate;
-        this.expireDate = expireDate;
+        this.bloodRH = bloodRH;
+        this.bloodCategory = BloodCategory.WHOLE;
     }
 
-    public long getId() {
-        return id;
+    public Blood(BloodType bloodType, BloodRH bloodRH, BloodCategory bloodCategory) {
+        this.bloodType = bloodType;
+        this.bloodRH = bloodRH;
+        this.bloodCategory = bloodCategory;
     }
 
-
-    public String getBloodType() {
+    public BloodType getBloodType() {
         return bloodType;
     }
 
-    public void setBloodType(String bloodType) {
+    public void setBloodType(BloodType bloodType) {
         this.bloodType = bloodType;
     }
 
-    public String getGroup() {
-        return bloodGroup;
+    public BloodRH getBloodRH() {
+        return bloodRH;
     }
 
-    public void setGroup(String group) {
-        this.bloodGroup = group;
+    public void setBloodRH(BloodRH bloodRH) {
+        this.bloodRH = bloodRH;
     }
 
-    public boolean isRh() {
-        return rh;
+    public BloodCategory getBloodCategory() {
+        return bloodCategory;
     }
 
-    public void setRh(boolean rh) {
-        this.rh = rh;
+    public void setBloodCategory(BloodCategory bloodCategory) {
+        this.bloodCategory = bloodCategory;
     }
 
-    public String getCollectionDate() {
-        return collectionDate;
-    }
-
-    public void setCollectionDate(String collectionDate) {
-        this.collectionDate = collectionDate;
-    }
-
-    public void setExpireDate(String expireDate) {
-        this.expireDate = expireDate;
-    }
-
-    public int getExpireDate() {
-
-
-        switch (this.bloodType) {
-            case "PLASMA":
-                return PLASMA_EXPIRATION_DATE;
-            case "REDCELL":
-                return REDCELL_EXPIRATION_DATE;
-            case "THROMBOCYTE":
-                return THROMBOCYTE_EXPIRATION_DATE;
-            case "WHOLE":
-                return Math.min(Math.min(PLASMA_EXPIRATION_DATE, REDCELL_EXPIRATION_DATE), THROMBOCYTE_EXPIRATION_DATE);
-            default:
-                return 0;
+    public int getDaysToExpire() throws RuntimeException {
+        switch (this.bloodCategory){
+            case PLASMA:return PLASMA_EXPIRATION_DATE;
+            case REDCELL:return REDCELL_EXPIRATION_DATE;
+            case THROMBOCYTE:return THROMBOCYTE_EXPIRATION_DATE;
+            case WHOLE:return Math.min(Math.min(PLASMA_EXPIRATION_DATE,REDCELL_EXPIRATION_DATE),THROMBOCYTE_EXPIRATION_DATE);
         }
-
+        throw new RuntimeException("Invalid BloodCategory");
     }
-
-
 }
