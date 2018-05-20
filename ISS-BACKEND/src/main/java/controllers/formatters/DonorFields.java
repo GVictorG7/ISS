@@ -1,55 +1,17 @@
-package model;
+package controllers.formatters;
 
-import org.springframework.validation.annotation.Validated;
-import validators.DonorValidator;
-
-import javax.persistence.*;
-import java.io.Serializable;
-
-@Validated(value = DonorValidator.class)
-@Entity
-@Table(name = "Donors")
-public class Donor implements Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private long id=1L;
-
-    @Column(name = "first_name")
+public class DonorFields {
     private String firstName;
-
-    @Column(name = "last_name")
     private String lastName;
-
-    @Column(name = "cnp")
     private String cnp;
-
-    @Column(name = "gender")
     private String gender;
-
-    @Column(name = "birthday")
     private String birthday;
-
-    @Column(name = "address")
     private String address;
-
-    @Column(name = "local_address")
     private String localAddress;
-
-    @Column(name = "email")
     private String email;
-
-    @Column(name = "phone")
     private String phone;
-
-    @OneToOne
-    @JoinColumn(name = "user_id")
-    private User user;
-
-    public Donor() {
-    }
-
-    public Donor(String firstName, String lastName, String cnp, String gender, String birthday, String address, String localAddress, String email, String phone, User user) {
+    private Long userId;
+    public DonorFields(String firstName, String lastName, String cnp, String gender, String birthday, String address, String localAddress, String email, String phone, Long userId) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.cnp = cnp;
@@ -59,15 +21,7 @@ public class Donor implements Serializable {
         this.localAddress = localAddress;
         this.email = email;
         this.phone = phone;
-        this.user = user;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
+        this.userId = userId;
     }
 
     public String getFirstName() {
@@ -142,12 +96,11 @@ public class Donor implements Serializable {
         this.phone = phone;
     }
 
-    public User getUser() {
-        return user;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 }
-

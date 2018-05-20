@@ -6,13 +6,15 @@ import java.io.Serializable;
 public class Credentials implements Serializable {
     private String username;
     private String password;
+    private String userType;
 
     public Credentials() {
     }
 
-    public Credentials(String username, String password) {
+    public Credentials(String username, String password, String userType) {
         this.username = username;
         this.password = password;
+        this.userType = userType;
     }
 
     public String getUsername() {
@@ -29,5 +31,13 @@ public class Credentials implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getUserType() {
+        return userType;
+    }
+
+    public void setUserType(String userType) {
+        this.userType = userType;
     }
 }

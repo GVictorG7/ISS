@@ -4,6 +4,7 @@ import model.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import repositories.PersonRepository;
+import services.interfaces.IPersonService;
 
 @Service
 public class PersonService implements IPersonService {
