@@ -2,6 +2,9 @@ package model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Date;
+import java.util.Set;
+
 
 @Entity
 @Table(name = "donation")
@@ -12,132 +15,68 @@ public class Donation {
     @Column(name = "id_donation")
     private final long idDonation = 1L;
 
+    @OneToOne
+    @JoinColumn(name = "donor_id")
+    private Donor donor;
 
-    @NotNull
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "id")
-    private Person person;
-    @NotNull
-    @Column(name = "pregnant")
-    private boolean pregnant;
-    @NotNull
-    @Column(name = "menstruating")
-    private boolean menstruating;
-    @NotNull
-    @Column(name = "consumed_drinks")
-    private boolean consumedDrinks;
-    @NotNull
-    @Column(name = "systolic")
-    private int systolic;
-    @NotNull
-    @Column(name = "pulse")
-    private int pulse;
-    @NotNull
+    @Temporal(TemporalType.DATE)
+    private Date collectionDate;
+
     @Column(name = "for_person")
     private String forPerson;
-    @NotNull
-    @Column(name = "smoked")
-    private boolean smoked;
-    @NotNull
-    @Column(name = "well_slept")
-    private boolean wellSlept;
-    @NotNull
-    @Column(name = "blood_type")
-    private BloodType bloodType;
-    @NotNull
-    @Column(name = "rh")
-    private boolean rh;
-    @NotNull
-    @Column
-    private DiseaseReport diseaseReport;
 
+    @ElementCollection(targetClass = HealthIssue.class)
+    @CollectionTable(name = "healthIssues", joinColumns = @JoinColumn(name = "IDHealthIssue"))
+    @Column(name = "IDHealthIssues")
+    private Set<HealthIssue> healthIssues;
 
-    public Donation(Person person, boolean pregnant, boolean menstruating, boolean consumedDrinks, int systolic, int pulse, String forPerson, boolean smoked, boolean wellSlept, BloodType bloodType, boolean rh, DiseaseReport diseaseReport) {
-        this.person = person;
-        this.pregnant = pregnant;
-        this.menstruating = menstruating;
-        this.consumedDrinks = consumedDrinks;
-        this.systolic = systolic;
-        this.pulse = pulse;
-        this.forPerson = forPerson;
-        this.smoked = smoked;
-        this.wellSlept = wellSlept;
-        this.bloodType = bloodType;
-        this.rh = rh;
-        this.diseaseReport = diseaseReport;
+    public Donation() {
     }
 
-    public long getId() {
+    public Donation(Donor donor, Set<HealthIssue> healthIssues) {
+        this.donor = donor;
+        this.healthIssues = healthIssues;
+        collectionDate = new Date();
+    }
+
+    public Donation(Donor donor, String forPerson, Set<HealthIssue> healthIssues) {
+        this.donor = donor;
+        this.forPerson = forPerson;
+        this.healthIssues = healthIssues;
+        this.collectionDate = new Date();
+    }
+
+    public Donation(Donor donor, Date collectionDate, Set<HealthIssue> healthIssues) {
+        this.donor = donor;
+        this.collectionDate = collectionDate;
+        this.healthIssues = healthIssues;
+    }
+
+    public Donation(Donor donor, Date collectionDate, String forPerson, Set<HealthIssue> healthIssues) {
+        this.donor = donor;
+        this.collectionDate = collectionDate;
+        this.forPerson = forPerson;
+        this.healthIssues = healthIssues;
+    }
+
+    public long getIdDonation() {
         return idDonation;
     }
 
-
-    public Person getPerson() {
-        return person;
+    public Donor getDonor() {
+        return donor;
     }
 
-    public void setPerson(Person person) {
-        this.person = person;
+    public void setDonor(Donor donor) {
+        this.donor = donor;
     }
 
-
-//
-//    public Date getExprieDate(){
-//
-//        //Specifying date format that matches the given date
-//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-//        Calendar c = Calendar.getInstance();
-//        try{
-//            //Setting the date to the given date
-//            c.setTime(sdf.parse(String.valueOf(colectionDate)));
-//        }catch(ParseException e){
-//            e.printStackTrace();
-//        }
-//
-//        c.add(Calendar.DAY_OF_MONTH, blood.getExpireDate());
-//        return c.getTime();
-//
-
-
-
-    public boolean isPregnant() {
-        return pregnant;
+    public Date getCollectionDate() {
+        return collectionDate;
     }
 
-    public void setPregnant(boolean pregnant) {
-        this.pregnant = pregnant;
-    }
-
-    public boolean isMenstruating() {
-        return menstruating;
-    }
-
-    public void setMenstruating(boolean menstruating) {
-        this.menstruating = menstruating;
-    }
-
-    public boolean isConsumedDrinks() {
-        return consumedDrinks;
-    }
-
-    public void setConsumedDrinks(boolean consumedDrinks) {
-        this.consumedDrinks = consumedDrinks;
-    }
-
-    public int getSystolic() {
-        return systolic;
-    }
-
-    public void setSystolic(int systolic) {
-        this.systolic = systolic;
-    }
-
-    public int getPulse() {
-        return pulse;
-    }
-
-    public void setPulse(int pulse) {
-        this.pulse = pulse;
+    public void setCollectionDate(Date collectionDate) {
+        this.collectionDate = collectionDate;
     }
 
     public String getForPerson() {
@@ -148,35 +87,11 @@ public class Donation {
         this.forPerson = forPerson;
     }
 
-    public boolean isSmoked() {
-        return smoked;
+    public Set<HealthIssue> getHealthIssues() {
+        return healthIssues;
     }
 
-    public void setSmoked(boolean smoked) {
-        this.smoked = smoked;
-    }
-
-    public boolean isWellSlept() {
-        return wellSlept;
-    }
-
-    public void setWellSlept(boolean wellSlept) {
-        this.wellSlept = wellSlept;
-    }
-
-    public BloodType getBloodType() {
-        return bloodType;
-    }
-
-    public void setBloodType(BloodType bloodType) {
-        this.bloodType = bloodType;
-    }
-
-    public DiseaseReport getDiseaseReport() {
-        return diseaseReport;
-    }
-
-    public void setDiseaseReport(DiseaseReport diseaseReport) {
-        this.diseaseReport = diseaseReport;
+    public void setHealthIssues(Set<HealthIssue> healthIssues) {
+        this.healthIssues = healthIssues;
     }
 }
