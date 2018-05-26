@@ -6,5 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface HospitalRepository extends JpaRepository<Hospital, Long> {
     Hospital save(Hospital hospital);
 
-    Hospital getById(Long id);
+    Hospital findById(Long id);
 }

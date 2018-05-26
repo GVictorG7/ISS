@@ -32,17 +32,17 @@ public class UserService implements IUserService {
      */
     @Override
     public User login(String username, String password) {
-        return userRepository.getByUsernameAndPassword(username, password);
+        return userRepository.findByUsernameAndPassword(username, password);
     }
 
     @Override
     public Donor getUserDonor(Long id) {
-        return donorRepository.getByUser(userRepository.getById(id));
+        return donorRepository.findByUser(userRepository.findById(id));
     }
 
     @Override
     public Medic getUserMedic(Long id) {
-        return medicRepository.getByUser(userRepository.getById(id));
+        return medicRepository.findByUser(userRepository.findById(id));
     }
 
     @Override

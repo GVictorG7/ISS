@@ -29,7 +29,7 @@ public class DonationService implements IDonationService {
 
     @Override
     public Donation getById(Long id) {
-        return donationRepository.getById(id);
+        return donationRepository.findById(id);
     }
 
     @Override

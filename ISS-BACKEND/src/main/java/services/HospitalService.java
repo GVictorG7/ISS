@@ -23,7 +23,7 @@ public class HospitalService implements IHospitalService {
 
     @Override
     public Hospital getById(Long id) {
-        return hospitalRepository.getById(id);
+        return hospitalRepository.findById(id);
     }
 
     @Override
