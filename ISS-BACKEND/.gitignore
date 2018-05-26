@@ -1,0 +1,7 @@
+.idea
+.gradle
+build
+out
+ISS-BACKEND.iml
+../.idea
+../ISS_FRONTEND/ISS_FRONTEND.iml
