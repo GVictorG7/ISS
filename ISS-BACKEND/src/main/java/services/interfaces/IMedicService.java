@@ -8,9 +8,9 @@ import model.User;
 import java.util.List;
 
 public interface IMedicService {
-    void save(Medic donor);
+    void save(Medic medic);
 
-    void update(Medic updatedDonor);
+    void update(Medic updatedMedic);
 
     Medic getById(Long id);
 

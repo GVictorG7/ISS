@@ -40,7 +40,7 @@ public class MedicService implements IMedicService {
 
     @Override
     public Medic getById(Long id) {
-        return null;
+        return medicRepository.getById(id);
     }
 
     @Override

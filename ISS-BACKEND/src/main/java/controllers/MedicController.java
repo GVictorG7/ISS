@@ -25,7 +25,7 @@ public class MedicController {
     public void saveDonor(@Valid @RequestBody MedicFields medicFields, BindingResult result, HttpServletResponse response) {
         if (result.hasErrors()) {
             try {
-                response.sendError(412, ResponseErrors.getErrorsFormatted(result.getFieldErrors())); //PRECOMDITION_FAILED - should have been 422
+                response.sendError(412, ResponseErrors.getErrorsFormatted(result.getFieldErrors())); //PRECONDITION_FAILED - should have been 422
             } catch (IOException e) {
                 e.printStackTrace();
             }

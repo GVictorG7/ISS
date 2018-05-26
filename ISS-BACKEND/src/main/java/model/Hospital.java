@@ -53,4 +53,8 @@ public class Hospital implements Serializable {
     public void setMedics(List<Medic> medics) {
         this.medics = medics;
     }
+
+    public void addMedic(Medic medic) {
+        medics.add(medic);
+    }
 }
