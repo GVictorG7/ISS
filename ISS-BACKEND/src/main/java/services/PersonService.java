@@ -15,9 +15,9 @@ public class PersonService implements IPersonService {
         this.personRepository = personRepository;
     }
 
-
-    /***
+    /**
      * Authenticate user (person)
+     *
      * @param username = cnp in this state
      * @param password = user password
      * @return cnp (person unique field as a token / "Bad credentials if there is no match
@@ -29,7 +29,6 @@ public class PersonService implements IPersonService {
 
     @Override
     public Person save(Person person) {
-
         return personRepository.save(person);
     }
 }

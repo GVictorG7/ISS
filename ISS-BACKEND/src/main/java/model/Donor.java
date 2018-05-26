@@ -13,7 +13,7 @@ public class Donor implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private long id=1L;
+    private long id = 1L;
 
     @Column(name = "first_name")
     private String firstName;
@@ -150,4 +150,3 @@ public class Donor implements Serializable {
         this.user = user;
     }
 }
-

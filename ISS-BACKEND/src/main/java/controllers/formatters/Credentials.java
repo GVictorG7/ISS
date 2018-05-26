@@ -1,6 +1,5 @@
 package controllers.formatters;
 
-
 import java.io.Serializable;
 
 public class Credentials implements Serializable {

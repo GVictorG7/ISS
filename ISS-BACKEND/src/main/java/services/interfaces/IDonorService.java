@@ -8,9 +8,12 @@ import java.util.List;
 
 public interface IDonorService {
     void save(Donor donor);
-    void update(Donor updatedDonor);
-    Donor getById(Long id);
-    User getUserDonor(Long id);
-    List<Donation> getAllDonation(Long id);
 
+    void update(Donor updatedDonor);
+
+    Donor getById(Long id);
+
+    User getUserDonor(Long id);
+
+    List<Donation> getAllDonation(Donor donor);
 }

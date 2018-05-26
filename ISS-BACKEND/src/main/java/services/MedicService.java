@@ -25,13 +25,9 @@ public class MedicService implements IMedicService {
     public MedicService(MedicRepository medicRepository, BloodRepository bloodRepository, UserRepository userRepository, HospitalRepository hospitalRepository) {
         this.medicRepository = medicRepository;
         this.bloodRepository = bloodRepository;
-
-
         this.userRepository = userRepository;
-
         this.hospitalRepository = hospitalRepository;
     }
-
 
     @Override
     public void save(Medic medic) {
@@ -40,7 +36,6 @@ public class MedicService implements IMedicService {
 
     @Override
     public void update(Medic updatedDonor) {
-
     }
 
     @Override

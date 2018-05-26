@@ -17,13 +17,11 @@ public class DonorService implements IDonorService {
     private final DonorRepository donorRepository;
     private final UserRepository userRepository;
     private final DonationRepository donationRepository;
+
     @Autowired
     public DonorService(DonorRepository donorRepository, UserRepository userRepository, DonationRepository donationRepository) {
-
         this.donorRepository = donorRepository;
-
         this.userRepository = userRepository;
-
         this.donationRepository = donationRepository;
     }
 
@@ -34,7 +32,6 @@ public class DonorService implements IDonorService {
 
     @Override
     public void update(Donor updateDonor) {
-
     }
 
     @Override
@@ -48,9 +45,7 @@ public class DonorService implements IDonorService {
     }
 
     @Override
-    public List<Donation> getAllDonation(Long id) {
-        return donationRepository.findAllByDonor(id);
+    public List<Donation> getAllDonation(Donor donor) {
+        return donationRepository.findAllByDonor(donor);
     }
-
-
 }

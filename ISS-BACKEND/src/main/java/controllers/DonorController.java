@@ -1,6 +1,5 @@
 package controllers;
 
-
 import controllers.formatters.DonorFields;
 import controllers.formatters.ResponseErrors;
 import model.Donor;
@@ -11,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import services.interfaces.IDonorService;
-import services.interfaces.IUserService;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
@@ -27,7 +25,6 @@ public class DonorController {
         this.donorService = donorService;
     }
 
-
     @PostMapping(value = "/saveDonor")
     public void saveDonor(@Valid @RequestBody DonorFields donor, BindingResult result, HttpServletResponse response) {
         if (result.hasErrors()) {
@@ -39,7 +36,6 @@ public class DonorController {
         }
 
         response.setStatus(HttpServletResponse.SC_CREATED); // 201
-        donorService.save(new Donor(donor.getFirstName(),donor.getLastName(),donor.getCnp(),donor.getGender(),donor.getBirthday(),donor.getAddress(),donor.getLocalAddress(),donor.getEmail(),donor.getPhone(),donorService.getUserDonor(donor.getUserId())));
-
+        donorService.save(new Donor(donor.getFirstName(), donor.getLastName(), donor.getCnp(), donor.getGender(), donor.getBirthday(), donor.getAddress(), donor.getLocalAddress(), donor.getEmail(), donor.getPhone(), donorService.getUserDonor(donor.getUserId())));
     }
 }

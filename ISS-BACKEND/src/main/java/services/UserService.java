@@ -16,7 +16,6 @@ public class UserService implements IUserService {
     private final DonorRepository donorRepository;
     private final MedicRepository medicRepository;
 
-
     @Autowired
     public UserService(UserRepository userRepository, DonorRepository donorRepository, MedicRepository medicRepository) {
         this.userRepository = userRepository;
@@ -24,9 +23,9 @@ public class UserService implements IUserService {
         this.medicRepository = medicRepository;
     }
 
-
-    /***
+    /**
      * Authenticate user
+     *
      * @param username = cnp in this state
      * @param password = user password
      * @return cnp (person unique field as a token / "Bad credentials if there is no match
@@ -35,7 +34,6 @@ public class UserService implements IUserService {
     public User login(String username, String password) {
         return userRepository.getByUsernameAndPassword(username, password);
     }
-
 
     @Override
     public Donor getUserDonor(Long id) {
@@ -49,7 +47,6 @@ public class UserService implements IUserService {
 
     @Override
     public User save(User person) {
-
         return userRepository.save(person);
     }
 
@@ -57,6 +54,4 @@ public class UserService implements IUserService {
     public User update(User updatedUser) {
         return null;
     }
-
-
 }

@@ -1,9 +1,7 @@
 package controllers;
 
 import controllers.formatters.Credentials;
-
 import controllers.formatters.ResponseErrors;
-import model.Donor;
 import model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
@@ -14,21 +12,18 @@ import org.springframework.web.bind.annotation.RestController;
 import services.interfaces.IUserService;
 
 import javax.servlet.http.HttpServletResponse;
-
 import javax.validation.Valid;
 import java.io.IOException;
 
 @RestController
 @RequestMapping(value = "/auth")
 public class UserController {
-
     private final IUserService userService;
 
     @Autowired
     public UserController(IUserService userService) {
         this.userService = userService;
     }
-
 
     @PostMapping(value = "/login")
     public Object login(@RequestBody Credentials credentials, HttpServletResponse response) {
@@ -38,11 +33,10 @@ public class UserController {
             return null;
         }
         response.setStatus(HttpServletResponse.SC_OK);// 200
-        if(person.getUserType().equals("Doner"))
+        if (person.getUserType().equals("Donor"))
             return userService.getUserDonor(person.getId());
         else
             return userService.getUserMedic(person.getId());
-
     }
 
     @PostMapping(value = "/signup")
