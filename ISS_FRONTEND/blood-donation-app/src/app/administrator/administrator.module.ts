@@ -5,10 +5,18 @@ import {HospitalsComponent} from './hospitals/hospitals.component';
 import {AccountsComponent} from './accounts/accounts.component';
 import {AdministratorRoutingModule} from './administrator-routing.module';
 import {SharedModule} from '../shared/shared.module';
-import {MatButtonModule, MatSnackBarModule} from '@angular/material';
+import {
+  MatButtonModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatPaginatorModule,
+  MatSnackBarModule,
+  MatTableModule
+} from '@angular/material';
 import {AuthService} from '../auth/auth.service';
 import {HttpClientModule} from '@angular/common/http';
 import {AuthModule} from '../auth/auth.module';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   imports: [
@@ -16,6 +24,11 @@ import {AuthModule} from '../auth/auth.module';
     SharedModule,
     MatButtonModule,
     MatSnackBarModule,
+    FormsModule,
+    MatFormFieldModule,
+    MatPaginatorModule,
+    MatTableModule,
+    MatInputModule,
     HttpClientModule,
     AdministratorRoutingModule
   ],
