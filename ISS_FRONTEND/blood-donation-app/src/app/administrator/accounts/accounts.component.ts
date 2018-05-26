@@ -1,0 +1,41 @@
+import {Component, OnInit} from '@angular/core';
+import {User} from '../../core/model/User';
+import {checkCompleted} from '../../shared/utils/utils';
+import {MatSnackBar} from '@angular/material';
+import {Router} from '@angular/router';
+import {AdministratorService} from '../administrator.service';
+
+@Component({
+  selector: 'app-accounts',
+  templateUrl: './accounts.component.html',
+  styleUrls: ['./accounts.component.css']
+})
+export class AccountsComponent implements OnInit {
+  user: User = {id: 0, username: '', password: '', userType: null};
+  person: any = {id: 0};
+
+  constructor(private adminService: AdministratorService, private snackBar: MatSnackBar, private router: Router) {
+  }
+
+  ngOnInit() {
+  }
+
+  saveAccount() {
+    if (!checkCompleted(this.user) || !checkCompleted(this.person)) {
+      this.snackBar.open('Date completate gresit!', 'Ok', {duration: 1000});
+    } else {
+      this.adminService.checkAccount(this.user).subscribe(
+        (userId) => {
+          this.user.id = userId;
+          this.person.userId = userId;
+          this.adminService.register(this.person, this.user.userType).subscribe(
+            () => this.router.navigateByUrl('home'),
+            () => this.snackBar.open('Date personale completate gresit!', 'Ok', {duration: 1000})
+          );
+        },
+        () => this.snackBar.open('Nume de utilizator deja folosit!', 'Ok', {duration: 1000})
+      );
+    }
+  }
+
+}

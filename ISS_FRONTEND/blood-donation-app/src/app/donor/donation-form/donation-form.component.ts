@@ -1,8 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {DonationForm} from "../../core/model/DonationForm";
-import {Person} from "../../core/model/Person";
-import {DonorService} from "../donor.service";
-import {MatSnackBar} from "@angular/material";
+import {DonationForm} from '../../core/model/DonationForm';
+import {DonorService} from '../donor.service';
+import {MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-donation-form',
@@ -10,10 +9,10 @@ import {MatSnackBar} from "@angular/material";
   styleUrls: ['./donation-form.component.css']
 })
 export class DonationFormComponent implements OnInit {
-  donor: Person = null;
+  donor: any = null;
   donationForm: DonationForm = new DonationForm();
 
-  constructor(private service:DonorService, private snackBar:MatSnackBar) {
+  constructor(private service: DonorService, private snackBar: MatSnackBar) {
   }
 
   ngOnInit() {
@@ -31,19 +30,19 @@ export class DonationFormComponent implements OnInit {
 
   private birthdayToString() {
     let birthday = this.donor.cnp.substr(1, 6);
-    return `${birthday.substr(-2)}/${birthday.substr(2,2)}/19${birthday.substr(0,2)}`;
+    return `${birthday.substr(-2)}/${birthday.substr(2, 2)}/19${birthday.substr(0, 2)}`;
   }
 
-  saveDonation(){
-    if(this.checkFields())
+  saveDonation() {
+    if (this.checkFields())
       this.service.saveDonation(this.donationForm);
     else
-      this.snackBar.open("Date completate gresit!", 'Ok', {duration: 1000});
+      this.snackBar.open('Date completate gresit!', 'Ok', {duration: 1000});
   }
 
   private checkFields() {
-    for (let property in this.donationForm )
-      if(this.donationForm[property] === '')
+    for (let property in this.donationForm)
+      if (this.donationForm[property] === '')
         return false;
     return true;
   }

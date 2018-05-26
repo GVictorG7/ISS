@@ -1,8 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {Person} from "../../core/model/Person";
-import {AuthService} from "../auth.service";
-import {MatSnackBar} from "@angular/material";
-import {Router} from "@angular/router";
+import {User} from '../../core/model/User';
+import {AuthService} from '../auth.service';
+import {MatSnackBar} from '@angular/material';
+import {Router} from '@angular/router';
+import {UserType} from '../../core/model/UserType';
+import {Donor} from '../../core/model/Donor';
+import {checkCompleted} from '../../shared/utils/utils';
 
 @Component({
   selector: 'app-register',
@@ -10,19 +13,20 @@ import {Router} from "@angular/router";
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  person: Person = {
-    id: null,
+  user: User = {id: 0, username: '', password: '', userType: UserType.DONOR};
+  donor: Donor = {
+    id: 0,
     firstName: '',
     lastName: '',
-    password: '',
     cnp: '',
     gender: '',
-    personType: ''
+    birthday: '',
+    address: '',
+    local_address: '',
+    email: '',
+    phone: '',
+    userId: 0
   };
-  roles = [{value: 'DONOR', viewValue: 'Donator'},
-    {value: 'PERSONNEL', viewValue: 'Personal centru de donatie'},
-    {value: 'DOCTOR', viewValue: 'Doctor'}
-  ];
 
   constructor(private authService: AuthService, private snackBar: MatSnackBar, private router: Router) {
   }
@@ -30,13 +34,22 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
   }
 
+
   register() {
-    if (this.person.personType === '')
-      this.snackBar.open("Date completate gresit!", 'Ok', {duration: 1000});
-    else
-      this.authService.register(this.person).subscribe(
-        () => this.router.navigateByUrl('home'),
-        () => this.snackBar.open("Date completate gresit!", 'Ok', {duration: 1000})
-      )
+    if (!checkCompleted(this.user) || !checkCompleted(this.donor)) {
+      this.snackBar.open('Date completate gresit!', 'Ok', {duration: 1000});
+    } else {
+      this.authService.checkAccount(this.user).subscribe(
+        (userId) => {
+          this.user.id = userId;
+          this.donor.userId = userId;
+          this.authService.register(this.donor, this.user.userType).subscribe(
+            () => this.router.navigateByUrl('home'),
+            () => this.snackBar.open('Date personale completate gresit!', 'Ok', {duration: 1000})
+          );
+        },
+        () => this.snackBar.open('Nume de utilizator deja folosit!', 'Ok', {duration: 1000})
+      );
+    }
   }
 }

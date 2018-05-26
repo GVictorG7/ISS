@@ -1,5 +1,4 @@
 <div class="example-container">
-  <app-menu></app-menu>
   <mat-form-field>
     <input matInput placeholder="Nume de utilizator"
            [(ngModel)]="user.username"
@@ -12,9 +11,14 @@
            [(ngModel)]="user.password"
            required
     ></mat-form-field>
-  Date personale <br>
-  <app-donor-data [donor]="donor"></app-donor-data>
+  <mat-form-field>
+    <mat-select placeholder="Rol in societate" [(value)]="user.userType">
+      <mat-option *ngFor="let role of roles" [value]="role.value">
+        {{ role.viewValue }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <app-user-data [type]="user.userType" [person]="person"></app-user-data>
 
-  <button mat-button color="primary" (click)="register()">Register</button>
 
 </div>

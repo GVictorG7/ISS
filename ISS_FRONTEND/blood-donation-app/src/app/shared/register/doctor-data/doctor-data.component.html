@@ -1,0 +1,21 @@
+<div>
+  <mat-form-field>
+    <input matInput placeholder="Nume"
+           [(ngModel)]="personnel.lastName"
+           required
+    >
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Prenume"
+           [(ngModel)]="personnel.firstName"
+           required
+    >
+  </mat-form-field>
+  <mat-form-field>
+    <mat-select placeholder="Spital" [(value)]="doctor.hospitalId">
+      <mat-option *ngFor="let hospital of hospitals " [value]="hospital.id">
+        {{ hospital.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>

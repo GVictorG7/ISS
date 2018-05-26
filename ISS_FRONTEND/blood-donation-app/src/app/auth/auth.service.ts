@@ -1,7 +1,8 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {tap} from "rxjs/operators";
-import {Person} from "../core/model/Person";
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {tap} from 'rxjs/operators';
+import {User} from '../core/model/User';
+import {Observable} from 'rxjs';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -15,7 +16,6 @@ export class AuthService {
   }
 
   login(username: string, password: string) {
-    console.log('entered login functin');
     return this.http.post<string>(`${this.authUrl}/login`, {
       username: username,
       password: password
@@ -24,7 +24,11 @@ export class AuthService {
       ));
   }
 
-  register(person: Person) {
-    return this.http.post<Person>(`${this.authUrl}/signup`, person, httpOptions);
+  checkAccount(user: User) {
+    return this.http.post<any>(`${this.authUrl}/signup`, user, httpOptions);
+  }
+
+  register(account, type) {
+    return this.http.post<any>(`http://localhost:8090/${type.toLowerCase()}/save`, account, httpOptions);
   }
 }

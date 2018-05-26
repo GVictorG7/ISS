@@ -1,0 +1,60 @@
+<div>
+  <mat-form-field>
+    <input matInput placeholder="Nume"
+           [(ngModel)]="donor.lastName"
+           required
+    >
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Prenume"
+           [(ngModel)]="donor.firstName"
+           required
+    >
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="CNP"
+           [(ngModel)]="donor.cnp"
+           required
+    >
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Gen"
+           [(ngModel)]="donor.gender"
+           required
+    >
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Data nasterii"
+           type="date"
+           [(ngModel)]="donor.birthday"
+           required
+    >
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Adresa (din buletin)"
+           [(ngModel)]="donor.address"
+           required
+    >
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Adresa locala (unde locuiti acum)"
+           [(ngModel)]="donor.local_address"
+           required
+    >
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Email"
+           type="email"
+           [(ngModel)]="donor.email"
+           required
+    >
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Telefon"
+           max="10"
+           [(ngModel)]="donor.phone"
+           required
+    >
+  </mat-form-field>
+</div>
