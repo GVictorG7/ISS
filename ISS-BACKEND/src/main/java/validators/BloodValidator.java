@@ -16,8 +16,8 @@ public class BloodValidator implements Validator {
     @Override
     public void validate(Object target, Errors errors) {
         Blood blood = (Blood) target;
-        if (!blood.getGroup().equals("0") || !blood.getGroup().equals("A") || !blood.getGroup().equals("B") ||
-                !blood.getGroup().equals("AB")) {
+        if (!blood.getBloodType().equals("0") || !blood.getBloodType().equals("A") || !blood.getBloodType().equals("B") ||
+                !blood.getBloodType().equals("AB")) {
             errors.rejectValue("group", "invalid group");
         }
     }
