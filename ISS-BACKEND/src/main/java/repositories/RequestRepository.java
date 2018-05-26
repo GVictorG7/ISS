@@ -14,4 +14,7 @@ public interface RequestRepository extends JpaRepository<Request, Long> {
     List<Request> findAllById(Long id);
 
     List<Request> findAllByMedic(Medic medic);
+
+
+
 }

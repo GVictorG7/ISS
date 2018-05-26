@@ -40,17 +40,22 @@ public class MedicService implements IMedicService {
 
     @Override
     public Medic getById(Long id) {
+        return medicRepository.findById(id);
+    }
+
+    @Override
+    public User findUser(Long id) {
         return null;
     }
 
     @Override
     public User getUserMedic(Long id) {
-        return userRepository.getById(id);
+        return userRepository.findById(id);
     }
 
     @Override
     public Hospital getHospitalMedic(Long id) {
-        return hospitalRepository.getById(id);
+        return hospitalRepository.findById(id);
     }
 
     @Override

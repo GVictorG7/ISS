@@ -1,5 +1,6 @@
 package model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.validation.annotation.Validated;
 import validators.MedicValidator;
 
@@ -21,10 +22,12 @@ public class Medic implements Serializable {
     @Column(name = "last_name")
     private String lastName;
 
+    @JsonIgnore
     @OneToOne
     @JoinColumn(name = "user_id")
     private User user;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "hospital_id")
     private Hospital hospital;

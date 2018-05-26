@@ -36,12 +36,12 @@ public class DonorService implements IDonorService {
 
     @Override
     public Donor getById(Long id) {
-        return donorRepository.getById(id);
+        return donorRepository.findById(id);
     }
 
     @Override
     public User getUserDonor(Long id) {
-        return userRepository.getById(id);
+        return userRepository.findById(id);
     }
 
     @Override
