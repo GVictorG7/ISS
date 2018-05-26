@@ -17,11 +17,11 @@ public class Person implements Serializable {
     @Column(name = "id")
     private final long id = 1L;
 
-    @Size(min=3, max=25)
+    @Size(min = 3, max = 25)
     @Column(name = "first_name")
     private String firstName;
 
-    @Size(min=3, max=40)
+    @Size(min = 3, max = 40)
     @Column(name = "last_name")
     private String lastName;
 
@@ -32,7 +32,7 @@ public class Person implements Serializable {
 
     @NotNull
     @Size(min = 13, max = 13, message = "Must have 13 numbers") // :))
-    @Column(name = "cnp",unique = true)
+    @Column(name = "cnp", unique = true)
     private String cnp;
 
     @Column(name = "gender")
@@ -104,5 +104,4 @@ public class Person implements Serializable {
     public void setPersonType(String personType) {
         this.personType = personType;
     }
-
 }
