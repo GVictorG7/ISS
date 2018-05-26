@@ -19,14 +19,18 @@ public class Hospital implements Serializable {
     @Column(name = "name")
     private String name;
 
+    @Column(name = "adress")
+    private String adress;
+
     @OneToMany
     private List<Medic> medics;
 
     public Hospital() {
     }
 
-    public Hospital(String name, List<Medic> medics) {
+    public Hospital(String name, String adress, List<Medic> medics) {
         this.name = name;
+        this.adress = adress;
         this.medics = medics;
     }
 
@@ -56,5 +60,13 @@ public class Hospital implements Serializable {
 
     public void addMedic(Medic medic) {
         medics.add(medic);
+    }
+
+    public String getAdress() {
+        return adress;
+    }
+
+    public void setAdress(String adress) {
+        this.adress = adress;
     }
 }

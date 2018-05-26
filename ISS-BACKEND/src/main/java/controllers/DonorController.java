@@ -3,6 +3,7 @@ package controllers;
 import controllers.formatters.DonorFields;
 import controllers.formatters.ResponseErrors;
 import model.Donor;
+import model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,8 +26,8 @@ public class DonorController {
         this.donorService = donorService;
     }
 
-    @PostMapping(value = "/saveDonor")
-    public void saveDonor(@Valid @RequestBody DonorFields donor, BindingResult result, HttpServletResponse response) {
+    @PostMapping(value = "/save")
+    public Donor saveDonor(@Valid @RequestBody DonorFields donor, BindingResult result, HttpServletResponse response) {
         if (result.hasErrors()) {
             try {
                 response.sendError(412, ResponseErrors.getErrorsFormatted(result.getFieldErrors())); //PRECOMDITION_FAILED - should have been 422
@@ -34,8 +35,24 @@ public class DonorController {
                 e.printStackTrace();
             }
         }
+        String firstName = donor.getFirstName();
+        String lastName = donor.getLastName();
+        String cnp = donor.getCnp();
+        String gender = donor.getGender();
+        String birthday = donor.getBirthday();
+        String address = donor.getAddress();
+        String localAddress = donor.getLocalAddress();
+        String email = donor.getEmail();
+        String phone = donor.getPhone();
+        User user = donorService.getUserDonor(donor.getUserId());
+
+
+        Donor donorInstace = new Donor(firstName, lastName, cnp, gender, birthday, address, localAddress, email, phone, user);
+        donorService.save(donorInstace);
 
         response.setStatus(HttpServletResponse.SC_CREATED); // 201
-        donorService.save(new Donor(donor.getFirstName(), donor.getLastName(), donor.getCnp(), donor.getGender(), donor.getBirthday(), donor.getAddress(), donor.getLocalAddress(), donor.getEmail(), donor.getPhone(), donorService.getUserDonor(donor.getUserId())));
+        return donorInstace;
+
     }
+
 }

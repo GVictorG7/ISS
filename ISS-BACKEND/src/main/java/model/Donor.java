@@ -1,5 +1,6 @@
 package model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.validation.annotation.Validated;
 import validators.DonorValidator;
 
@@ -42,6 +43,8 @@ public class Donor implements Serializable {
     @Column(name = "phone")
     private String phone;
 
+
+    @JsonIgnore
     @OneToOne
     @JoinColumn(name = "user_id")
     private User user;

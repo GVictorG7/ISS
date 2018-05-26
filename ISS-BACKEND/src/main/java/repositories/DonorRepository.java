@@ -10,4 +10,5 @@ public interface DonorRepository extends JpaRepository<Donor, Long> {
     Donor save(Donor donor);
 
     Donor findById(Long id);
+
 }

@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 import repositories.HospitalRepository;
 import services.interfaces.IHospitalService;
 
+import java.util.List;
+
 @Service
 public class HospitalService implements IHospitalService {
     private final HospitalRepository hospitalRepository;
@@ -30,4 +32,11 @@ public class HospitalService implements IHospitalService {
     public void addMedic(Hospital hospital, Medic medic) {
         hospital.addMedic(medic);
     }
+
+    @Override
+    public List<Hospital> getAllHospital() {
+
+        return hospitalRepository.findAll();
+    }
+
 }
