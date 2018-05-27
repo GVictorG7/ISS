@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import services.interfaces.IMedicService;
+import services.interfaces.IDoctorService;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
@@ -17,12 +17,12 @@ import java.io.IOException;
 
 
 @RestController
-@RequestMapping(value = "/medic")
-public class MedicController {
-    private final IMedicService medicService;
+@RequestMapping(value = "/doctor")
+public class DoctorController {
+    private final IDoctorService medicService;
 
     @Autowired
-    public MedicController(IMedicService medicService) {
+    public DoctorController(IDoctorService medicService) {
         this.medicService = medicService;
     }
 
@@ -37,6 +37,6 @@ public class MedicController {
         }
 
         response.setStatus(HttpServletResponse.SC_CREATED); // 201
-        medicService.save(new Doctor(doctorFields.getFirstName(), doctorFields.getLastName(), medicService.getUserMedic(doctorFields.getUserId()), medicService.getHospitalMedic(doctorFields.getUserHospital())));
+        medicService.save(new Doctor(doctorFields.getFirstName(), doctorFields.getLastName(), medicService.getUserDoctor(doctorFields.getUserId()), medicService.getHospitalDoctor(doctorFields.getUserHospital())));
     }
 }

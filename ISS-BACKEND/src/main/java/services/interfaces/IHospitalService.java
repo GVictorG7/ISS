@@ -1,7 +1,7 @@
 package services.interfaces;
 
 import model.Hospital;
-import model.Medic;
+import model.Doctor;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ public interface IHospitalService {
 
     Hospital getById(Long id);
 
-    void addMedic(Hospital hospital, Medic medic);
+    void addDoctor(Hospital hospital, Doctor doctor);
 
     List<Hospital> getAllHospital();
 

@@ -35,8 +35,8 @@ public class Request implements Serializable {
     private int bloodQuantity;
 
     @ManyToOne
-    @JoinColumn(name = "medic_id")
-    private Medic medic;
+    @JoinColumn(name = "doctor_id")
+    private Doctor doctor;
 
     @ManyToOne
     @JoinColumn(name = "blood_id")
@@ -45,14 +45,14 @@ public class Request implements Serializable {
     public Request() {
     }
 
-    public Request(String person, Date requestDate, int priority, String bloodCategory, String bloodType, int bloodQuantity, Medic medic, Blood blood) {
+    public Request(String person, Date requestDate, int priority, String bloodCategory, String bloodType, int bloodQuantity, Doctor doctor, Blood blood) {
         this.person = person;
         this.requestDate = requestDate;
         this.priority = priority;
         this.bloodCategory = bloodCategory;
         this.bloodType = bloodType;
         this.bloodQuantity = bloodQuantity;
-        this.medic = medic;
+        this.doctor = doctor;
         this.blood = blood;
     }
 
@@ -112,12 +112,12 @@ public class Request implements Serializable {
         this.bloodQuantity = bloodQuantity;
     }
 
-    public Medic getMedic() {
-        return medic;
+    public Doctor getDoctor() {
+        return doctor;
     }
 
-    public void setMedic(Medic medic) {
-        this.medic = medic;
+    public void setDoctor(Doctor doctor) {
+        this.doctor = doctor;
     }
 
     public Blood getBlood() {

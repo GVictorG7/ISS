@@ -7,23 +7,23 @@ import model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import repositories.BloodRepository;
+import repositories.DoctorRepository;
 import repositories.HospitalRepository;
-import repositories.MedicRepository;
 import repositories.UserRepository;
-import services.interfaces.IMedicService;
+import services.interfaces.IDoctorService;
 
 import java.util.List;
 
 @Service
-public class MedicService implements IMedicService {
-    private final MedicRepository medicRepository;
+public class DoctorService implements IDoctorService {
+    private final DoctorRepository doctorRepository;
     private final BloodRepository bloodRepository;
     private final UserRepository userRepository;
     private final HospitalRepository hospitalRepository;
 
     @Autowired
-    public MedicService(MedicRepository medicRepository, BloodRepository bloodRepository, UserRepository userRepository, HospitalRepository hospitalRepository) {
-        this.medicRepository = medicRepository;
+    public DoctorService(DoctorRepository doctorRepository, BloodRepository bloodRepository, UserRepository userRepository, HospitalRepository hospitalRepository) {
+        this.doctorRepository = doctorRepository;
         this.bloodRepository = bloodRepository;
         this.userRepository = userRepository;
         this.hospitalRepository = hospitalRepository;
@@ -31,7 +31,7 @@ public class MedicService implements IMedicService {
 
     @Override
     public void save(Doctor doctor) {
-        medicRepository.save(doctor);
+        doctorRepository.save(doctor);
     }
 
     @Override
@@ -40,7 +40,7 @@ public class MedicService implements IMedicService {
 
     @Override
     public Doctor getById(Long id) {
-        return medicRepository.findById(id);
+        return doctorRepository.findById(id);
     }
 
     @Override
@@ -49,12 +49,12 @@ public class MedicService implements IMedicService {
     }
 
     @Override
-    public User getUserMedic(Long id) {
+    public User getUserDoctor(Long id) {
         return userRepository.findById(id);
     }
 
     @Override
-    public Hospital getHospitalMedic(Long id) {
+    public Hospital getHospitalDoctor(Long id) {
         return hospitalRepository.findById(id);
     }
 

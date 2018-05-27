@@ -7,7 +7,7 @@ import model.User;
 
 import java.util.List;
 
-public interface IMedicService {
+public interface IDoctorService {
     void save(Doctor doctor);
 
     void update(Doctor updatedDoctor);
@@ -16,9 +16,9 @@ public interface IMedicService {
 
     User findUser(Long id);
 
-    Hospital getHospitalMedic(Long id);
+    Hospital getHospitalDoctor(Long id);
 
     List<Blood> getAllBlood();
 
-    User getUserMedic(Long userId);
+    User getUserDoctor(Long userId);
 }

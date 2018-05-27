@@ -7,8 +7,8 @@ import java.io.Serializable;
 
 
 @Entity
-@Table(name = "Personel")
-public class Personel implements Serializable {
+@Table(name = "Personnel")
+public class Personnel implements Serializable {
 
 
     @Id
@@ -28,7 +28,7 @@ public class Personel implements Serializable {
     private User user;
 
 
-    public Personel(String firstName, String lastName, User user) {
+    public Personnel(String firstName, String lastName, User user) {
 
         this.firstName = firstName;
         this.lastName = lastName;

@@ -7,11 +7,13 @@ import model.User;
 
 import java.util.List;
 
-public interface IPersonelService {
+public interface IPersonnelService {
 
     Personnel save(Personnel personnel);
 
     List<Donation> getAllDonation();
+
     List<Request> getAllBloodRequest();
-    User getUserPersonel(Long id);
+
+    User getUserPersonnel(Long id);
 }

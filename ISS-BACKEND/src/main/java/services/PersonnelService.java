@@ -10,20 +10,20 @@ import repositories.DonationRepository;
 import repositories.PersonnelRepository;
 import repositories.RequestRepository;
 import repositories.UserRepository;
-import services.interfaces.IPersonelService;
+import services.interfaces.IPersonnelService;
 
 import java.util.List;
 
 
 @Service
-public class PersonelService implements IPersonelService {
+public class PersonnelService implements IPersonnelService {
     private final UserRepository userRepository;
     private final PersonnelRepository personnelRepository;
     private final RequestRepository requestRepository;
     private final DonationRepository donationRepository;
 
     @Autowired
-    public PersonelService(UserRepository userRepository, PersonnelRepository personnelRepository, RequestRepository requestRepository, DonationRepository donationRepository) {
+    public PersonnelService(UserRepository userRepository, PersonnelRepository personnelRepository, RequestRepository requestRepository, DonationRepository donationRepository) {
         this.userRepository = userRepository;
         this.personnelRepository = personnelRepository;
         this.requestRepository = requestRepository;
@@ -44,8 +44,9 @@ public class PersonelService implements IPersonelService {
     public List<Request> getAllBloodRequest() {
         return requestRepository.findAll();
     }
+
     @Override
-    public User getUserPersonel(Long id) {
+    public User getUserPersonnel(Long id) {
         return userRepository.findById(id);
     }
 

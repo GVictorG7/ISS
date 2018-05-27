@@ -19,19 +19,19 @@ public class Hospital implements Serializable {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "adress")
-    private String adress;
+    @Column(name = "address")
+    private String address;
 
     @OneToMany
-    private List<Medic> medics;
+    private List<Doctor> doctors;
 
     public Hospital() {
     }
 
-    public Hospital(String name, String adress, List<Medic> medics) {
+    public Hospital(String name, String address, List<Doctor> doctors) {
         this.name = name;
-        this.adress = adress;
-        this.medics = medics;
+        this.address = address;
+        this.doctors = doctors;
     }
 
     public long getId() {
@@ -50,23 +50,23 @@ public class Hospital implements Serializable {
         this.name = name;
     }
 
-    public List<Medic> getMedics() {
-        return medics;
+    public List<Doctor> getDoctors() {
+        return doctors;
     }
 
-    public void setMedics(List<Medic> medics) {
-        this.medics = medics;
+    public void setDoctors(List<Doctor> doctors) {
+        this.doctors = doctors;
     }
 
-    public void addMedic(Medic medic) {
-        medics.add(medic);
+    public void addMedic(Doctor doctor) {
+        doctors.add(doctor);
     }
 
-    public String getAdress() {
-        return adress;
+    public String getAddress() {
+        return address;
     }
 
-    public void setAdress(String adress) {
-        this.adress = adress;
+    public void setAddress(String address) {
+        this.address = address;
     }
 }

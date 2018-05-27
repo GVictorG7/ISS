@@ -5,13 +5,15 @@ public class HospitalFields {
 
     private String name;
 
-    private String adress;
+    private String address;
 
-    public HospitalFields() {}
-    public HospitalFields(long id, String name, String adress) {
+    public HospitalFields() {
+    }
+
+    public HospitalFields(long id, String name, String address) {
         this.id = id;
         this.name = name;
-        this.adress = adress;
+        this.address = address;
     }
 
     public long getId() {
@@ -30,11 +32,11 @@ public class HospitalFields {
         this.name = name;
     }
 
-    public String getAdress() {
-        return adress;
+    public String getAddress() {
+        return address;
     }
 
-    public void setAdress(String adress) {
-        this.adress = adress;
+    public void setAddress(String address) {
+        this.address = address;
     }
 }

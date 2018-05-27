@@ -1,14 +1,14 @@
 package services;
 
+import model.Doctor;
 import model.Donor;
-import model.Medic;
-import model.Personel;
+import model.Personnel;
 import model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import repositories.DoctorRepository;
 import repositories.DonorRepository;
-import repositories.MedicRepository;
-import repositories.PersonelRepository;
+import repositories.PersonnelRepository;
 import repositories.UserRepository;
 import services.interfaces.IUserService;
 
@@ -16,15 +16,15 @@ import services.interfaces.IUserService;
 public class UserService implements IUserService {
     private final UserRepository userRepository;
     private final DonorRepository donorRepository;
-    private final MedicRepository medicRepository;
-    private final PersonelRepository personelRepository;
+    private final DoctorRepository doctorRepository;
+    private final PersonnelRepository personnelRepository;
 
     @Autowired
-    public UserService(UserRepository userRepository, DonorRepository donorRepository, MedicRepository medicRepository, PersonelRepository personelRepository) {
+    public UserService(UserRepository userRepository, DonorRepository donorRepository, DoctorRepository doctorRepository, PersonnelRepository personnelRepository) {
         this.userRepository = userRepository;
         this.donorRepository = donorRepository;
-        this.medicRepository = medicRepository;
-        this.personelRepository = personelRepository;
+        this.doctorRepository = doctorRepository;
+        this.personnelRepository = personnelRepository;
     }
 
     /**
@@ -45,13 +45,13 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public Medic getUserMedic(Long id) {
-        return medicRepository.findByUser(userRepository.findById(id));
+    public Doctor getUserDoctor(Long id) {
+        return doctorRepository.findByUser(userRepository.findById(id));
     }
 
     @Override
-    public Personel getUserPersonel(Long id) {
-        return personelRepository.findByUser(userRepository.findById(id));
+    public Personnel getUserPersonel(Long id) {
+        return personnelRepository.findByUser(userRepository.findById(id));
     }
 
     @Override
@@ -61,6 +61,6 @@ public class UserService implements IUserService {
 
     @Override
     public User update(User updatedUser) {
-        return  userRepository.save(updatedUser);
+        return userRepository.save(updatedUser);
     }
 }

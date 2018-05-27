@@ -9,8 +9,8 @@ import java.io.Serializable;
 
 @Validated(value = MedicValidator.class)
 @Entity
-@Table(name = "Medics")
-public class Medic implements Serializable {
+@Table(name = "Doctors")
+public class Doctor implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -32,10 +32,10 @@ public class Medic implements Serializable {
     @JoinColumn(name = "hospital_id")
     private Hospital hospital;
 
-    public Medic() {
+    public Doctor() {
     }
 
-    public Medic(String firstName, String lastName, User user, Hospital hospital) {
+    public Doctor(String firstName, String lastName, User user, Hospital hospital) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.user = user;

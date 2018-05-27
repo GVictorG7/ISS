@@ -1,10 +1,10 @@
 package repositories;
 
-import model.Personel;
+import model.Personnel;
 import model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface PersonelRepository extends JpaRepository<Personel, Long> {
-    Personel save(Personel personel);
-    Personel findByUser(User user);
+public interface PersonnelRepository extends JpaRepository<Personnel, Long> {
+    Personnel save(Personnel personnel);
+    Personnel findByUser(User user);
 }
