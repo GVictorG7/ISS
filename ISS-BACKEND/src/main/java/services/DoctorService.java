@@ -1,8 +1,8 @@
 package services;
 
 import model.Blood;
+import model.Doctor;
 import model.Hospital;
-import model.Medic;
 import model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,16 +30,16 @@ public class MedicService implements IMedicService {
     }
 
     @Override
-    public void save(Medic medic) {
-        medicRepository.save(medic);
+    public void save(Doctor doctor) {
+        medicRepository.save(doctor);
     }
 
     @Override
-    public void update(Medic updatedDonor) {
+    public void update(Doctor updatedDonor) {
     }
 
     @Override
-    public Medic getById(Long id) {
+    public Doctor getById(Long id) {
         return medicRepository.findById(id);
     }
 

@@ -1,8 +1,8 @@
 package controllers;
 
-import controllers.formatters.MedicFields;
+import controllers.formatters.DoctorFields;
 import controllers.formatters.ResponseErrors;
-import model.Medic;
+import model.Doctor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,7 +27,7 @@ public class MedicController {
     }
 
     @PostMapping(value = "/save")
-    public void saveDonor(@Valid @RequestBody MedicFields medicFields, BindingResult result, HttpServletResponse response) {
+    public void saveDonor(@Valid @RequestBody DoctorFields doctorFields, BindingResult result, HttpServletResponse response) {
         if (result.hasErrors()) {
             try {
                 response.sendError(412, ResponseErrors.getErrorsFormatted(result.getFieldErrors())); //PRECONDITION_FAILED - should have been 422
@@ -37,6 +37,6 @@ public class MedicController {
         }
 
         response.setStatus(HttpServletResponse.SC_CREATED); // 201
-        medicService.save(new Medic(medicFields.getFirstName(), medicFields.getLastName(), medicService.getUserMedic(medicFields.getUserId()), medicService.getHospitalMedic(medicFields.getUserHospital())));
+        medicService.save(new Doctor(doctorFields.getFirstName(), doctorFields.getLastName(), medicService.getUserMedic(doctorFields.getUserId()), medicService.getHospitalMedic(doctorFields.getUserHospital())));
     }
 }

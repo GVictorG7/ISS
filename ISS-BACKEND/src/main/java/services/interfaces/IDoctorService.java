@@ -1,18 +1,18 @@
 package services.interfaces;
 
 import model.Blood;
+import model.Doctor;
 import model.Hospital;
-import model.Medic;
 import model.User;
 
 import java.util.List;
 
 public interface IMedicService {
-    void save(Medic medic);
+    void save(Doctor doctor);
 
-    void update(Medic updatedMedic);
+    void update(Doctor updatedDoctor);
 
-    Medic getById(Long id);
+    Doctor getById(Long id);
 
     User findUser(Long id);
 
