@@ -2,9 +2,12 @@ package services;
 
 import model.Blood;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import repositories.BloodRepository;
 
+import java.util.List;
 
+@Service
 public class BloodService implements IBloodService {
     private final BloodRepository bloodRepository;
 
@@ -14,26 +17,16 @@ public class BloodService implements IBloodService {
     }
     @Override
     public Blood save(Blood blood) {
-        return null;
+        return bloodRepository.save(blood);
     }
 
     @Override
-    public void delte(int id) {
-
-    }
+    public void delete(Long id) {bloodRepository.delete(id);}
 
     @Override
-    public void getAll() {
+    public List<Blood> getAll() {return bloodRepository.findAll();}
 
-    }
-
-    @Override
-    public void update(Blood blod) {
-
-    }
 
     @Override
-    public void findById(int id) {
-
-    }
+    public Blood findById(Long id) {return bloodRepository.getById(id);}
 }
