@@ -9,6 +9,7 @@ import java.io.Serializable;
 
 @Validated(value = BloodValidator.class)
 @Entity
+@Table(name = "Blood")
 public class Blood implements Serializable {
 
     private static final int PLASMA_EXPIRATION_DATE = 112;

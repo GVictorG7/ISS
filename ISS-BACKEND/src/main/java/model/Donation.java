@@ -8,7 +8,7 @@ import java.util.Set;
 
 
 @Entity
-@Table(name = "donation")
+@Table(name = "Donations")
 public class Donation {
 
     @Id
@@ -16,9 +16,9 @@ public class Donation {
     @Column(name = "id")
     private final long id = 1L;
 
-//    @OneToOne
-//    @JoinColumn(name = "donor_id")
-//    private Donor donor;
+    @ManyToOne
+    @JoinColumn(name = "id_donor")
+    private Donor donor;
 
     @Column(name = "collectionDate")
     private LocalDate collectionDate;
@@ -54,25 +54,20 @@ public class Donation {
         this.healthIssues = healthIssues;
     }
 
-//    public Donation(Donor donor, LocalDate collectionDate, String forPerson, Set<HealthIssue> healthIssues) {
-//        this.donor = donor;
-    public Donation(LocalDate collectionDate, String forPerson, Set<HealthIssue> healthIssues) {
+    public Donation(Donor donor, LocalDate collectionDate, String forPerson, Set<HealthIssue> healthIssues) {
+        this.donor = donor;
         this.collectionDate = collectionDate;
         this.forPerson = forPerson;
         this.healthIssues = healthIssues;
     }
 
-//    public long getIdDonation() {
-//        return idDonation;
-//    }
+    public Donor getDonor() {
+        return donor;
+    }
 
-//    public Donor getDonor() {
-//        return donor;
-//    }
-//
-//    public void setDonor(Donor donor) {
-//        this.donor = donor;
-//    }
+    public void setDonor(Donor donor) {
+        this.donor = donor;
+    }
 
     public LocalDate getCollectionDate() {
         return collectionDate;

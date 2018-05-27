@@ -11,44 +11,27 @@ import java.io.Serializable;
 @Table(name = "Users")
 public class User implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private long id;
-
-    @NotEmpty
     @Column(name = "username")
-    private String username;
+    private String id;
 
     @NotEmpty
     @Column(name = "password")
     private String password;
 
-    @Column(name = "user_type")
-    private String userType;
-
     public User() {
     }
 
-    public User(String username, String password, String userType) {
-        this.username = username;
+    public User(String username, String password) {
+        this.id = username;
         this.password = password;
-        this.userType = userType;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public String getUsername() {
-        return username;
+        return id;
     }
 
     public void setUsername(String username) {
-        this.username = username;
+        this.id = username;
     }
 
     public String getPassword() {
@@ -57,13 +40,5 @@ public class User implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getUserType() {
-        return userType;
-    }
-
-    public void setUserType(String userType) {
-        this.userType = userType;
     }
 }

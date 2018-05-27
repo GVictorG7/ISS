@@ -8,8 +8,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class DonationFields {
-    private static final DateTimeFormatter timeFormat = DateTimeFormatter.ISO_LOCAL_DATE; //YYYY-MM-DD
+public class DonationFields implements HasDateFormat{
     private Long idDonor;
 
     private LocalDate collectionDate;
@@ -17,17 +16,6 @@ public class DonationFields {
     private String forPerson;
 
     private Set<HealthIssue> healthIssues;
-
-
-    public DonationFields() {
-    }
-
-    public DonationFields(Long idDonor, String collectionDate, String forPerson, List<HealthIssue> healthIssues){
-        this.idDonor = idDonor;
-        this.collectionDate = LocalDate.parse(collectionDate, timeFormat);
-        this.forPerson = forPerson;
-        this.healthIssues = new HashSet<>(healthIssues);
-    }
 
 
     public Long getIdDonor() {
@@ -43,7 +31,7 @@ public class DonationFields {
     }
 
     public void setCollectionDate(String collectionDate) {
-        this.collectionDate = LocalDate.parse(collectionDate, timeFormat);
+        this.collectionDate = LocalDate.parse(collectionDate, dateFormat);
     }
 
     public String getForPerson() {
@@ -60,5 +48,15 @@ public class DonationFields {
 
     public void setHealthIssues(List<HealthIssue> healthIssues) {
         this.healthIssues = new HashSet<>(healthIssues);
+    }
+
+    @Override
+    public String toString() {
+        return "DonationFields{" +
+                "idDonor=" + idDonor +
+                ", collectionDate=" + collectionDate +
+                ", forPerson='" + forPerson + '\'' +
+                ", healthIssues=" + healthIssues +
+                '}';
     }
 }
