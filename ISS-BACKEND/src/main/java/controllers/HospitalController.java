@@ -30,7 +30,7 @@ public class HospitalController {
     }
 
     @PostMapping(value = "/save")
-    public void saveDonor(@RequestBody HospitalFields hospitalFields, BindingResult result, HttpServletResponse response) {
+    public void saveHospital(@RequestBody HospitalFields hospitalFields, BindingResult result, HttpServletResponse response) {
         if (result.hasErrors()) {
             try {
                 response.sendError(412, ResponseErrors.getErrorsFormatted(result.getFieldErrors())); //PRECONDITION_FAILED - should have been 422
