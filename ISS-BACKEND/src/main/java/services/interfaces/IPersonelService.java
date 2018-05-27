@@ -13,5 +13,5 @@ public interface IPersonelService {
 
     List<Donation> getAllDonation();
     List<Request> getAllBloodRequest();
-    public User getUserPersonel(Long id);
+    User getUserPersonel(Long id);
 }

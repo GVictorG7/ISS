@@ -27,7 +27,7 @@ public class MedicController {
     }
 
     @PostMapping(value = "/save")
-    public void saveDonor(@Valid @RequestBody MedicFields medicFields, BindingResult result, HttpServletResponse response) {
+    public void saveMedic(@Valid @RequestBody MedicFields medicFields, BindingResult result, HttpServletResponse response) {
         if (result.hasErrors()) {
             try {
                 response.sendError(412, ResponseErrors.getErrorsFormatted(result.getFieldErrors())); //PRECONDITION_FAILED - should have been 422

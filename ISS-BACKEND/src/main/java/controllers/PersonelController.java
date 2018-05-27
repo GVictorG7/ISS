@@ -26,7 +26,7 @@ public class PersonelController {
     }
 
     @PostMapping(value = "/save")
-    public Personel saveDonor(@RequestBody PersonelFields personelFields, BindingResult result, HttpServletResponse response) {
+    public Personel savePersonel(@RequestBody PersonelFields personelFields, BindingResult result, HttpServletResponse response) {
         if (result.hasErrors()) {
             try {
                 response.sendError(412, ResponseErrors.getErrorsFormatted(result.getFieldErrors())); //PRECONDITION_FAILED - should have been 422
