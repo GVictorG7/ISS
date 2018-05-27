@@ -1,8 +1,8 @@
 import {UserType} from './UserType';
 
 export class User {
-  id: number;
-  password: string;
-  username: string;
+  id = 0;
+  password = '';
+  username = '';
   userType: UserType;
 }

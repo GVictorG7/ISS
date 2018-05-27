@@ -1,7 +1,7 @@
 export class Doctor {
-  id: number;
-  firstName: string;
-  lastName: string;
-  userId: number;
-  hospitalId: number;
+  id = 0;
+  firstName = '';
+  lastName = '';
+  userId = 0;
+  hospitalId = 0;
 }

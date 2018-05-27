@@ -1,15 +1,15 @@
-export class Adress {
-  adress:string;
-  city:string;
-  county:string;
+export class Address {
+  address = '';
+  city = '';
+  county = '';
 }
 
-export class DonationForm{
-  firstName:string;
-  lastName:string;
-  birthday:string;
-  adress:Adress=new Adress();
-  localAdress:Adress=new Adress();
-  email:string;
-  phone:string;
+export class DonationForm {
+  firstName = '';
+  lastName = '';
+  birthday = '';
+  address: Address = new Address();
+  localAddress: Address = new Address();
+  email = '';
+  phone = '';
 }

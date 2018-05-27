@@ -1,5 +1,5 @@
 <app-menu></app-menu>
-<table mat-table #table [dataSource]="dataSource" matSort>
+<table mat-table #table [dataSource]="hospitals" matSort>
 
   <!--- Note that these columns can be defined in any order.
         The actual rendered columns are set as a property on the row definition" -->
@@ -46,5 +46,5 @@
     >
   </mat-form-field>
 </div>
-<button mat-raised-button color="primary" (click)="newHospital()">New hospital</button>
+<button mat-raised-button color="primary" (click)="newHospital()">Adauga spital nou</button>
 

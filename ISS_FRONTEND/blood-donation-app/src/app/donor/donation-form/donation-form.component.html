@@ -23,38 +23,38 @@
   </mat-form-field>
   <mat-form-field>
     <input matInput placeholder="Domiciliu (adresa din buletin"
-           [(ngModel)]="donationForm.adress.address"
+           [(ngModel)]="donationForm.address.address"
            required
     >
   </mat-form-field>
   <mat-form-field>
     <input matInput placeholder="Localiate "
-           [(ngModel)]="donationForm.adress.city"
+           [(ngModel)]="donationForm.address.city"
            required
     >
   </mat-form-field>
 
   <mat-form-field>
     <input matInput placeholder="Judet"
-           [(ngModel)]="donationForm.adress.county"
+           [(ngModel)]="donationForm.address.county"
            required
     >
   </mat-form-field>
   <mat-form-field>
     <input matInput placeholder="Resesedinta"
-           [(ngModel)]="donationForm.localAdress.adress"
+           [(ngModel)]="donationForm.localAddress.address"
            required
     >
   </mat-form-field>
   <mat-form-field>
     <input matInput placeholder="Localiate"
-           [(ngModel)]="donationForm.localAdress.city"
+           [(ngModel)]="donationForm.localAddress.city"
            required
     >
   </mat-form-field>
   <mat-form-field>
     <input matInput placeholder="Judet"
-           [(ngModel)]="donationForm.localAdress.county"
+           [(ngModel)]="donationForm.localAddress.county"
            required
     >
   </mat-form-field>
@@ -74,4 +74,8 @@
   </mat-form-field>
 </div>
 <hr>
-<button mat-raised-button color="primary" (click)="saveDonation()">Doneaza!</button>
+<button mat-raised-button
+        color="primary"
+        (click)="saveDonation()"
+>Doneaza!
+</button>

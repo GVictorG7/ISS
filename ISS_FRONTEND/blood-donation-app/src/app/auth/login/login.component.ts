@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
 
   login(username: string, password: string) {
     if (username === 'admin') {
-      const token = {firstName: 'Administrator', user: {userType: 'ADMIN'}};
+      const token = {userData: {firstName: 'Administrator'}, userType: 'ADMIN'};
       localStorage.setItem('token', JSON.stringify(token));
       this.router.navigateByUrl('');
     } else {

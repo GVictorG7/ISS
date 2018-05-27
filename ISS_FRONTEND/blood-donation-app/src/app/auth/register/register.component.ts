@@ -22,7 +22,7 @@ export class RegisterComponent implements OnInit {
     gender: '',
     birthday: '',
     address: '',
-    local_address: '',
+    localAddress: '',
     email: '',
     phone: '',
     userId: 0

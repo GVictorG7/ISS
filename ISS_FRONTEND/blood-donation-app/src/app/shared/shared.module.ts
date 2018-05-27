@@ -1,12 +1,11 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {MenuComponent} from "./menu/menu.component";
+import {MenuComponent} from './menu/menu.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {
   MatButtonModule,
   MatFormFieldModule,
-  MatIconModule, MatInputModule,
-  MatListModule,
+  MatIconModule, MatInputModule, MatListModule,
   MatMenuModule,
   MatSelectModule,
   MatSidenavModule, MatSnackBarModule
@@ -18,6 +17,7 @@ import {PersonnelDataComponent} from './register/personnel-data/personnel-data.c
 import {DoctorDataComponent} from './register/doctor-data/doctor-data.component';
 import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
+import {DonationRejectedReasonsComponent} from './donation-rejected-reasons/donation-rejected-reasons.component';
 
 @NgModule({
   imports: [
@@ -43,7 +43,8 @@ import {HttpClientModule} from '@angular/common/http';
     UserDataComponent,
     DonorDataComponent,
     PersonnelDataComponent,
-    DoctorDataComponent
+    DoctorDataComponent,
+    DonationRejectedReasonsComponent
   ],
   exports: [
     MenuComponent,
@@ -51,7 +52,8 @@ import {HttpClientModule} from '@angular/common/http';
     RegisterComponent,
     PersonnelDataComponent,
     DoctorDataComponent,
-    UserDataComponent
+    UserDataComponent,
+    DonationRejectedReasonsComponent
   ]
 })
 export class SharedModule {

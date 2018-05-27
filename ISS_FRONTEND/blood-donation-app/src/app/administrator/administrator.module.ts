@@ -9,7 +9,7 @@ import {
   MatButtonModule,
   MatFormFieldModule,
   MatInputModule,
-  MatPaginatorModule,
+  MatPaginatorModule, MatSelectModule,
   MatSnackBarModule,
   MatTableModule
 } from '@angular/material';
@@ -29,6 +29,7 @@ import {FormsModule} from '@angular/forms';
     MatPaginatorModule,
     MatTableModule,
     MatInputModule,
+    MatSelectModule,
     HttpClientModule,
     AdministratorRoutingModule
   ],

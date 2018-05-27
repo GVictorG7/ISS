@@ -1,0 +1,6 @@
+<h1>Data donatiei: {{donation.date}}</h1>
+Status:{{donation.status}}<br>
+<b>S-au idenitificat in urma analizelor:</b><br>
+<mat-list>
+  <mat-list-item *ngFor="let healthIssue of donation.healthIssues ">{{healthIssue}}</mat-list-item>
+</mat-list>

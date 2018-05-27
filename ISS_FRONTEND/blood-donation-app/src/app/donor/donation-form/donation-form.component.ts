@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {DonationForm} from '../../core/model/DonationForm';
 import {DonorService} from '../donor.service';
 import {MatSnackBar} from '@angular/material';
+import {Donor} from '../../core/model/Donor';
+import {checkCompleted} from '../../shared/utils/utils';
 
 @Component({
   selector: 'app-donation-form',
@@ -9,14 +11,15 @@ import {MatSnackBar} from '@angular/material';
   styleUrls: ['./donation-form.component.css']
 })
 export class DonationFormComponent implements OnInit {
-  donor: any = null;
+  donor: Donor = null;
   donationForm: DonationForm = new DonationForm();
+  tooltip: any = {disabled: false, message: ''};
 
   constructor(private service: DonorService, private snackBar: MatSnackBar) {
   }
 
   ngOnInit() {
-    this.donor = JSON.parse(localStorage.getItem('token'));
+    this.donor = JSON.parse(localStorage.getItem('token')).userData;
     this.setDonationFormProperties();
 
 
@@ -25,26 +28,19 @@ export class DonationFormComponent implements OnInit {
   private setDonationFormProperties() {
     this.donationForm.firstName = this.donor.firstName;
     this.donationForm.lastName = this.donor.lastName;
-    this.donationForm.birthday = this.birthdayToString();
-  }
-
-  private birthdayToString() {
-    let birthday = this.donor.cnp.substr(1, 6);
-    return `${birthday.substr(-2)}/${birthday.substr(2, 2)}/19${birthday.substr(0, 2)}`;
+    this.donationForm.birthday = this.donor.birthday;
+    this.donationForm.address.address = this.donor.address;
+    this.donationForm.localAddress.address = this.donor.localAddress;
+    this.donationForm.email = this.donor.email;
+    this.donationForm.phone = this.donor.phone;
   }
 
   saveDonation() {
-    if (this.checkFields())
+    if (checkCompleted(this.donationForm)) {
       this.service.saveDonation(this.donationForm);
-    else
+    } else {
       this.snackBar.open('Date completate gresit!', 'Ok', {duration: 1000});
-  }
-
-  private checkFields() {
-    for (let property in this.donationForm)
-      if (this.donationForm[property] === '')
-        return false;
-    return true;
+    }
   }
 }
 

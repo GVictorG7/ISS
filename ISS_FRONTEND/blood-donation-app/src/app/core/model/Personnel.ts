@@ -1,6 +1,6 @@
 export class Personnel {
-  id: number;
-  firstName: string;
-  lastName: string;
-  userId: number;
+  id = 0;
+  firstName = '';
+  lastName = '';
+  userId = 0;
 }

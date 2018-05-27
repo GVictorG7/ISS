@@ -4,10 +4,12 @@ import {HomeComponent} from './home/home.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
-  {path: 'home', component: HomeComponent},
+  {path: 'administrator', loadChildren: './administrator/administrator.module#AdministratorModule'},
   {path: 'auth', loadChildren: './auth/auth.module#AuthModule'},
+  {path: 'doctor', loadChildren: './doctor/doctor.module#DoctorModule'},
   {path: 'donor', loadChildren: './donor/donor.module#DonorModule'},
-  {path: 'administrator', loadChildren: './administrator/administrator.module#AdministratorModule'}
+  {path: 'home', component: HomeComponent},
+  {path: 'personnel', loadChildren: './personnel/personnel.module#PersonnelModule'}
 ];
 
 @NgModule({

@@ -10,14 +10,14 @@ import {HttpClient} from '@angular/common/http';
 })
 export class DoctorDataComponent implements OnInit {
   @Input() doctor: Doctor;
-  hopsitals: Hospital[];
+  hospitals: Hospital[];
 
   constructor(private http: HttpClient) {
   }
 
   ngOnInit() {
     this.http.get<Hospital[]>('http://localhost:8090/hospitals/getHospitals').subscribe(
-      hospitals => this.hopsitals = hospitals,
+      hospitals => this.hospitals = hospitals,
       (err) => console.log(err)
     );
   }

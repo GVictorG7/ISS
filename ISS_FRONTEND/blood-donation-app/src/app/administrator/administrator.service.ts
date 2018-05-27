@@ -9,13 +9,13 @@ const httpOptions = {
 
 @Injectable()
 export class AdministratorService {
-  private api = 'htpp://localhost:8090';
+  private api = 'http://localhost:8090';
 
   constructor(private http: HttpClient) {
   }
 
   getHospitals() {
-    return this.http.get <Hospital[]>(`${this.api}/hospitals/getAll`);
+    return this.http.get <Hospital[]>(`${this.api}/hospitals/getHospitals`);
   }
 
   checkAccount(user: User) {

@@ -20,7 +20,7 @@ export class MenuComponent implements OnInit {
     const token = JSON.parse(localStorage.getItem('token'));
     if (token) {
       this.loggedUser = token;
-      this.mainMenuItems.push(...this.getMenuItems(this.loggedUser.user.userType));
+      this.mainMenuItems.push(...this.getMenuItems(this.loggedUser.userType));
     } else {
       this.loggedUser = null;
       this.mainMenuItems.push({title: 'Logare', path: 'auth/login'},
