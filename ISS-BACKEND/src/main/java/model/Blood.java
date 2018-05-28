@@ -4,104 +4,94 @@ import org.springframework.validation.annotation.Validated;
 import validators.BloodValidator;
 
 import javax.persistence.*;
+
 import java.io.Serializable;
-import java.util.Date;
 
 @Validated(value = BloodValidator.class)
 @Entity
 @Table(name = "Blood")
 public class Blood implements Serializable {
+
     private static final int PLASMA_EXPIRATION_DATE = 112;
     private static final int REDCELL_EXPIRATION_DATE = 42;
     private static final int THROMBOCYTE_EXPIRATION_DATE = 5;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
-    private long id;
+    private final long id = 1L;
 
-    @Column(name = "blood_type")
-    private String bloodType;
+    @Column(name = "type")
+    @Enumerated(EnumType.STRING)
+    private BloodType type;
 
-    @Column(name = "blood_rh")
-    private String bloodRh;
+    @Column(name = "RH")
+    @Enumerated(EnumType.STRING)
+    private BloodRH RH;
 
-    @Column(name = "blood_category")
-    private String bloodCategory;
+    @Column(name = "category")
+    @Enumerated(EnumType.STRING)
+    private BloodCategory category;
 
-    @Column(name = "harvest_date")
-    private Date harvestDate;
-
-    @Column(name = "expire_date")
-    private Date expireDate;
+    @Column(name = "used")
+    private Boolean used;
 
     public Blood() {
     }
 
-    public Blood(String bloodType, String bloodRh, String bloodCategory, Date harvestDate, Date expireDate) {
-        this.bloodType = bloodType;
-        this.bloodRh = bloodRh;
-        this.bloodCategory = bloodCategory;
-        this.harvestDate = harvestDate;
-        this.expireDate = expireDate;
+    public Blood(BloodType bloodType, BloodRH bloodRH, Boolean used) {
+        this.type = bloodType;
+        this.RH = bloodRH;
+        this.category = BloodCategory.WHOLE;
+        this.used = used;
     }
 
-    public long getId() {
-        return id;
+    public Blood(BloodType bloodType, BloodRH bloodRH, BloodCategory bloodCategory, Boolean used) {
+        this.type = bloodType;
+        this.RH = bloodRH;
+        this.category = bloodCategory;
+        this.used = used;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public BloodType getBloodType() {
+        return type;
     }
 
-    public String getBloodType() {
-        return bloodType;
+    public void setBloodType(BloodType bloodType) {
+        this.type = bloodType;
     }
 
-    public void setBloodType(String bloodType) {
-        this.bloodType = bloodType;
+    public BloodRH getBloodRH() {
+        return RH;
     }
 
-    public String getBloodRh() {
-        return bloodRh;
+    public void setBloodRH(BloodRH bloodRH) {
+        this.RH = bloodRH;
     }
 
-    public void setBloodRh(String bloodRh) {
-        this.bloodRh = bloodRh;
+    public BloodCategory getBloodCategory() {
+        return category;
     }
 
-    public String getBloodCategory() {
-        return bloodCategory;
+    public void setBloodCategory(BloodCategory bloodCategory) {
+        this.category = bloodCategory;
     }
 
-    public void setBloodCategory(String bloodCategory) {
-        this.bloodCategory = bloodCategory;
+    public Boolean getUsed() {
+        return used;
     }
 
-    public Date getHarvestDate() {
-        return harvestDate;
+    public void setUsed(Boolean used) {
+        this.used = used;
     }
 
-    public void setHarvestDate(Date harvestDate) {
-        this.harvestDate = harvestDate;
-    }
-
-    public int getExpireDate() {
-        switch (this.bloodType) {
-            case "PLASMA":
-                return PLASMA_EXPIRATION_DATE;
-            case "REDCELL":
-                return REDCELL_EXPIRATION_DATE;
-            case "THROMBOCYTE":
-                return THROMBOCYTE_EXPIRATION_DATE;
-            case "WHOLE":
-                return Math.min(Math.min(PLASMA_EXPIRATION_DATE, REDCELL_EXPIRATION_DATE), THROMBOCYTE_EXPIRATION_DATE);
-            default:
-                return 0;
+    public int getDaysToExpire() throws RuntimeException {
+        switch (this.category){
+            case PLASMA:return PLASMA_EXPIRATION_DATE;
+            case REDCELL:return REDCELL_EXPIRATION_DATE;
+            case THROMBOCYTE:return THROMBOCYTE_EXPIRATION_DATE;
+            case WHOLE:return Math.min(Math.min(PLASMA_EXPIRATION_DATE,REDCELL_EXPIRATION_DATE),THROMBOCYTE_EXPIRATION_DATE);
         }
-    }
-
-    public void setExpireDate(Date expireDate) {
-        this.expireDate = expireDate;
+        throw new RuntimeException("Invalid BloodCategory");
     }
 }

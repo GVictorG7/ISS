@@ -46,6 +46,7 @@ public class DonorService implements IDonorService {
 
     @Override
     public List<Donation> getAllDonation(Donor donor) {
-        return donationRepository.findAllByDonor(donor);
+        return null;
+        //return donationRepository.findAllByDonor(donor);
     }
 }
