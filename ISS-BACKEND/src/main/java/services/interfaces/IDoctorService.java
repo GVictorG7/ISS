@@ -21,5 +21,5 @@ public interface IDoctorService {
 
     void requestBlood(Request request);
 
-    List<Request> getAllRequest();
+    List<Request> getAllRequestsByDoctor(Doctor doctor);
 }

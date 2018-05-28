@@ -13,8 +13,7 @@ public interface RequestRepository extends JpaRepository<Request, Long> {
 
     List<Request> findById(Long id);
 
-    List<Request> findAllByDoctor(Doctor doctor);
+    List<Request> findAllByDoctorOrderByRequestDate(Doctor doctor);
 
     List<Request> findAllByStatus(String status);
-
 }
