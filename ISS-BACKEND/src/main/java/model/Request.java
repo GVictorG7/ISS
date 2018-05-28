@@ -5,7 +5,6 @@ import validators.RequestValidator;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
 
 @Validated(value = RequestValidator.class)
 @Entity
@@ -20,7 +19,7 @@ public class Request implements Serializable {
     private String person;
 
     @Column(name = "request_date")
-    private Date requestDate;
+    private String requestDate;
 
     @Column(name = "priority")
     private int priority;
@@ -28,32 +27,35 @@ public class Request implements Serializable {
     @Column(name = "blood_category")
     private String bloodCategory;
 
+    @Column(name = "blood_rh")
+    private String bloodRh;
+
     @Column(name = "blood_type")
     private String bloodType;
 
     @Column(name = "blood_quantity")
     private int bloodQuantity;
 
-    @ManyToOne
-    @JoinColumn(name = "medic_id")
-    private Medic medic;
+    @Column(name = "status")
+    private String status;
 
     @ManyToOne
-    @JoinColumn(name = "blood_id")
-    private Blood blood;
+    @JoinColumn(name = "doctor_id")
+    private Doctor doctor;
 
     public Request() {
     }
 
-    public Request(String person, Date requestDate, int priority, String bloodCategory, String bloodType, int bloodQuantity, Medic medic, Blood blood) {
+    public Request(String person, String requestDate, int priority, String bloodCategory, String bloodRh, String bloodType, int bloodQuantity, String status, Doctor doctor) {
         this.person = person;
         this.requestDate = requestDate;
         this.priority = priority;
         this.bloodCategory = bloodCategory;
+        this.bloodRh = bloodRh;
         this.bloodType = bloodType;
         this.bloodQuantity = bloodQuantity;
-        this.medic = medic;
-        this.blood = blood;
+        this.status = status;
+        this.doctor = doctor;
     }
 
     public long getId() {
@@ -72,11 +74,11 @@ public class Request implements Serializable {
         this.person = person;
     }
 
-    public Date getRequestDate() {
+    public String getRequestDate() {
         return requestDate;
     }
 
-    public void setRequestDate(Date requestDate) {
+    public void setRequestDate(String requestDate) {
         this.requestDate = requestDate;
     }
 
@@ -112,19 +114,27 @@ public class Request implements Serializable {
         this.bloodQuantity = bloodQuantity;
     }
 
-    public Medic getMedic() {
-        return medic;
+    public Doctor getDoctor() {
+        return doctor;
     }
 
-    public void setMedic(Medic medic) {
-        this.medic = medic;
+    public void setDoctor(Doctor doctor) {
+        this.doctor = doctor;
     }
 
-    public Blood getBlood() {
-        return blood;
+    public String getBloodRh() {
+        return bloodRh;
     }
 
-    public void setBlood(Blood blood) {
-        this.blood = blood;
+    public void setBloodRh(String bloodRh) {
+        this.bloodRh = bloodRh;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

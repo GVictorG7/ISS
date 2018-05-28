@@ -1,7 +1,7 @@
 package services;
 
+import model.Doctor;
 import model.Hospital;
-import model.Medic;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import repositories.HospitalRepository;
@@ -29,8 +29,8 @@ public class HospitalService implements IHospitalService {
     }
 
     @Override
-    public void addMedic(Hospital hospital, Medic medic) {
-        hospital.addMedic(medic);
+    public void addDoctor(Hospital hospital, Doctor doctor) {
+        hospital.addMedic(doctor);
     }
 
     @Override

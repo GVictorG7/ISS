@@ -14,6 +14,4 @@ public interface IDonorService {
     Donor getById(Long id);
 
     User getUserDonor(Long id);
-
-    List<Donation> getAllDonation(Donor donor);
 }

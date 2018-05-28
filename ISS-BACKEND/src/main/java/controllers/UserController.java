@@ -34,9 +34,9 @@ public class UserController {
 
         if (user.getUserType().equals("Donor"))
             return new ReturnObject(userService.getUserDonor(user.getId()),user.getUserType());
-        if(user.getUserType().equals("Medic"))
-            return new ReturnObject(userService.getUserMedic(user.getId()),user.getUserType());
-        if(user.getUserType().equals("Personel"))
+        if(user.getUserType().equals("Doctor"))
+            return new ReturnObject(userService.getUserDoctor(user.getId()),user.getUserType());
+        if(user.getUserType().equals("Personnel"))
             return  new ReturnObject(userService.getUserPersonel(user.getId()),user.getUserType());
         return null;
     }

@@ -1,38 +1,38 @@
 package services;
 
 import model.Donation;
-import model.Personel;
+import model.Personnel;
 import model.Request;
 import model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import repositories.DonationRepository;
-import repositories.PersonelRepository;
+import repositories.PersonnelRepository;
 import repositories.RequestRepository;
 import repositories.UserRepository;
-import services.interfaces.IPersonelService;
+import services.interfaces.IPersonnelService;
 
 import java.util.List;
 
 
 @Service
-public class PersonelService implements IPersonelService {
+public class PersonnelService implements IPersonnelService {
     private final UserRepository userRepository;
-    private final PersonelRepository personelRepository;
+    private final PersonnelRepository personnelRepository;
     private final RequestRepository requestRepository;
     private final DonationRepository donationRepository;
 
     @Autowired
-    public PersonelService(UserRepository userRepository, PersonelRepository personelRepository, RequestRepository requestRepository, DonationRepository donationRepository) {
+    public PersonnelService(UserRepository userRepository, PersonnelRepository personnelRepository, RequestRepository requestRepository, DonationRepository donationRepository) {
         this.userRepository = userRepository;
-        this.personelRepository = personelRepository;
+        this.personnelRepository = personnelRepository;
         this.requestRepository = requestRepository;
         this.donationRepository = donationRepository;
     }
 
     @Override
-    public Personel save(Personel personel) {
-        return personelRepository.save(personel);
+    public Personnel save(Personnel personnel) {
+        return personnelRepository.save(personnel);
     }
 
     @Override
@@ -44,8 +44,9 @@ public class PersonelService implements IPersonelService {
     public List<Request> getAllBloodRequest() {
         return requestRepository.findAll();
     }
+
     @Override
-    public User getUserPersonel(Long id) {
+    public User getUserPersonnel(Long id) {
         return userRepository.findById(id);
     }
 

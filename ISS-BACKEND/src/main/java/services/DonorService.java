@@ -16,13 +16,11 @@ import java.util.List;
 public class DonorService implements IDonorService {
     private final DonorRepository donorRepository;
     private final UserRepository userRepository;
-    private final DonationRepository donationRepository;
 
     @Autowired
     public DonorService(DonorRepository donorRepository, UserRepository userRepository, DonationRepository donationRepository) {
         this.donorRepository = donorRepository;
         this.userRepository = userRepository;
-        this.donationRepository = donationRepository;
     }
 
     @Override
@@ -42,10 +40,5 @@ public class DonorService implements IDonorService {
     @Override
     public User getUserDonor(Long id) {
         return userRepository.findById(id);
-    }
-
-    @Override
-    public List<Donation> getAllDonation(Donor donor) {
-        return donationRepository.findAllByDonor(donor);
     }
 }

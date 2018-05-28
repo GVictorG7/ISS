@@ -1,14 +1,17 @@
 package controllers.formatters;
 
-public class PersonelFields {
+public class PersonnelFields {
     private long id;
     private String firstName;
     private String lastName;
 
     private Long userId;
-    public PersonelFields(){};
 
-    public PersonelFields(long id, String firstName, String lastName, Long userId) {
+    public PersonnelFields() {
+    }
+
+
+    public PersonnelFields(long id, String firstName, String lastName, Long userId) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;

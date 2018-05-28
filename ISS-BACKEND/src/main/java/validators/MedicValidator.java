@@ -1,6 +1,6 @@
 package validators;
 
-import model.Medic;
+import model.Doctor;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
@@ -10,12 +10,12 @@ import org.springframework.validation.Validator;
 public class MedicValidator implements Validator {
     @Override
     public boolean supports(Class<?> clazz) {
-        return Medic.class.equals(clazz);
+        return Doctor.class.equals(clazz);
     }
 
     @Override
     public void validate(Object target, Errors errors) {
-        Medic medic = (Medic) target;
+        Doctor doctor = (Doctor) target;
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "firstName", "firstName.empty");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "lastName", "lastName.empty");
         ValidationUtils.rejectIfEmpty(errors, "user", "user.empty");

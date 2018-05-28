@@ -1,6 +1,6 @@
 package repositories;
 
-import model.Medic;
+import model.Doctor;
 import model.Request;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -11,10 +11,10 @@ public interface RequestRepository extends JpaRepository<Request, Long> {
 
     List<Request> findAll();
 
-    List<Request> findAllById(Long id);
+    List<Request> findById(Long id);
 
-    List<Request> findAllByMedic(Medic medic);
+    List<Request> findAllByDoctor(Doctor doctor);
 
-
+    List<Request> findAllByStatus(String status);
 
 }

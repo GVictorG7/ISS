@@ -1,16 +1,19 @@
 package controllers.formatters;
 
-public class MedicFields {
+public class DoctorFields {
     private String firstName;
     private String lastName;
     private Long userId;
-    private Long userHospital;
+    private Long hospitalId;
 
-    public MedicFields(String firstName, String lastName, Long userId, Long userHospital) {
+    public DoctorFields() {
+    }
+
+    public DoctorFields(String firstName, String lastName, Long userId, Long userHospital) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.userId = userId;
-        this.userHospital = userHospital;
+        this.hospitalId = userHospital;
     }
 
     public String getFirstName() {
@@ -38,10 +41,10 @@ public class MedicFields {
     }
 
     public Long getUserHospital() {
-        return userHospital;
+        return hospitalId;
     }
 
     public void setUserHospital(Long userHospital) {
-        this.userHospital = userHospital;
+        this.hospitalId = userHospital;
     }
 }

@@ -1,8 +1,8 @@
 package services.interfaces;
 
+import model.Doctor;
 import model.Donor;
-import model.Medic;
-import model.Personel;
+import model.Personnel;
 import model.User;
 
 public interface IUserService {
@@ -14,7 +14,7 @@ public interface IUserService {
 
     Donor getUserDonor(Long id);
 
-    Medic getUserMedic(Long id);
+    Doctor getUserDoctor(Long id);
 
-    Personel getUserPersonel(Long id);
+    Personnel getUserPersonel(Long id);
 }
