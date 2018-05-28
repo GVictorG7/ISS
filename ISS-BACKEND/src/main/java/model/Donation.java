@@ -26,10 +26,6 @@ public class Donation {
     @Column(name = "for_person")
     private String forPerson;
 
-    @ManyToOne
-    @JoinColumn(name = "id_blood")
-    private Blood blood;
-
     @Enumerated(EnumType.STRING)
     @ElementCollection(targetClass = HealthIssue.class)
     @CollectionTable(name = "healthIssues", joinColumns = @JoinColumn(name = "IDHealthIssue"))
@@ -39,11 +35,10 @@ public class Donation {
     public Donation() {
     }
 
-    public Donation(Donor donor, LocalDate collectionDate, String forPerson, Blood blood, Set<HealthIssue> healthIssues) {
+    public Donation(Donor donor, LocalDate collectionDate, String forPerson, Set<HealthIssue> healthIssues) {
         this.donor = donor;
         this.collectionDate = collectionDate;
         this.forPerson = forPerson;
-        this.blood = blood;
         this.healthIssues = healthIssues;
     }
 
@@ -69,14 +64,6 @@ public class Donation {
 
     public void setForPerson(String forPerson) {
         this.forPerson = forPerson;
-    }
-
-    public Blood getBlood() {
-        return blood;
-    }
-
-    public void setBlood(Blood blood) {
-        this.blood = blood;
     }
 
     public Set<HealthIssue> getHealthIssues() {

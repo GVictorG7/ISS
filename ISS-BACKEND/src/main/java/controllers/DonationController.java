@@ -25,7 +25,6 @@ public class DonationController {
                 donationFields.getIdDonor(),
                 donationFields.getCollectionDate(),
                 donationFields.getForPerson(),
-                donationFields.getIdBlood(),
                 donationFields.getHealthIssues());
     }
 

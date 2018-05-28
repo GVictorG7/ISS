@@ -12,6 +12,6 @@ import java.util.Set;
 public interface IDonationService {
     Donation getById(Long id);
     List<Donation> findAll();
-    void save(Long idDonor, LocalDate collectionDate, String forPerson, Long idBlood, Set<HealthIssue> healthIssues);
+    void save(Long idDonor, LocalDate collectionDate, String forPerson, Set<HealthIssue> healthIssues);
     Donation deleteById(Long id);
 }

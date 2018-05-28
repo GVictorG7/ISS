@@ -17,8 +17,6 @@ public class DonationFields implements HasDateFormat{
 
     private Set<HealthIssue> healthIssues;
 
-    private Long idBlood;
-
 
     public Long getIdDonor() {
         return idDonor;
@@ -52,14 +50,6 @@ public class DonationFields implements HasDateFormat{
         this.healthIssues = new HashSet<>(healthIssues);
     }
 
-
-    public Long getIdBlood() {
-        return idBlood;
-    }
-
-    public void setIdBlood(Long idBlood) {
-        this.idBlood = idBlood;
-    }
 
     @Override
     public String toString() {

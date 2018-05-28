@@ -19,13 +19,13 @@ import java.util.Set;
 public class DonationService implements IDonationService {
     private final DonationRepository donationRepository;
     private final DonorRepository donorRepository;
-    private final BloodRepository bloodRepository;
+
 
     @Autowired
     public DonationService(DonationRepository donationRepository, DonorRepository donorRepository, BloodRepository bloodRepository) {
         this.donationRepository = donationRepository;
         this.donorRepository = donorRepository;
-        this.bloodRepository = bloodRepository;
+
     }
 
     @Override
@@ -39,12 +39,11 @@ public class DonationService implements IDonationService {
     }
 
     @Override
-    public void save(Long idDonor, LocalDate collectionDate, String forPerson, Long idBlood, Set<HealthIssue> healthIssues) {
+    public void save(Long idDonor, LocalDate collectionDate, String forPerson,  Set<HealthIssue> healthIssues) {
         donationRepository.save(new Donation(
                 donorRepository.findById(idDonor),
                 collectionDate,
                 forPerson,
-                bloodRepository.getById(idBlood),
                 healthIssues));
     }
 
