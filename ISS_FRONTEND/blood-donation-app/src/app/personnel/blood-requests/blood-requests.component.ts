@@ -31,3 +31,4 @@ export class BloodRequestsComponent implements OnInit {
       this.details.request = request;
     }
   }
+}
