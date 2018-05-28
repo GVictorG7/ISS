@@ -11,10 +11,10 @@ public interface RequestRepository extends JpaRepository<Request, Long> {
 
     List<Request> findAll();
 
-    List<Request> findAllById(Long id);
+    List<Request> findById(Long id);
 
     List<Request> findAllByDoctor(Doctor doctor);
 
-
+    List<Request> findAllByStatus(String status);
 
 }

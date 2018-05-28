@@ -1,15 +1,9 @@
 package services;
 
-import model.Blood;
-import model.Doctor;
-import model.Hospital;
-import model.User;
+import model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import repositories.BloodRepository;
-import repositories.DoctorRepository;
-import repositories.HospitalRepository;
-import repositories.UserRepository;
+import repositories.*;
 import services.interfaces.IDoctorService;
 
 import java.util.List;
@@ -20,13 +14,15 @@ public class DoctorService implements IDoctorService {
     private final BloodRepository bloodRepository;
     private final UserRepository userRepository;
     private final HospitalRepository hospitalRepository;
+    private final RequestRepository requestRepository;
 
     @Autowired
-    public DoctorService(DoctorRepository doctorRepository, BloodRepository bloodRepository, UserRepository userRepository, HospitalRepository hospitalRepository) {
+    public DoctorService(DoctorRepository doctorRepository, BloodRepository bloodRepository, UserRepository userRepository, HospitalRepository hospitalRepository, RequestRepository requestRepository) {
         this.doctorRepository = doctorRepository;
         this.bloodRepository = bloodRepository;
         this.userRepository = userRepository;
         this.hospitalRepository = hospitalRepository;
+        this.requestRepository = requestRepository;
     }
 
     @Override
@@ -61,5 +57,15 @@ public class DoctorService implements IDoctorService {
     @Override
     public List<Blood> getAllBlood() {
         return null;
+    }
+
+    @Override
+    public void requestBlood(Request request) {
+        requestRepository.save(request);
+    }
+
+    @Override
+    public List<Request> getAllRequest() {
+        return requestRepository.findAll();
     }
 }

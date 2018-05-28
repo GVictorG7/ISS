@@ -1,9 +1,6 @@
 package services.interfaces;
 
-import model.Blood;
-import model.Doctor;
-import model.Hospital;
-import model.User;
+import model.*;
 
 import java.util.List;
 
@@ -21,4 +18,8 @@ public interface IDoctorService {
     List<Blood> getAllBlood();
 
     User getUserDoctor(Long userId);
+
+    void requestBlood(Request request);
+
+    List<Request> getAllRequest();
 }
