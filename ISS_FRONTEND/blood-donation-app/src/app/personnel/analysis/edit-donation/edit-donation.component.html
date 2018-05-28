@@ -1,0 +1,38 @@
+Status:
+<mat-form-field>
+  <mat-select placeholder="-" [(ngModel)]="donation.status">
+    <mat-option *ngFor="let status of statuses" [value]="status">
+      {{ status }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+<div *ngIf="donation.status === 'ACCEPTAT'">
+  Grupa sanga:
+  <mat-form-field>
+    <mat-select placeholder="-" [(ngModel)]="donation.blood.type">
+      <mat-option *ngFor="let type of types" [value]="type">{{type}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  RH:
+  <mat-form-field>
+    <mat-select placeholder="-" [(ngModel)]="donation.blood.RH">
+      <mat-option *ngFor="let rh of rhs" [value]="rh">{{rh}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  In stare:
+  <mat-form-field>
+    <mat-select placeholder="-" [(ngModel)]="donation.blood.category">
+      <mat-option *ngFor="let category of categories" [value]="category">{{category}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+<div *ngIf="donation.status === 'RESPINS'">
+  Rezultate analize:
+  <mat-form-field>
+    <mat-select placeholder="-" multiple [(ngModel)]="donation.healthIssues">
+      <mat-option *ngFor="let healthIssue of healthIssues" [value]="healthIssue">{{healthIssue}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+</div>
+<button mat-raised-button color="primary" (click)="saveInfo()">Salvare</button>

@@ -10,7 +10,7 @@ import {
   MatFormFieldModule,
   MatInputModule,
   MatPaginatorModule, MatSelectModule,
-  MatSnackBarModule,
+  MatSnackBarModule, MatSortModule,
   MatTableModule
 } from '@angular/material';
 import {AuthService} from '../auth/auth.service';
@@ -31,7 +31,8 @@ import {FormsModule} from '@angular/forms';
     MatInputModule,
     MatSelectModule,
     HttpClientModule,
-    AdministratorRoutingModule
+    AdministratorRoutingModule,
+    MatSortModule
   ],
   declarations: [HospitalsComponent, AccountsComponent],
   providers: [AdministratorService]
