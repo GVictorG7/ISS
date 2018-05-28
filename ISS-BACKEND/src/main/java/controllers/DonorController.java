@@ -28,15 +28,14 @@ public class DonorController {
     public void saveDonation(@RequestBody DonorFields donorFields)
     {
         System.out.println(donorFields.toString());
-        donorService.save(new Donor(
+        donorService.save(
                 donorFields.getName(),
                 donorFields.getBirthday(),
                 donorFields.getDomiciliu(),
                 donorFields.getResedinta(),
                 donorFields.getEmail(),
                 donorFields.getPhone(),
-                userService.getByUsername(donorFields.getUsername()),
-                bloodService.findById(donorFields.getIdBlood())
-        ));
+                donorFields.getUsername()
+        );
     }
 }

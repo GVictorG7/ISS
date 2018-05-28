@@ -20,8 +20,6 @@ public class DonorFields implements HasDateFormat{
 
     private String username;
 
-    private Long idBlood;
-
     public DonorFields() {
     }
 
@@ -81,14 +79,6 @@ public class DonorFields implements HasDateFormat{
         this.username = username;
     }
 
-    public Long getIdBlood() {
-        return idBlood;
-    }
-
-    public void setIdBlood(Long idBlood) {
-        this.idBlood = idBlood;
-    }
-
     @Override
     public String toString() {
         return "DonorFields{" +
@@ -99,7 +89,6 @@ public class DonorFields implements HasDateFormat{
                 ", email='" + email + '\'' +
                 ", phone='" + phone + '\'' +
                 ", user=" + username +
-                ", id_blood=" + idBlood +
                 '}';
     }
 }

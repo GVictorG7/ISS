@@ -46,24 +46,19 @@ public class Donor implements Serializable {
     @JoinColumn(name = "username")
     private User user;
 
-    @ManyToOne
-    @JoinColumn(name = "id_blood")
-    private Blood blood;
-
     public Donor() {
     }
 
-    public Donor(String name, LocalDate birthday, String domiciliu, String email, String phone, User user, Blood blood) {
+    public Donor(String name, LocalDate birthday, String domiciliu, String email, String phone, User user) {
         this.name = name;
         this.birthday = birthday;
         this.domiciliu = domiciliu;
         this.email = email;
         this.phone = phone;
         this.user = user;
-        this.blood = blood;
     }
 
-    public Donor(String name, LocalDate birthday, String domiciliu, String resedinta, String email, String phone, User user, Blood blood) {
+    public Donor(String name, LocalDate birthday, String domiciliu, String resedinta, String email, String phone, User user) {
         this.name = name;
         this.birthday = birthday;
         this.domiciliu = domiciliu;
@@ -71,6 +66,5 @@ public class Donor implements Serializable {
         this.email = email;
         this.phone = phone;
         this.user = user;
-        this.blood = blood;
     }
 }

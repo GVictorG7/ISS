@@ -21,59 +21,72 @@ public class Blood implements Serializable {
     @Column(name = "id")
     private final long id = 1L;
 
-    @Column(name = "bloodType")
+    @Column(name = "type")
     @Enumerated(EnumType.STRING)
-    private BloodType bloodType;
+    private BloodType type;
 
-    @Column(name = "bloodRH")
+    @Column(name = "RH")
     @Enumerated(EnumType.STRING)
-    private BloodRH bloodRH;
+    private BloodRH RH;
 
-    @Column(name = "bloodCategory")
+    @Column(name = "category")
     @Enumerated(EnumType.STRING)
-    private BloodCategory bloodCategory;
+    private BloodCategory category;
+
+    @Column(name = "used")
+    private Boolean used;
 
     public Blood() {
     }
 
-    public Blood(BloodType bloodType, BloodRH bloodRH) {
-        this.bloodType = bloodType;
-        this.bloodRH = bloodRH;
-        this.bloodCategory = BloodCategory.WHOLE;
+    public Blood(BloodType bloodType, BloodRH bloodRH, Boolean used) {
+        this.type = bloodType;
+        this.RH = bloodRH;
+        this.category = BloodCategory.WHOLE;
+        this.used = used;
     }
 
-    public Blood(BloodType bloodType, BloodRH bloodRH, BloodCategory bloodCategory) {
-        this.bloodType = bloodType;
-        this.bloodRH = bloodRH;
-        this.bloodCategory = bloodCategory;
+    public Blood(BloodType bloodType, BloodRH bloodRH, BloodCategory bloodCategory, Boolean used) {
+        this.type = bloodType;
+        this.RH = bloodRH;
+        this.category = bloodCategory;
+        this.used = used;
     }
 
     public BloodType getBloodType() {
-        return bloodType;
+        return type;
     }
 
     public void setBloodType(BloodType bloodType) {
-        this.bloodType = bloodType;
+        this.type = bloodType;
     }
 
     public BloodRH getBloodRH() {
-        return bloodRH;
+        return RH;
     }
 
     public void setBloodRH(BloodRH bloodRH) {
-        this.bloodRH = bloodRH;
+        this.RH = bloodRH;
     }
 
     public BloodCategory getBloodCategory() {
-        return bloodCategory;
+        return category;
     }
 
     public void setBloodCategory(BloodCategory bloodCategory) {
-        this.bloodCategory = bloodCategory;
+        this.category = bloodCategory;
+    }
+
+    public Boolean getUsed() {
+        return used;
+    }
+
+    public void setUsed(Boolean used) {
+        this.used = used;
     }
 
     public int getDaysToExpire() throws RuntimeException {
-        switch (this.bloodCategory){
+        switch (this.category){
             case PLASMA:return PLASMA_EXPIRATION_DATE;
             case REDCELL:return REDCELL_EXPIRATION_DATE;
             case THROMBOCYTE:return THROMBOCYTE_EXPIRATION_DATE;

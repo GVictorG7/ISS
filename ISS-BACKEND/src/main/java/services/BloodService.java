@@ -1,6 +1,9 @@
 package services;
 
 import model.Blood;
+import model.BloodCategory;
+import model.BloodRH;
+import model.BloodType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import repositories.BloodRepository;
@@ -16,8 +19,13 @@ public class BloodService implements IBloodService {
         this.bloodRepository = bloodRepository;
     }
     @Override
-    public Blood save(Blood blood) {
-        return bloodRepository.save(blood);
+    public Blood save(BloodType bloodType, BloodRH bloodRH, BloodCategory bloodCategory, Boolean used) {
+        return bloodRepository.save(new Blood(
+                bloodType,
+                bloodRH,
+                bloodCategory,
+                used
+        ));
     }
 
     @Override

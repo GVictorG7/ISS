@@ -25,6 +25,11 @@ public class BloodController {
     {
 
         System.out.println(bloodFields.toString());
-        bloodService.save(bloodFields.generateBlood());
+        bloodService.save(
+                bloodFields.getBloodType(),
+                bloodFields.getBloodRH(),
+                bloodFields.getBloodCategory(),
+                false
+        );
     }
 }

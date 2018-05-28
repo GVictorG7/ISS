@@ -40,10 +40,6 @@ public class BloodFields {
         this.bloodCategory = bloodCategory;
     }
 
-    public Blood generateBlood(){
-        return new Blood(bloodType,bloodRH,bloodCategory);
-    }
-
     @Override
     public String toString() {
         return "BloodFields{" +
