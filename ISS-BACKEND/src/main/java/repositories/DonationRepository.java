@@ -19,5 +19,5 @@ public interface DonationRepository extends JpaRepository<Donation, Long> {
 
     List<Donation> getAllByDonor(Donor donor);
 
-    List<Donation> getAllByStatus(DonationStatus donationStatus);
+    List<Donation> getAllByStatus(DonationStatus donationStatus);;
 }

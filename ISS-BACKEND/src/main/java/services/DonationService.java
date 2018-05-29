@@ -37,7 +37,7 @@ public class DonationService implements IDonationService {
     }
 
     @Override
-    public void save(Long idDonor, LocalDate collectionDate, String forPerson, DonationStatus status, BloodRH bloodRH,BloodType bloodType, Set<HealthIssue> healthIssues) {
+    public void save(Long idDonor, LocalDate collectionDate, String forPerson, DonationStatus status, BloodRH bloodRH, BloodType bloodType, Set<HealthIssue> healthIssues) {
         donationRepository.save(new Donation(
                 donorRepository.findById(idDonor),
                 collectionDate,
@@ -47,6 +47,8 @@ public class DonationService implements IDonationService {
                 bloodType,
                 healthIssues));
     }
+
+
     @Override
     public Donation save(Long idDonor) {
         return donationRepository.save(new Donation(donorRepository.findById(idDonor)));
@@ -60,12 +62,37 @@ public class DonationService implements IDonationService {
     @Override
     public void changeStatus(Donation donation) {
         if (donation.getStatus() == DonationStatus.ACCEPTED) {
-                bloodRepository.save(new Blood(donation.getBloodType(),donation.getBloodRH(),BloodCategory.WHOLE,false));
+            bloodRepository.save(new Blood(donation.getBloodType(), donation.getBloodRH(), BloodCategory.WHOLE, false));
         }
     }
 
+    public void changeStatus(Long idDonatie, Long idDonor, LocalDate collectionDate, String forPerson, DonationStatus status, BloodRH bloodRH, BloodType bloodType, Set<HealthIssue> healthIssues) {
+        if (status.equals(DonationStatus.ACCEPTED.toString())) {
+            bloodRepository.save(new Blood(bloodType, bloodRH, BloodCategory.WHOLE, false));
+            Donation donation = getById(idDonatie);
+            donation.setCollectionDate(collectionDate);
+            donation.setForPerson(forPerson);
+            donation.setStatus(status);
+            donation.setBloodRH(bloodRH);
+            donation.setBloodType(bloodType);
+            donation.setHealthIssues(healthIssues);
+            donationRepository.save(donation);
+        } else if (status.equals(DonationStatus.REJECTED.toString())) {
+            Donation donation = getById(idDonatie);
+            donation.setCollectionDate(collectionDate);
+            donation.setForPerson(forPerson);
+            donation.setStatus(status);
+            donation.setBloodRH(bloodRH);
+            donation.setBloodType(bloodType);
+            donation.setHealthIssues(healthIssues);
+            donationRepository.save(donation);
+        }
+    }
+
+
     /**
      * Gets all donations by donor
+     *
      * @param idDonor - id of given donor
      * @return list of donations
      */
@@ -77,6 +104,7 @@ public class DonationService implements IDonationService {
 
     /**
      * Updates a donation
+     *
      * @param donation - the new given donation
      */
     @Override
@@ -86,6 +114,7 @@ public class DonationService implements IDonationService {
 
     /**
      * Gets all open donations
+     *
      * @return list of donations
      */
     @Override

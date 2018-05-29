@@ -7,6 +7,7 @@ import model.HealthIssue;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import services.DonationService;
+import services.interfaces.IDonationService;
 
 import java.util.List;
 
@@ -14,10 +15,10 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/donation")
 public class DonationController {
-    private final DonationService donationService;
+    private final IDonationService donationService;
 
     @Autowired
-    public DonationController(DonationService donationService) {
+    public DonationController(IDonationService donationService) {
         this.donationService = donationService;
 
     }
@@ -26,6 +27,10 @@ public class DonationController {
     public Donation saveDonation(@RequestBody DonationFieldDOnor donationFieldDOnor) {
         return donationService.save(donationFieldDOnor.getIdDonor());
     }
+    @GetMapping(value = "getAll")
+    public List<Donation> getAllDonation(){
+        return donationService.findAll();
+    }
 
     @GetMapping(value = "/allHealthIssues")
     public HealthIssue[] getAllHealthIssues() {
@@ -33,8 +38,8 @@ public class DonationController {
     }
 
     @PostMapping(value = "/changeStatus")
-    public void changeStatus(@RequestBody DonationFields donationFields) {
-
+    public void changeStatus(@RequestBody DonationFields donationFields){
+        donationService.changeStatus(donationFields.getIdDonatie(),donationFields.getIdDonor(),donationFields.getCollectionDate(),donationFields.getForPerson(),donationFields.getStatus(),donationFields.getBloodRH(),donationFields.getBloodType(),donationFields.getHealthIssues());
 
     }
 

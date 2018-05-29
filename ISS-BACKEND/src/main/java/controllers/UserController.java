@@ -33,11 +33,11 @@ public class UserController {
         }
         response.setStatus(HttpServletResponse.SC_OK);// 200
 
-        if (user.getUserType().equals(UserType.DONOR))
+        if (user.getUserType().equals(UserType.DONOR.toString()))
             return new ReturnObject(userService.getUserDonor(user.getId()),user.getUserType());
-        if(user.getUserType().equals(UserType.DOCTOR))
+        if(user.getUserType().equals(UserType.DOCTOR.toString()))
             return new ReturnObject(userService.getUserDoctor(user.getId()),user.getUserType());
-        if(user.getUserType().equals(UserType.PERSONNEL))
+        if(user.getUserType().equals(UserType.PERSONNEL.toString()))
             return  new ReturnObject(userService.getUserPersonel(user.getId()),user.getUserType());
         return null;
     }

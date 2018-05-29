@@ -24,4 +24,5 @@ public interface IDonationService {
     void update(Donation donation);
 
     List<Donation> getAllOpenDonations();
+    void changeStatus(Long idDonatie,Long idDonor, LocalDate collectionDate, String forPerson, DonationStatus status, BloodRH bloodRH,BloodType bloodType, Set<HealthIssue> healthIssues);
 }
