@@ -27,6 +27,11 @@ public class RequestService implements IRequestService {
     }
 
     @Override
+    public Request getById(Long id) {
+        return requestRepository.findById(id);
+    }
+
+    @Override
     public List<Request> getAllRequest() {
         return requestRepository.findAll();
     }

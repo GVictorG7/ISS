@@ -11,7 +11,7 @@ public interface RequestRepository extends JpaRepository<Request, Long> {
 
     List<Request> findAll();
 
-    List<Request> findById(Long id);
+    Request findById(Long id);
 
     List<Request> findAllByDoctorOrderByRequestDate(Doctor doctor);
 

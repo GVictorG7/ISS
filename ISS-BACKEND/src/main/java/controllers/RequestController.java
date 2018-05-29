@@ -1,5 +1,6 @@
 package controllers;
 
+import controllers.formatters.ModifiedRequestFields;
 import controllers.formatters.RequestFields;
 import controllers.formatters.ResponseErrors;
 import model.Doctor;
@@ -24,8 +25,9 @@ public class RequestController {
         this.requestService = requestService;
     }
 
+    // done by Doctor
     @PostMapping(value = "/makeRequest")
-    public void requestBlood(@Valid @RequestBody RequestFields requestFields, BindingResult result, HttpServletResponse response) {
+    public void makeRequest(@Valid @RequestBody RequestFields requestFields, BindingResult result, HttpServletResponse response) {
         if (result.hasErrors()) {
             try {
                 response.sendError(412, ResponseErrors.getErrorsFormatted(result.getFieldErrors())); //PRECONDITION_FAILED - should have been 422
@@ -47,6 +49,7 @@ public class RequestController {
         response.setStatus(HttpServletResponse.SC_CREATED); // 201
     }
 
+    // done by Doctor
     @GetMapping(value = "/getRequests")
     public List<Request> getAllRequestsByDoctor(@RequestParam(value = "id", required = false) Long id, HttpServletResponse response) {
         Doctor doctor = requestService.getDoctor(id);
@@ -57,5 +60,18 @@ public class RequestController {
 
         response.setStatus(HttpServletResponse.SC_ACCEPTED); // 202
         return requestService.getAllRequestsByDoctor(doctor);
+    }
+
+    // done by Personnel
+    @PostMapping(value = "/modifyRequest")
+    public void modifyRequest(@Valid @RequestBody ModifiedRequestFields modifiedRequestFields, HttpServletResponse response) {
+        Request request = requestService.getById(modifiedRequestFields.getId());
+        if (request == null) {
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST); // 400
+        } else {
+            request.setStatus(modifiedRequestFields.getNewStatus());
+            requestService.save(request);
+            response.setStatus(HttpServletResponse.SC_ACCEPTED); // 202
+        }
     }
 }
