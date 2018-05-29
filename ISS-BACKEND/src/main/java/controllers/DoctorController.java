@@ -65,7 +65,14 @@ public class DoctorController {
     }
 
     @GetMapping(value = "/getRequests")
-    public List<Request> getAllRequests() {
-        return medicService.getAllRequest();
+    public List<Request> getAllRequestsByDoctor(@RequestParam(value = "id", required = false) Long id, HttpServletResponse response) {
+        Doctor doctor = medicService.getById(id);
+        if (doctor == null) {
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            return null;
+        }
+
+        response.setStatus(HttpServletResponse.SC_ACCEPTED);
+        return medicService.getAllRequestsByDoctor(doctor);
     }
 }

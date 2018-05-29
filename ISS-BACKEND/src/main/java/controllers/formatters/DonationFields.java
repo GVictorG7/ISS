@@ -1,5 +1,6 @@
 package controllers.formatters;
 
+import model.DonationStatus;
 import model.Donor;
 import model.HealthIssue;
 import java.time.LocalDate;
@@ -17,7 +18,7 @@ public class DonationFields implements HasDateFormat{
 
     private Set<HealthIssue> healthIssues;
 
-
+    private DonationStatus status;
     public Long getIdDonor() {
         return idDonor;
     }
@@ -59,5 +60,13 @@ public class DonationFields implements HasDateFormat{
                 ", forPerson='" + forPerson + '\'' +
                 ", healthIssues=" + healthIssues +
                 '}';
+    }
+
+    public DonationStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(DonationStatus status) {
+        this.status = status;
     }
 }

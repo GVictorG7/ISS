@@ -13,15 +13,6 @@ public class ValidatorsConfiguration {
         return new BloodValidator();
     }
 
-    @Bean
-    public DiseaseValidator beforeCreateDiseaseValidator() {
-        return new DiseaseValidator();
-    }
-
-    @Bean
-    public DonationValidator beforeCreateDonationValidator() {
-        return new DonationValidator();
-    }
 
     @Bean
     public DonorValidator beforeCreateDonorValidator() {
@@ -39,19 +30,10 @@ public class ValidatorsConfiguration {
     }
 
     @Bean
-    public PersonValidator beforeCreatePersonValidator() {
-        return new PersonValidator();
-    }
-
-    @Bean
     public RequestValidator beforeCreateRequestValidator() {
         return new RequestValidator();
     }
 
-    @Bean
-    public TreatmentValidator beforeCreateTreatmentValidator() {
-        return new TreatmentValidator();
-    }
 
     @Bean
     public UserValidator beforeCreateUserValidator() {

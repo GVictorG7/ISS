@@ -1,6 +1,8 @@
 package controllers;
 
+import controllers.formatters.DonationFieldDOnor;
 import controllers.formatters.DonationFields;
+import model.Donation;
 import model.HealthIssue;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -18,19 +20,23 @@ public class DonationController {
 
     }
     @PostMapping(value = "/save")
-    public void saveDonation(@RequestBody DonationFields donationFields)
+    public Donation saveDonation(@RequestBody DonationFieldDOnor donationFieldDOnor)
     {
-        System.out.println(donationFields.toString());
-        donationService.save(
-                donationFields.getIdDonor(),
-                donationFields.getCollectionDate(),
-                donationFields.getForPerson(),
-                donationFields.getHealthIssues());
+
+      return donationService.save(donationFieldDOnor.getIdDonor());
+
+
     }
 
     @GetMapping(value = "/allHealthIssues")
     public HealthIssue[] getAllHealthIssues()
     {
         return HealthIssue.values();
+    }
+
+    @PostMapping(value = "/changeStatus")
+    public void changeStatus(@RequestBody DonationFields donationFields){
+
+
     }
 }

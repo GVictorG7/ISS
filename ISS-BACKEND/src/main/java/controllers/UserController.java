@@ -4,6 +4,7 @@ import controllers.formatters.Credentials;
 import controllers.formatters.ResponseErrors;
 import controllers.formatters.ReturnObject;
 import model.User;
+import model.UserType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -32,11 +33,11 @@ public class UserController {
         }
         response.setStatus(HttpServletResponse.SC_OK);// 200
 
-        if (user.getUserType().equals("Donor"))
+        if (user.getUserType().equals(UserType.DONOR))
             return new ReturnObject(userService.getUserDonor(user.getId()),user.getUserType());
-        if(user.getUserType().equals("Doctor"))
+        if(user.getUserType().equals(UserType.DOCTOR))
             return new ReturnObject(userService.getUserDoctor(user.getId()),user.getUserType());
-        if(user.getUserType().equals("Personnel"))
+        if(user.getUserType().equals(UserType.PERSONNEL))
             return  new ReturnObject(userService.getUserPersonel(user.getId()),user.getUserType());
         return null;
     }

@@ -65,7 +65,7 @@ public class DoctorService implements IDoctorService {
     }
 
     @Override
-    public List<Request> getAllRequest() {
-        return requestRepository.findAll();
+    public List<Request> getAllRequestsByDoctor(Doctor doctor) {
+        return requestRepository.findAllByDoctorOrderByRequestDate(doctor);
     }
 }

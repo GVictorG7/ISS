@@ -3,7 +3,6 @@ package model;
 import javax.persistence.*;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.Set;
 
 
@@ -27,6 +26,18 @@ public class Donation {
     private String forPerson;
 
     @Enumerated(EnumType.STRING)
+    @Column(name = "status")
+    private DonationStatus status;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "blood_rh")
+    private BloodRH bloodRH;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "blood_type")
+    private BloodType bloodType;
+
+    @Enumerated(EnumType.STRING)
     @ElementCollection(targetClass = HealthIssue.class)
     @CollectionTable(name = "healthIssues", joinColumns = @JoinColumn(name = "IDHealthIssue"))
     @Column(name = "IDHealthIssues")
@@ -35,10 +46,18 @@ public class Donation {
     public Donation() {
     }
 
-    public Donation(Donor donor, LocalDate collectionDate, String forPerson, Set<HealthIssue> healthIssues) {
+    public Donation(Donor donor) {
+        this.donor = donor;
+    }
+
+
+    public Donation(Donor donor, LocalDate collectionDate, String forPerson, DonationStatus status, BloodRH bloodRH, BloodType bloodType, Set<HealthIssue> healthIssues) {
         this.donor = donor;
         this.collectionDate = collectionDate;
         this.forPerson = forPerson;
+        this.status = status;
+        this.bloodRH = bloodRH;
+        this.bloodType = bloodType;
         this.healthIssues = healthIssues;
     }
 
@@ -72,5 +91,29 @@ public class Donation {
 
     public void setHealthIssues(Set<HealthIssue> healthIssues) {
         this.healthIssues = healthIssues;
+    }
+
+    public DonationStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(DonationStatus status) {
+        this.status = status;
+    }
+
+    public BloodType getBloodType() {
+        return bloodType;
+    }
+
+    public void setBloodType(BloodType bloodType) {
+        this.bloodType = bloodType;
+    }
+
+    public BloodRH getBloodRH() {
+        return bloodRH;
+    }
+
+    public void setBloodRH(BloodRH bloodRH) {
+        this.bloodRH = bloodRH;
     }
 }
