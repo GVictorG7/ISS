@@ -1,14 +1,20 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {DonationForm} from "../core/model/DonationForm";
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {DonationForm} from '../core/model/DonationForm';
+
+const httpOptions = {
+  headers: new HttpHeaders({'Content-Type': 'application/json'})
+};
 
 @Injectable()
 export class DonorService {
+  private api = 'http://localhost:8090';
+  private donor = JSON.parse(localStorage.getItem('token')).userData;
 
   constructor(private http: HttpClient) {
   }
 
   saveDonation(donation: DonationForm) {
-    console.log(donation);
+    return this.http.post<any>(`${this.api}/donation/save`, {idDonor: this.donor.id}, httpOptions);
   }
 }

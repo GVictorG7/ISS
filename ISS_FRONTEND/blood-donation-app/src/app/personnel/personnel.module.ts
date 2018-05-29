@@ -7,6 +7,7 @@ import {SharedModule} from '../shared/shared.module';
 import {EditDonationComponent} from './analysis/edit-donation/edit-donation.component';
 import {MatButtonModule, MatPaginatorModule, MatSelectModule, MatSortModule, MatTableModule} from '@angular/material';
 import {FormsModule} from '@angular/forms';
+import {PersonnelService} from './personnel.service';
 
 @NgModule({
   imports: [
@@ -20,7 +21,8 @@ import {FormsModule} from '@angular/forms';
     MatButtonModule,
     FormsModule
   ],
-  declarations: [AnalysisComponent, BloodRequestsComponent, EditDonationComponent]
+  declarations: [AnalysisComponent, BloodRequestsComponent, EditDonationComponent],
+  providers: [PersonnelService]
 })
 export class PersonnelModule {
 }

@@ -1,4 +1,67 @@
 <app-menu></app-menu>
-<p>
-  blood-requests works!
-</p>
+<div>
+  <table mat-table #table [dataSource]="dataSource" matSort>
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="position">
+      <th mat-header-cell *matHeaderCellDef> No.</th>
+      <td mat-cell *matCellDef="let element"> {{requests.indexOf(element)+1}}</td>
+    </ng-container>
+    <ng-container matColumnDef="requestDate">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Date</th>
+      <td mat-cell *matCellDef="let element"> {{element.requestDate}}</td>
+    </ng-container>
+    <ng-container matColumnDef="bloodType">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Grupa de sange</th>
+      <td mat-cell *matCellDef="let element"> {{element.bloodType}}</td>
+    </ng-container>
+    <ng-container matColumnDef="bloodCategory">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Stare</th>
+      <td mat-cell *matCellDef="let element"> {{element.bloodCategory}}</td>
+    </ng-container>
+    <ng-container matColumnDef="priority">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Prioritate</th>
+      <td mat-cell *matCellDef="let element"> {{element.priority}}</td>
+    </ng-container>
+    <ng-container matColumnDef="person">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Nume pacient</th>
+      <td mat-cell *matCellDef="let element"> {{element.person}}</td>
+    </ng-container>
+    <!-- Weight Column -->
+    <ng-container matColumnDef="bloodRH">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> RH</th>
+      <td mat-cell *matCellDef="let element"> {{element.bloodRh}}</td>
+    </ng-container>
+    <ng-container matColumnDef="bloodQuantity">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Cantitate</th>
+      <td mat-cell *matCellDef="let element"> {{element.bloodQuantity}}</td>
+    </ng-container>
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Status</th>
+      <td mat-cell *matCellDef="let element"> {{element.status}}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+    ></tr>
+
+
+  </table>
+  <mat-paginator #paginator
+                 [pageSize]="10"
+                 [pageSizeOptions]="[5, 10, 20]"
+                 [showFirstLastButtons]="true">
+  </mat-paginator>
+</div>
+<div>
+  <button *ngIf="!visible" mat-raised-button
+          color="primary"
+          (click)="newRequest()"
+  >Cerere noua
+  </button>
+  <app-new-blood-request *ngIf="visible" [request]="request"
+                         (viewChanged)="viewChanged($event)"></app-new-blood-request>
+</div>

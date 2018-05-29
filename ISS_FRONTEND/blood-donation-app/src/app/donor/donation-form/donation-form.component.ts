@@ -4,6 +4,7 @@ import {DonorService} from '../donor.service';
 import {MatSnackBar} from '@angular/material';
 import {Donor} from '../../core/model/Donor';
 import {checkCompleted} from '../../shared/utils/utils';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-donation-form',
@@ -15,7 +16,7 @@ export class DonationFormComponent implements OnInit {
   donationForm: DonationForm = new DonationForm();
   tooltip: any = {disabled: false, message: ''};
 
-  constructor(private service: DonorService, private snackBar: MatSnackBar) {
+  constructor(private service: DonorService, private snackBar: MatSnackBar, private router: Router) {
   }
 
   ngOnInit() {
@@ -37,7 +38,11 @@ export class DonationFormComponent implements OnInit {
 
   saveDonation() {
     if (checkCompleted(this.donationForm)) {
-      this.service.saveDonation(this.donationForm);
+      this.service.saveDonation(this.donationForm).subscribe(
+        () => {
+          this.snackBar.open('Salvat cu succes', 'Ok', {duration: 1000});
+          this.router.navigateByUrl('');
+        });
     } else {
       this.snackBar.open('Date completate gresit!', 'Ok', {duration: 1000});
     }
