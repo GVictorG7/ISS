@@ -1,5 +1,6 @@
 package services.interfaces;
 
+import model.Doctor;
 import model.Request;
 
 import java.util.List;
@@ -10,4 +11,8 @@ public interface IRequestService {
     List<Request> getAllRequest();
 
     List<Request> getAllRequestsByStatus(String status);
+
+    List<Request> getAllRequestsByDoctor(Doctor doctor);
+
+    Doctor getDoctor(Long id);
 }
