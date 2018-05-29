@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import services.interfaces.IDonationService;
 
+import java.util.List;
+
 
 @RestController
 @RequestMapping(value = "/donation")
@@ -27,6 +29,10 @@ public class DonationController {
 
 
     }
+    @GetMapping(value = "getAll")
+    public List<Donation> getAllDonation(){
+        return donationService.findAll();
+    }
 
     @GetMapping(value = "/allHealthIssues")
     public HealthIssue[] getAllHealthIssues()
@@ -36,7 +42,7 @@ public class DonationController {
 
     @PostMapping(value = "/changeStatus")
     public void changeStatus(@RequestBody DonationFields donationFields){
-
+        donationService.changeStatus(donationFields.getIdDonatie(),donationFields.getIdDonor(),donationFields.getCollectionDate(),donationFields.getForPerson(),donationFields.getStatus(),donationFields.getBloodRH(),donationFields.getBloodType(),donationFields.getHealthIssues());
 
     }
 }

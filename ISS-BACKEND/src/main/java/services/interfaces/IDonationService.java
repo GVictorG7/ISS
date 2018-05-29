@@ -11,6 +11,6 @@ public interface IDonationService {
     List<Donation> findAll();
     void save(Long idDonor, LocalDate collectionDate, String forPerson, DonationStatus status,BloodRH bloodRH,BloodType bloodType, Set<HealthIssue> healthIssues);
     Donation deleteById(Long id);
-    void changeStatus(Donation donation);
+    void changeStatus(Long idDonatie,Long idDonor, LocalDate collectionDate, String forPerson, DonationStatus status, BloodRH bloodRH,BloodType bloodType, Set<HealthIssue> healthIssues);
     public Donation save(Long idDonor);
 }
