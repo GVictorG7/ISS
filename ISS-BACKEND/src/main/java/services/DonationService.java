@@ -61,8 +61,36 @@ public class DonationService implements IDonationService {
     public void changeStatus(Donation donation) {
         if (donation.getStatus() == DonationStatus.ACCEPTED) {
                 bloodRepository.save(new Blood(donation.getBloodType(),donation.getBloodRH(),BloodCategory.WHOLE,false));
-
         }
-
     }
+
+    /**
+     * Gets all donations by donor
+     * @param idDonor - id of given donor
+     * @return list of donations
+     */
+    @Override
+    public List<Donation> getAllDonationsByDonor(Long idDonor) {
+        Donor donor = donorRepository.getOne(idDonor);
+        return donationRepository.getAllByDonor(donor);
+    }
+
+    /**
+     * Updates a donation
+     * @param donation - the new given donation
+     */
+    @Override
+    public void update(Donation donation) {
+        donationRepository.save(donation);
+    }
+
+    /**
+     * Gets all open donations
+     * @return list of donations
+     */
+    @Override
+    public List<Donation> getAllOpenDonations() {
+        return donationRepository.getAllByStatus(DonationStatus.OPEN);
+    }
+
 }
