@@ -1,0 +1,97 @@
+html, body{
+  font-family: Verdana, sans-serif;
+  font-size: 15px;
+  line-height: 1;
+}
+.headerClass {
+  color: white;
+  background-color: #303030;
+  padding: 8px 16px;
+  align-content: center;
+  text-align: center;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+.parallax {
+  /* The image used */
+  background-image: url(/scrollDown.jpg);
+
+
+  /* Set a specific height */
+  min-height: 500px;
+
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.glyphicon{
+  font-size: 40px;
+}
+
+span{
+  color: #fc321a;
+  text-decoration-style: solid;
+  font-size: 16px;
+}
+.secundar{
+  padding: 10px;
+  text-align: left;
+  font-size: 20px;
+}
+
+.title{
+  padding-left: 10px;
+  font-size: 24px;
+  display: inline-block;
+  word-spacing: 1px;
+}
+.subtitles{
+  padding-left: 5px;
+  font-size: 18px;
+  display: inline-block;
+  color: #fc321a;
+  text-decoration-style: solid;
+}
+.infos{
+  color: white;
+  text-decoration-style: wavy;
+  font-size: 14px;
+  padding-left: 5px;
+}
+.bloodgroup{
+  padding-left: 10px;
+  color:#fc321a ;
+}
+
+.tabContent{
+  height:auto;
+  background-color:#303030;
+  font-size:23px
+}
+img {
+  border: 1px solid  #fc321a;
+  border-radius: 4px;
+  padding: 5px;
+  width: 150px;
+}
+
+.links{
+  padding: 10px;
+  font-size: 16px;
+}
+
+.footerClass{
+  color: white;
+  background-color: #303030;
+  padding: 8px 16px;
+  align-content: center;
+  text-align: center;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}

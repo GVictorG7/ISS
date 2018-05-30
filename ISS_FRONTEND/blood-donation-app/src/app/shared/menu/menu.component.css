@@ -5,5 +5,6 @@
 }
 a, a:active,a:visited{
   text-decoration: none;
-  color:black;
+  color:white;
+  padding-right: 8px;
 }
