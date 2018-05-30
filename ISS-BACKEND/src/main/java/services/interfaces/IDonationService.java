@@ -8,9 +8,21 @@ import java.util.Set;
 
 public interface IDonationService {
     Donation getById(Long id);
+
     List<Donation> findAll();
-    void save(Long idDonor, LocalDate collectionDate, String forPerson, DonationStatus status,BloodRH bloodRH,BloodType bloodType, Set<HealthIssue> healthIssues);
+
+    void save(Long idDonor, LocalDate collectionDate, String forPerson, DonationStatus status, BloodRH bloodRH, BloodType bloodType, Set<HealthIssue> healthIssues);
+
     Donation deleteById(Long id);
+
     void changeStatus(Donation donation);
-    public Donation save(Long idDonor);
+
+    Donation save(Long idDonor);
+
+    List<Donation> getAllDonationsByDonor(Long idDonor);
+
+    void update(Donation donation);
+
+    List<Donation> getAllOpenDonations();
+    void changeStatus(Long idDonatie,Long idDonor, LocalDate collectionDate, String forPerson, DonationStatus status, BloodRH bloodRH,BloodType bloodType, Set<HealthIssue> healthIssues);
 }

@@ -13,7 +13,7 @@ public class Donation {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
-    private final long id = 1L;
+    private long id = 1L;
 
     @ManyToOne
     @JoinColumn(name = "id_donor")
@@ -51,6 +51,16 @@ public class Donation {
     }
 
 
+    public Donation(Long id,Donor donor, LocalDate collectionDate, String forPerson, DonationStatus status, BloodRH bloodRH, BloodType bloodType, Set<HealthIssue> healthIssues) {
+        this.id=id;
+        this.donor = donor;
+        this.collectionDate = collectionDate;
+        this.forPerson = forPerson;
+        this.status = status;
+        this.bloodRH = bloodRH;
+        this.bloodType = bloodType;
+        this.healthIssues = healthIssues;
+    }
     public Donation(Donor donor, LocalDate collectionDate, String forPerson, DonationStatus status, BloodRH bloodRH, BloodType bloodType, Set<HealthIssue> healthIssues) {
         this.donor = donor;
         this.collectionDate = collectionDate;
@@ -115,5 +125,9 @@ public class Donation {
 
     public void setBloodRH(BloodRH bloodRH) {
         this.bloodRH = bloodRH;
+    }
+
+    public long getId() {
+        return id;
     }
 }

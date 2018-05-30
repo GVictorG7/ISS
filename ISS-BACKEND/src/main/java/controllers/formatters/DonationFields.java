@@ -1,24 +1,28 @@
 package controllers.formatters;
 
+import model.BloodRH;
+import model.BloodType;
 import model.DonationStatus;
-import model.Donor;
 import model.HealthIssue;
+
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class DonationFields implements HasDateFormat{
+public class DonationFields implements HasDateFormat {
+    private Long idDonatie;
+
     private Long idDonor;
 
-    private LocalDate collectionDate;
+    private String collectionDate;
 
     private String forPerson;
 
     private Set<HealthIssue> healthIssues;
 
     private DonationStatus status;
+
     public Long getIdDonor() {
         return idDonor;
     }
@@ -28,11 +32,17 @@ public class DonationFields implements HasDateFormat{
     }
 
     public LocalDate getCollectionDate() {
-        return collectionDate;
+        LocalDate localDate=setCollectionDate(collectionDate);
+        return localDate;
     }
 
-    public void setCollectionDate(String collectionDate) {
-        this.collectionDate = LocalDate.parse(collectionDate, dateFormat);
+    private BloodRH bloodRH;
+
+    private BloodType bloodType;
+
+    public LocalDate setCollectionDate(String collectionDateString) {
+
+        return LocalDate.parse(collectionDateString, dateFormat);
     }
 
     public String getForPerson() {
@@ -68,5 +78,29 @@ public class DonationFields implements HasDateFormat{
 
     public void setStatus(DonationStatus status) {
         this.status = status;
+    }
+
+    public BloodRH getBloodRH() {
+        return bloodRH;
+    }
+
+    public void setBloodRH(BloodRH bloodRH) {
+        this.bloodRH = bloodRH;
+    }
+
+    public BloodType getBloodType() {
+        return bloodType;
+    }
+
+    public void setBloodType(BloodType bloodType) {
+        this.bloodType = bloodType;
+    }
+
+    public Long getIdDonatie() {
+        return idDonatie;
+    }
+
+    public void setIdDonatie(Long idDonatie) {
+        this.idDonatie = idDonatie;
     }
 }
