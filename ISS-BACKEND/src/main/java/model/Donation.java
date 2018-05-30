@@ -1,5 +1,7 @@
 package model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 import java.time.LocalDate;
@@ -15,6 +17,7 @@ public class Donation {
     @Column(name = "id")
     private long id = 1L;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "id_donor")
     private Donor donor;

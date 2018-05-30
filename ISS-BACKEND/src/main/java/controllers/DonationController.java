@@ -69,7 +69,7 @@ public class DonationController {
      *
      * @return list of donations
      */
-    @RequestMapping(value = "/openDonations")
+    @GetMapping(value = "/openDonations")
     public List<Donation> getAllOpenDonations() {
         return donationService.getAllOpenDonations();
     }
