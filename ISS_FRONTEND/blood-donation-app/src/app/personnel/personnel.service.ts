@@ -11,4 +11,8 @@ export class PersonnelService {
   getRequests() {
     return this.http.get(this.api);
   }
+
+  getDonations() {
+    return this.http.get(`${this.api}/donation/openDonations`);
+  }
 }

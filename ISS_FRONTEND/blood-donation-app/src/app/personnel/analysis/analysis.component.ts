@@ -1,5 +1,6 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
+import {PersonnelService} from '../personnel.service';
 
 @Component({
   selector: 'app-analysis',
@@ -7,20 +8,26 @@ import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
   styleUrls: ['./analysis.component.css']
 })
 export class AnalysisComponent implements OnInit {
-  donations = [{date: 'azi', status: 'DESCHIS', healthIssues: [], blood: {id: 0, category: '', RH: '', type: ''}},
-    {date: 'ieri', status: 'RESPINS', healthIssues: ['gonoree'], blood: {id: 0, category: '', RH: '', type: ''}}];
+  donations: any[];
   displayedColumns = ['position', 'date', 'status'];
   dataSource = new MatTableDataSource<any>(this.donations);
   details: any = {visible: false, donation: null};
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor() {
+  constructor(private service: PersonnelService, private cdr: ChangeDetectorRef) {
   }
 
   ngOnInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+    this.service.getDonations().subscribe(
+      (donations: any[]) => {
+        this.donations = donations;
+        this.dataSource.data = this.donations;
+        this.cdr.detectChanges();
+      }
+    );
   }
 
   showDetails(donation) {

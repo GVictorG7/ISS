@@ -15,10 +15,10 @@ export class DoctorService {
 
   newRequest(request) {
     request.idDoctor = this.doctor.id;
-    return this.http.post(`${this.api}/doctor/request`, request, httpOptions);
+    return this.http.post(`${this.api}/request/makeRequest`, request, httpOptions);
   }
 
   getRequests() {
-    return this.http.get(`${this.api}/doctor/getRequests`, {params: {id: this.doctor.id}});
+    return this.http.get(`${this.api}/request/getRequests`, {params: {id: this.doctor.id}});
   }
 }

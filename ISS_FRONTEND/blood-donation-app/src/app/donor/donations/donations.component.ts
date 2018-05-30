@@ -1,6 +1,7 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {ActivatedRoute, Router} from '@angular/router';
+import {DonorService} from '../donor.service';
 
 @Component({
   selector: 'app-donations',
@@ -11,10 +12,7 @@ export class DonationsComponent implements OnInit {
 
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
-
-
-  donations = [{date: 'azi', status: 'Acceptat'},
-    {date: 'ieri', status: 'Rejected'}];
+  donations: any[];
 
   dataSource = new MatTableDataSource<any>(this.donations);
 
@@ -24,13 +22,27 @@ export class DonationsComponent implements OnInit {
 
   tooltip: any = {disabled: false, message: ''};
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute) {
+  constructor(private service: DonorService,
+              private router: Router,
+              private activatedRoute: ActivatedRoute,
+              private cdr: ChangeDetectorRef) {
   }
 
   ngOnInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
-    setTimeout(() => this.tooltip.message = 'mesaj', 2000);
+    this.service.getDonations().subscribe(
+      (donations) => {
+        this.donations = donations;
+        this.dataSource.data = donations;
+        this.cdr.detectChanges();
+        const result = this.checkDate();
+        result.valid ? this.tooltip.disabled = false : this.tooltip = {
+          disabled: true,
+          message: `Trebuie sa treaca 6 luni dupa ultima donatie(${result.date})`
+        };
+      }
+    );
 
   }
 
@@ -48,4 +60,18 @@ export class DonationsComponent implements OnInit {
     }
   }
 
+  private checkDate() {
+    const sixMonths = 15552000000;
+    let date = '';
+    const collected=this.donations.filter(donation => donation.collectionDate !== null).forEach(donation => {
+      if (donation.collectionDate > date) {
+        date = donation.date;
+      }
+    });
+    if (date === '') {
+      return {date: null, valid: true};
+    }
+    const valid = new Date().getMilliseconds() - new Date(date).getMilliseconds() > sixMonths;
+    return {date, valid};
+  }
 }
