@@ -3,6 +3,7 @@ package controllers.formatters;
 public class DonationFieldDOnor {
     private Long idDonor;
 
+
     public Long getIdDonor() {
         return idDonor;
     }
@@ -10,4 +11,6 @@ public class DonationFieldDOnor {
     public void setIdDonor(Long idDonor) {
         this.idDonor = idDonor;
     }
+
+
 }

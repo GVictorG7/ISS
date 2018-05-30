@@ -9,8 +9,7 @@ import java.util.List;
 
 
 public interface DonationRepository extends JpaRepository<Donation, Long> {
-    Donation getById(Long id);
-
+    Donation findById(Long id);
     List<Donation> findAll();
 
     Donation save(Donation donation);

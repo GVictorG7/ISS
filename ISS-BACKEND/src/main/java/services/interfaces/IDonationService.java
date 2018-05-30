@@ -15,14 +15,16 @@ public interface IDonationService {
 
     Donation deleteById(Long id);
 
-    void changeStatus(Donation donation);
+    void changeStatus(Long idDonatie, Long idDonor, String collectionDate, String forPerson, DonationStatus status, String bloodRH, String bloodType, Set<HealthIssue> healthIssues);
 
-    Donation save(Long idDonor);
+    void save(Long idDonor);
+
 
     List<Donation> getAllDonationsByDonor(Long idDonor);
 
     void update(Donation donation);
 
     List<Donation> getAllOpenDonations();
-    void changeStatus(Long idDonatie,Long idDonor, LocalDate collectionDate, String forPerson, DonationStatus status, BloodRH bloodRH,BloodType bloodType, Set<HealthIssue> healthIssues);
+
+
 }

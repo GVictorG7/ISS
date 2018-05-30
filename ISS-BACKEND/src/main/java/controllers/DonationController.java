@@ -2,6 +2,7 @@ package controllers;
 
 import controllers.formatters.DonationFieldDOnor;
 import controllers.formatters.DonationFields;
+import model.BloodType;
 import model.Donation;
 import model.HealthIssue;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +25,12 @@ public class DonationController {
     }
 
     @PostMapping(value = "/save")
-    public Donation saveDonation(@RequestBody DonationFieldDOnor donationFieldDOnor) {
-        return donationService.save(donationFieldDOnor.getIdDonor());
+    public void saveDonation(@RequestBody DonationFieldDOnor donationFieldDOnor)
+    {
+
+      donationService.save(donationFieldDOnor.getIdDonor());
+
+
     }
     @GetMapping(value = "getAll")
     public List<Donation> getAllDonation(){
@@ -33,13 +38,15 @@ public class DonationController {
     }
 
     @GetMapping(value = "/allHealthIssues")
-    public HealthIssue[] getAllHealthIssues() {
+    public HealthIssue[] getAllHealthIssues()
+    {
         return HealthIssue.values();
     }
 
     @PostMapping(value = "/changeStatus")
     public void changeStatus(@RequestBody DonationFields donationFields){
-        donationService.changeStatus(donationFields.getIdDonatie(),donationFields.getIdDonor(),donationFields.getCollectionDate(),donationFields.getForPerson(),donationFields.getStatus(),donationFields.getBloodRH(),donationFields.getBloodType(),donationFields.getHealthIssues());
+        System.out.println(donationFields.getCollectionDate());
+        donationService.changeStatus(donationFields.getIdDonatie(),donationFields.getIdDonor(),donationFields.getForPerson(),donationFields.getCollectionDate(),donationFields.getStatus(),donationFields.getBloodRH(),donationFields.getBloodType(),donationFields.getHealthIssues());
 
     }
 

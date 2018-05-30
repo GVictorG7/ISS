@@ -1,11 +1,8 @@
 package controllers.formatters;
 
-import model.BloodRH;
-import model.BloodType;
 import model.DonationStatus;
 import model.HealthIssue;
 
-import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -31,19 +28,14 @@ public class DonationFields implements HasDateFormat {
         this.idDonor = idDonor;
     }
 
-    public LocalDate getCollectionDate() {
-        LocalDate localDate=setCollectionDate(collectionDate);
-        return localDate;
+    public String getCollectionDate() {
+//        LocalDate localDate=setCollectionDate(collectionDate);
+        return collectionDate;
     }
 
-    private BloodRH bloodRH;
+    private String bloodRH;
 
-    private BloodType bloodType;
-
-    public LocalDate setCollectionDate(String collectionDateString) {
-
-        return LocalDate.parse(collectionDateString, dateFormat);
-    }
+    private String bloodType;
 
     public String getForPerson() {
         return forPerson;
@@ -80,21 +72,6 @@ public class DonationFields implements HasDateFormat {
         this.status = status;
     }
 
-    public BloodRH getBloodRH() {
-        return bloodRH;
-    }
-
-    public void setBloodRH(BloodRH bloodRH) {
-        this.bloodRH = bloodRH;
-    }
-
-    public BloodType getBloodType() {
-        return bloodType;
-    }
-
-    public void setBloodType(BloodType bloodType) {
-        this.bloodType = bloodType;
-    }
 
     public Long getIdDonatie() {
         return idDonatie;
@@ -102,5 +79,21 @@ public class DonationFields implements HasDateFormat {
 
     public void setIdDonatie(Long idDonatie) {
         this.idDonatie = idDonatie;
+    }
+
+    public String getBloodRH() {
+        return bloodRH;
+    }
+
+    public void setBloodRH(String bloodRH) {
+        this.bloodRH = bloodRH;
+    }
+
+    public String getBloodType() {
+        return bloodType;
+    }
+
+    public void setBloodType(String bloodType) {
+        this.bloodType = bloodType;
     }
 }
