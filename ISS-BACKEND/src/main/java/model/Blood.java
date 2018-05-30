@@ -17,7 +17,7 @@ public class Blood implements Serializable {
     private static final int THROMBOCYTE_EXPIRATION_DATE = 5;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private final long id = 1L;
 
@@ -51,6 +51,10 @@ public class Blood implements Serializable {
         this.RH = bloodRH;
         this.category = bloodCategory;
         this.used = used;
+    }
+
+    public long getId() {
+        return id;
     }
 
     public BloodType getBloodType() {
