@@ -1,3 +1,6 @@
 <app-menu></app-menu>
-<app-register [user]="user" [person]="person"></app-register>
-<button mat-button color="primary" (click)="saveAccount()">Salveaza cont!</button>
+<app-register [firstFormGroup]="firstFormGroup" [secondFormGroup]="secondFormGroup" [user]="user"
+              [person]="person"></app-register>
+<button mat-raised-button color="primary"
+        (click)="saveAccount()">Salveaza cont!
+</button>

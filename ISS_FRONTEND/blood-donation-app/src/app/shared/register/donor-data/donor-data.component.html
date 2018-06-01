@@ -1,60 +1,71 @@
 <div>
-  <mat-form-field>
-    <input matInput placeholder="Nume"
-           [(ngModel)]="donor.lastName"
-           required
-    >
-  </mat-form-field>
-  <mat-form-field>
-    <input matInput placeholder="Prenume"
-           [(ngModel)]="donor.firstName"
-           required
-    >
-  </mat-form-field>
-  <mat-form-field>
-    <input matInput placeholder="CNP"
-           [(ngModel)]="donor.cnp"
-           required
-    >
-  </mat-form-field>
+  <form [formGroup]="formValidation">
+    <mat-form-field>
+      <input matInput placeholder="Nume"
+             [(ngModel)]="donor.lastName"
+             required
+             formControlName="lastName"
+      >
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Prenume"
+             [(ngModel)]="donor.firstName"
+             required
+             formControlName="firstName"
+      >
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="CNP"
+             [(ngModel)]="donor.cnp"
+             required
+             formControlName="cnp"
+      >
+    </mat-form-field>
 
-  <mat-form-field>
-    <input matInput placeholder="Gen"
-           [(ngModel)]="donor.gender"
-           required
-    >
-  </mat-form-field>
-  <mat-form-field>
-    <input matInput placeholder="Data nasterii"
-           type="date"
-           [(ngModel)]="donor.birthday"
-           required
-    >
-  </mat-form-field>
-  <mat-form-field>
-    <input matInput placeholder="Adresa (din buletin)"
-           [(ngModel)]="donor.address"
-           required
-    >
-  </mat-form-field>
-  <mat-form-field>
-    <input matInput placeholder="Adresa locala (unde locuiti acum)"
-           [(ngModel)]="donor.localAddress"
-           required
-    >
-  </mat-form-field>
-  <mat-form-field>
-    <input matInput placeholder="Email"
-           type="email"
-           [(ngModel)]="donor.email"
-           required
-    >
-  </mat-form-field>
-  <mat-form-field>
-    <input matInput placeholder="Telefon"
-           max="10"
-           [(ngModel)]="donor.phone"
-           required
-    >
-  </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Gen"
+             [(ngModel)]="donor.gender"
+             required
+             formControlName="gender"
+      >
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Data nasterii"
+             type="date"
+             [(ngModel)]="donor.birthday"
+             required
+             formControlName="birthday"
+      >
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Adresa (din buletin)"
+             [(ngModel)]="donor.address"
+             required
+             formControlName="address"
+      >
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Adresa locala (unde locuiti acum)"
+             [(ngModel)]="donor.localAddress"
+             required
+             formControlName="localAddress"
+      >
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Email"
+             type="email"
+             [(ngModel)]="donor.email"
+             required
+             formControlName="email"
+      >
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Telefon"
+             max="10"
+             [(ngModel)]="donor.phone"
+             required
+             formControlName="phone"
+      >
+    </mat-form-field>
+  </form>
 </div>

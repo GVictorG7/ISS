@@ -25,28 +25,26 @@ public class DonationController {
     }
 
     @PostMapping(value = "/save")
-    public void saveDonation(@RequestBody DonationFieldDOnor donationFieldDOnor)
-    {
+    public void saveDonation(@RequestBody DonationFieldDOnor donationFieldDOnor) {
 
-      donationService.save(donationFieldDOnor.getIdDonor());
+        donationService.save(donationFieldDOnor.getIdDonor());
 
 
     }
+
     @GetMapping(value = "getAll")
-    public List<Donation> getAllDonation(){
+    public List<Donation> getAllDonation() {
         return donationService.findAll();
     }
 
     @GetMapping(value = "/allHealthIssues")
-    public HealthIssue[] getAllHealthIssues()
-    {
+    public HealthIssue[] getAllHealthIssues() {
         return HealthIssue.values();
     }
 
     @PostMapping(value = "/changeStatus")
-    public void changeStatus(@RequestBody DonationFields donationFields){
-        System.out.println(donationFields.getCollectionDate());
-        donationService.changeStatus(donationFields.getIdDonatie(),donationFields.getIdDonor(),donationFields.getForPerson(),donationFields.getCollectionDate(),donationFields.getStatus(),donationFields.getBloodRH(),donationFields.getBloodType(),donationFields.getHealthIssues());
+    public void changeStatus(@RequestBody DonationFields donation) {
+        donationService.changeStatus(donation.getId(), donation.getForPerson(), donation.getStatus(), donation.getBloodRH(),donation.getBloodType(), donation.getHealthIssues());
 
     }
 

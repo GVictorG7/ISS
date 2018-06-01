@@ -6,27 +6,21 @@ Status:
     </mat-option>
   </mat-select>
 </mat-form-field>
-<div *ngIf="donation.status === 'ACCEPTAT'">
-  Grupa sanga:
+<div *ngIf="donation.status !== 'OPEN'">
+  Grupa sange:
   <mat-form-field>
-    <mat-select placeholder="-" [(ngModel)]="donation.blood.type">
+    <mat-select placeholder="-" [(ngModel)]="donation.bloodType">
       <mat-option *ngFor="let type of types" [value]="type">{{type}}</mat-option>
     </mat-select>
   </mat-form-field>
   RH:
   <mat-form-field>
-    <mat-select placeholder="-" [(ngModel)]="donation.blood.RH">
+    <mat-select placeholder="-" [(ngModel)]="donation.bloodRH">
       <mat-option *ngFor="let rh of rhs" [value]="rh">{{rh}}</mat-option>
     </mat-select>
   </mat-form-field>
-  In stare:
-  <mat-form-field>
-    <mat-select placeholder="-" [(ngModel)]="donation.blood.category">
-      <mat-option *ngFor="let category of categories" [value]="category">{{category}}</mat-option>
-    </mat-select>
-  </mat-form-field>
 </div>
-<div *ngIf="donation.status === 'RESPINS'">
+<div *ngIf="donation.status === 'REJECTED'">
   Rezultate analize:
   <mat-form-field>
     <mat-select placeholder="-" multiple [(ngModel)]="donation.healthIssues">
@@ -35,4 +29,4 @@ Status:
   </mat-form-field>
 
 </div>
-<button mat-raised-button color="primary" (click)="saveInfo()">Salvare</button>
+<button *ngIf="donation.status !== 'OPEN'" mat-raised-button color="primary" (click)="saveInfo()">Salvare</button>

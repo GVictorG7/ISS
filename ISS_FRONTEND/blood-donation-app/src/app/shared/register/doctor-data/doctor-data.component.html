@@ -1,21 +1,25 @@
 <div>
-  <mat-form-field>
-    <input matInput placeholder="Nume"
-           [(ngModel)]="doctor.lastName"
-           required
-    >
-  </mat-form-field>
-  <mat-form-field>
-    <input matInput placeholder="Prenume"
-           [(ngModel)]="doctor.firstName"
-           required
-    >
-  </mat-form-field>
-  <mat-form-field>
-    <mat-select placeholder="Spital" [(value)]="doctor.hospitalId">
-      <mat-option *ngFor="let hospital of hospitals " [value]="hospital.id">
-        {{ hospital.name }}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
+  <form [formGroup]="formValidation">
+    <mat-form-field>
+      <input matInput placeholder="Nume"
+             [(ngModel)]="doctor.lastName"
+             formControlName="lastName"
+             required
+      >
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Prenume"
+             [(ngModel)]="doctor.firstName"
+             formControlName="firstName"
+             required
+      >
+    </mat-form-field>
+    <mat-form-field>
+      <mat-select placeholder="Spital" [(value)]="doctor.hospitalId" [formControl]="hValidator">
+        <mat-option *ngFor="let hospital of hospitals " [value]="hospital.id">
+          {{ hospital.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </form>
 </div>

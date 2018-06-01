@@ -5,19 +5,23 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {
   MatButtonModule,
   MatFormFieldModule,
-  MatIconModule, MatInputModule, MatListModule,
+  MatIconModule,
+  MatInputModule,
+  MatListModule,
   MatMenuModule,
   MatSelectModule,
-  MatSidenavModule, MatSnackBarModule
+  MatSidenavModule,
+  MatSnackBarModule,
+  MatStepperModule
 } from '@angular/material';
 import {RegisterComponent} from './register/register.component';
 import {UserDataComponent} from './register/user-data/user-data.component';
 import {DonorDataComponent} from './register/donor-data/donor-data.component';
 import {PersonnelDataComponent} from './register/personnel-data/personnel-data.component';
 import {DoctorDataComponent} from './register/doctor-data/doctor-data.component';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
-import {DonationRejectedReasonsComponent} from './donation-rejected-reasons/donation-rejected-reasons.component';
+import {DonationDetailsComponent} from './donation-details/donation-details.component';
 
 @NgModule({
   imports: [
@@ -33,7 +37,9 @@ import {DonationRejectedReasonsComponent} from './donation-rejected-reasons/dona
     MatFormFieldModule,
     MatSelectModule,
     MatInputModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatStepperModule,
+    ReactiveFormsModule
 
 
   ],
@@ -44,7 +50,7 @@ import {DonationRejectedReasonsComponent} from './donation-rejected-reasons/dona
     DonorDataComponent,
     PersonnelDataComponent,
     DoctorDataComponent,
-    DonationRejectedReasonsComponent
+    DonationDetailsComponent
   ],
   exports: [
     MenuComponent,
@@ -53,7 +59,7 @@ import {DonationRejectedReasonsComponent} from './donation-rejected-reasons/dona
     PersonnelDataComponent,
     DoctorDataComponent,
     UserDataComponent,
-    DonationRejectedReasonsComponent
+    DonationDetailsComponent
   ]
 })
 export class SharedModule {

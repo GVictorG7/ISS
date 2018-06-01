@@ -66,20 +66,11 @@ public class DonationService implements IDonationService {
     }
 
     @Override
-    public void changeStatus(Long idDonatie, Long idDonor, String forPerson, String collectionDate, DonationStatus status, String bloodRH, String bloodType, Set<HealthIssue> healthIssues) {
-
-        LocalDate donoationDate = LocalDate.parse(collectionDate, dateFormat);
-
-        System.out.println(donoationDate);
-        System.out.println(status);
+    public void changeStatus(Long idDonatie,String forPerson,DonationStatus status, String bloodRH, String bloodType, Set<HealthIssue> healthIssues) {
         if (status.equals(DonationStatus.ACCEPTED)) {
-            System.out.println("Ajung aici acceptes");
-            System.out.println(bloodRH + " " + bloodType);
             Blood blood = new Blood(BloodType.valueOf(bloodType), BloodRH.valueOf(bloodRH), BloodCategory.WHOLE, false);
-            System.out.println(blood.getBloodRH() + " " + blood.getBloodCategory() + " " + blood.getBloodType());
-
             Donation donation = getById(idDonatie);
-            donation.setCollectionDate(donoationDate);
+            donation.setCollectionDate(LocalDate.now());
             donation.setForPerson(forPerson);
             donation.setStatus(status);
             donation.setBloodRH(BloodRH.valueOf(bloodRH));
@@ -87,11 +78,10 @@ public class DonationService implements IDonationService {
             donation.setHealthIssues(healthIssues);
             donationRepository.save(donation);
             bloodRepository.save(blood);
-        } else if (status.equals(DonationStatus.REJECTED.toString())) {
-            System.out.println("nu ajung");
+        } else if (status.equals(DonationStatus.REJECTED)) {
             Donation donation = getById(idDonatie);
-            donation.setCollectionDate(donoationDate);
-            donation.setForPerson(forPerson);
+            donation.setCollectionDate(null);
+            donation.setForPerson(null);
             donation.setStatus(status);
             donation.setBloodRH(BloodRH.valueOf(bloodRH));
             donation.setBloodType(BloodType.valueOf(bloodType));

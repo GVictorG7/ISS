@@ -1,0 +1,16 @@
+<div>
+  <h1>
+    Rezultate analize
+  </h1>
+  <b>
+    Grupa de sange: {{donation.bloodType}} <br>
+    RH: {{donation.bloodRH}}
+  </b>
+  <div *ngIf="donation.status === 'REJECTED'">
+    <b>Probleme de sanatat: <br>
+      <ul>
+        <li *ngFor="let healthIssue of donation.healthIssues">{{healthIssue}}</li>
+      </ul>
+    </b>
+  </div>
+</div>

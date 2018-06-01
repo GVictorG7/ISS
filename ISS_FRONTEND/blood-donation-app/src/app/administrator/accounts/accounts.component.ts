@@ -4,6 +4,7 @@ import {checkCompleted} from '../../shared/utils/utils';
 import {MatSnackBar} from '@angular/material';
 import {Router} from '@angular/router';
 import {AdministratorService} from '../administrator.service';
+import {FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-accounts',
@@ -13,7 +14,8 @@ import {AdministratorService} from '../administrator.service';
 export class AccountsComponent implements OnInit {
   user: User = {id: 0, username: '', password: '', userType: null};
   person: any = {id: 0};
-
+  firstFormGroup: FormGroup;
+  secondFormGroup: FormGroup;
   constructor(private adminService: AdministratorService, private snackBar: MatSnackBar, private router: Router) {
   }
 

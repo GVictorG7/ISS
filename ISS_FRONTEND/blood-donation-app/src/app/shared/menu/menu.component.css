@@ -8,3 +8,6 @@ a, a:active,a:visited{
   color:white;
   padding-right: 8px;
 }
+.logout-menu{
+  color: black;
+}

@@ -15,7 +15,7 @@
     <!-- Name Column -->
     <ng-container matColumnDef="date">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Date</th>
-      <td mat-cell *matCellDef="let element"> {{element.collectionDate}}</td>
+      <td mat-cell *matCellDef="let element"> {{dateAsString(element.requestDate)}}</td>
     </ng-container>
 
     <!-- Weight Column -->
@@ -23,10 +23,15 @@
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Status</th>
       <td mat-cell *matCellDef="let element"> {{element.status}}</td>
     </ng-container>
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Actions</th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-raised-button color="primary" (click)="showDetails(element)">Show details</button>
+      </td>
+    </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"
-        (click)="showDetails(row)"
     ></tr>
 
 
