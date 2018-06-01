@@ -27,6 +27,8 @@ public class Personnel implements Serializable {
     @JoinColumn(name = "user_id")
     private User user;
 
+    public Personnel() {
+    }
 
     public Personnel(String firstName, String lastName, User user) {
 

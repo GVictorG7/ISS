@@ -9,7 +9,7 @@
       </a>
     </mat-nav-list>
     <div *ngIf="loggedUser">
-    <button mat-raised-button color="warn" [matMenuTriggerFor]="dropdownMenu">
+    <button mat-raised-button color="" [matMenuTriggerFor]="dropdownMenu">
       {{loggedUser.userData.firstName}}
     </button>
       <mat-menu #dropdownMenu x-position="before">

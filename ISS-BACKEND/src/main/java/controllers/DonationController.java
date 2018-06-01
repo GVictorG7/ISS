@@ -56,7 +56,7 @@ public class DonationController {
      * @param idDonor - id of donor
      * @return list of donations
      */
-    @PostMapping(value = "/allDonations/{idDonor}")
+    @GetMapping(value = "/allDonations/{idDonor}")
     public List<Donation> getAllDonationsForDonor(@PathVariable long idDonor) {
         return this.donationService.getAllDonationsByDonor(idDonor);
     }
