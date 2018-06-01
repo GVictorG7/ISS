@@ -1,8 +1,6 @@
 package services.interfaces;
 
-import model.Blood;
-import model.Doctor;
-import model.Request;
+import model.*;
 
 import java.util.List;
 
@@ -13,11 +11,19 @@ public interface IRequestService {
 
     List<Request> getAllRequest();
 
-    List<Request> getAllRequestsByStatus(String status);
+    List<Request> getAllRequestsByStatus(RequestStatus status);
 
     List<Request> getAllRequestsByDoctor(Doctor doctor);
 
     Doctor getDoctor(Long id);
 
-    void saveSeparatedBlood(Long idBlood);
+    void deleteBlood(Long id);
+
+    List<Blood> getAll();
+
+    Blood findDesireBlood(BloodType bloodType, BloodRH bloodRH, BloodCategory bloodCategory);
+
+    Blood saveSeparatedBlood(Blood blood, BloodCategory bloodCategory);
+
+    List<Donor> getCopatibleDonors(BloodType bloodType, BloodRH bloodRh);
 }

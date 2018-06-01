@@ -5,6 +5,7 @@ import validators.RequestValidator;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDate;
 
 @Validated(value = RequestValidator.class)
 @Entity
@@ -15,39 +16,42 @@ public class Request implements Serializable {
     @Column(name = "id")
     private long id;
 
-    @Column(name = "person")
-    private String person;
+    @Column(name = "for_person")
+    private String forPerson;
 
     @Column(name = "request_date")
-    private String requestDate;
+    private LocalDate requestDate;
 
     @Column(name = "priority")
-    private int priority;
+    @Enumerated(EnumType.STRING)
+    private RequestPriority priority;
 
     @Column(name = "blood_category")
-    private String bloodCategory;
+    @Enumerated(EnumType.STRING)
+    private BloodCategory bloodCategory;
 
     @Column(name = "blood_rh")
-    private String bloodRh;
+    @Enumerated(EnumType.STRING)
+    private BloodRH bloodRh;
 
     @Column(name = "blood_type")
-    private String bloodType;
+    @Enumerated(EnumType.STRING)
+    private BloodType bloodType;
 
     @Column(name = "blood_quantity")
     private int bloodQuantity;
 
     @Column(name = "status")
-    private String status;
+    @Enumerated(EnumType.STRING)
+    private RequestStatus status;
 
     @ManyToOne
     @JoinColumn(name = "doctor_id")
     private Doctor doctor;
+    public Request() {}
 
-    public Request() {
-    }
-
-    public Request(String person, String requestDate, int priority, String bloodCategory, String bloodRh, String bloodType, int bloodQuantity, String status, Doctor doctor) {
-        this.person = person;
+    public Request(String forPerson, LocalDate requestDate, RequestPriority priority, BloodCategory bloodCategory, BloodRH bloodRh, BloodType bloodType, int bloodQuantity, RequestStatus status, Doctor doctor) {
+        this.forPerson = forPerson;
         this.requestDate = requestDate;
         this.priority = priority;
         this.bloodCategory = bloodCategory;
@@ -58,6 +62,8 @@ public class Request implements Serializable {
         this.doctor = doctor;
     }
 
+
+
     public long getId() {
         return id;
     }
@@ -66,43 +72,52 @@ public class Request implements Serializable {
         this.id = id;
     }
 
-    public String getPerson() {
-        return person;
+
+    public String getForPerson() {
+        return forPerson;
     }
 
-    public void setPerson(String person) {
-        this.person = person;
+    public void setForPerson(String forPerson) {
+        this.forPerson = forPerson;
     }
 
-    public String getRequestDate() {
+    public LocalDate getRequestDate() {
         return requestDate;
     }
 
-    public void setRequestDate(String requestDate) {
+    public void setRequestDate(LocalDate requestDate) {
         this.requestDate = requestDate;
     }
 
-    public int getPriority() {
+    public RequestPriority getPriority() {
         return priority;
     }
 
-    public void setPriority(int priority) {
+    public void setPriority(RequestPriority priority) {
         this.priority = priority;
     }
 
-    public String getBloodCategory() {
+    public BloodCategory getBloodCategory() {
         return bloodCategory;
     }
 
-    public void setBloodCategory(String bloodCategory) {
+    public void setBloodCategory(BloodCategory bloodCategory) {
         this.bloodCategory = bloodCategory;
     }
 
-    public String getBloodType() {
+    public BloodRH getBloodRh() {
+        return bloodRh;
+    }
+
+    public void setBloodRh(BloodRH bloodRh) {
+        this.bloodRh = bloodRh;
+    }
+
+    public BloodType getBloodType() {
         return bloodType;
     }
 
-    public void setBloodType(String bloodType) {
+    public void setBloodType(BloodType bloodType) {
         this.bloodType = bloodType;
     }
 
@@ -114,27 +129,19 @@ public class Request implements Serializable {
         this.bloodQuantity = bloodQuantity;
     }
 
+    public RequestStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(RequestStatus status) {
+        this.status = status;
+    }
+
     public Doctor getDoctor() {
         return doctor;
     }
 
     public void setDoctor(Doctor doctor) {
         this.doctor = doctor;
-    }
-
-    public String getBloodRh() {
-        return bloodRh;
-    }
-
-    public void setBloodRh(String bloodRh) {
-        this.bloodRh = bloodRh;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
     }
 }
