@@ -1,5 +1,6 @@
 package services.interfaces;
 
+import model.Blood;
 import model.Doctor;
 import model.Request;
 
@@ -17,4 +18,6 @@ public interface IRequestService {
     List<Request> getAllRequestsByDoctor(Doctor doctor);
 
     Doctor getDoctor(Long id);
+
+    void saveSeparatedBlood(Long idBlood);
 }

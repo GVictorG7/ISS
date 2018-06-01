@@ -1,5 +1,7 @@
 package model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 import java.time.LocalDate;
@@ -15,11 +17,15 @@ public class Donation {
     @Column(name = "id")
     private long id = 1L;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "id_donor")
     private Donor donor;
 
-    @Column(name = "collectionDate")
+    @Column(name = "request_date")
+    private LocalDate requestDate;
+
+    @Column(name = "collection_date")
     private LocalDate collectionDate;
 
     @Column(name = "for_person")
@@ -48,10 +54,11 @@ public class Donation {
 
     public Donation(Donor donor) {
         this.donor = donor;
+
     }
 
 
-    public Donation(Long id,Donor donor, LocalDate collectionDate, String forPerson, DonationStatus status, BloodRH bloodRH, BloodType bloodType, Set<HealthIssue> healthIssues) {
+    public Donation(Long id,Donor donor, LocalDate collectionDate, String forPerson, DonationStatus status, BloodRH bloodRH, BloodType bloodType, Set<HealthIssue> healthIssues,LocalDate requestDate) {
         this.id=id;
         this.donor = donor;
         this.collectionDate = collectionDate;
@@ -60,6 +67,7 @@ public class Donation {
         this.bloodRH = bloodRH;
         this.bloodType = bloodType;
         this.healthIssues = healthIssues;
+        this.requestDate=requestDate;
     }
     public Donation(Donor donor, LocalDate collectionDate, String forPerson, DonationStatus status, BloodRH bloodRH, BloodType bloodType, Set<HealthIssue> healthIssues) {
         this.donor = donor;
@@ -129,5 +137,13 @@ public class Donation {
 
     public long getId() {
         return id;
+    }
+
+    public LocalDate getRequestDate() {
+        return requestDate;
+    }
+
+    public void setRequestDate(LocalDate requestDate) {
+        this.requestDate = requestDate;
     }
 }
