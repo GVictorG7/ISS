@@ -7,19 +7,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import services.interfaces.INotifyService;
 
-import java.util.List;
-
 @RestController
 @RequestMapping("/notifyall")
 public class NotifyController {
     private final INotifyService notifyService;
 
     @Autowired
-    public NotifyController(INotifyService notifyService){
+    public NotifyController(INotifyService notifyService) {
         this.notifyService = notifyService;
     }
+
     @PostMapping
-    public void notifyUsers(@RequestBody String[] users){
+    public void notifyUsers(@RequestBody String[] users) {
         notifyService.sendMailToUsers(users);
     }
 }

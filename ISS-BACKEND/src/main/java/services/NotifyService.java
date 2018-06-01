@@ -7,12 +7,10 @@ import javax.mail.*;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import java.util.List;
 import java.util.Properties;
 
 @Service
 public class NotifyService implements INotifyService {
-
 
 
     @Override
@@ -23,9 +21,9 @@ public class NotifyService implements INotifyService {
         final String subject = "Donate blood !";
         final String msg = "Hello Sir / Madam,\n" +
                 "Urgent Blood Donation Request: " +
-                "A person needs blood very urgently." +
-                "Any kind of blood would be accepted." +
-                "Please make your donations at the closest medical center." +
+                "A person needs blood very urgently. " +
+                "Any kind of blood would be accepted. " +
+                "Please make your donations at the closest medical center. " +
                 "Thank you !";
 
 
@@ -56,8 +54,7 @@ public class NotifyService implements INotifyService {
             transport.connect(host, email, password);
             transport.sendMessage(message, message.getAllRecipients());
             transport.close();
-        }
-        catch (AddressException ae) {
+        } catch (AddressException ae) {
             ae.printStackTrace();
         } catch (NoSuchProviderException e) {
             e.printStackTrace();
