@@ -19,12 +19,12 @@ export class DonorDataComponent implements OnInit {
     this.formValidation = this._formBuilder.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
-      cnp: ['', Validators.required],
+      cnp: ['', [Validators.required, Validators.maxLength(13), Validators.minLength(13)]],
       gender: ['', Validators.required],
       birthday: ['', Validators.required],
       address: ['', Validators.required],
       localAddress: ['', Validators.required],
-      email: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
       phone: ['', Validators.required]
     });
   }

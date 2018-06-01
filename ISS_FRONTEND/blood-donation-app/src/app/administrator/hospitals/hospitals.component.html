@@ -33,18 +33,23 @@
                [showFirstLastButtons]="true">
 </mat-paginator>
 <div>
-  <mat-form-field>
-    <input matInput placeholder="Nume"
-           [(ngModel)]="hospital.name"
-           required
-    >
-  </mat-form-field>
-  <mat-form-field>
-    <input matInput placeholder="Adresa"
-           [(ngModel)]="hospital.address"
-           required
-    >
-  </mat-form-field>
+  <form [formGroup]="formGroup">
+    <mat-form-field>
+      <input matInput placeholder="Nume"
+             [(ngModel)]="hospital.name"
+             required
+             formControlName="name"
+      >
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Adresa"
+             [(ngModel)]="hospital.address"
+             required
+             formControlName="address"
+      >
+    </mat-form-field>
+  </form>
 </div>
-<button mat-raised-button color="primary" (click)="newHospital()">Adauga spital nou</button>
+<button [disabled]="formGroup.invalid" mat-raised-button color="primary" (click)="newHospital()">Adauga spital nou
+</button>
 

@@ -16,7 +16,7 @@ import {
 import {AuthService} from '../auth/auth.service';
 import {HttpClientModule} from '@angular/common/http';
 import {AuthModule} from '../auth/auth.module';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   imports: [
@@ -32,7 +32,8 @@ import {FormsModule} from '@angular/forms';
     MatSelectModule,
     HttpClientModule,
     AdministratorRoutingModule,
-    MatSortModule
+    MatSortModule,
+    ReactiveFormsModule
   ],
   declarations: [HospitalsComponent, AccountsComponent],
   providers: [AdministratorService]

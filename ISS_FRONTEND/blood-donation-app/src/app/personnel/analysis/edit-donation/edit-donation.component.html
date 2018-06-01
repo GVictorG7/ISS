@@ -6,27 +6,33 @@ Status:
     </mat-option>
   </mat-select>
 </mat-form-field>
-<div *ngIf="donation.status !== 'OPEN'">
-  Grupa sange:
-  <mat-form-field>
-    <mat-select placeholder="-" [(ngModel)]="donation.bloodType">
-      <mat-option *ngFor="let type of types" [value]="type">{{type}}</mat-option>
-    </mat-select>
-  </mat-form-field>
-  RH:
-  <mat-form-field>
-    <mat-select placeholder="-" [(ngModel)]="donation.bloodRH">
-      <mat-option *ngFor="let rh of rhs" [value]="rh">{{rh}}</mat-option>
-    </mat-select>
-  </mat-form-field>
-</div>
-<div *ngIf="donation.status === 'REJECTED'">
-  Rezultate analize:
-  <mat-form-field>
-    <mat-select placeholder="-" multiple [(ngModel)]="donation.healthIssues">
-      <mat-option *ngFor="let healthIssue of healthIssues" [value]="healthIssue">{{healthIssue}}</mat-option>
-    </mat-select>
-  </mat-form-field>
+<form [formGroup]="formGroup">
+  <div *ngIf="donation.status !== 'OPEN'">
 
-</div>
-<button *ngIf="donation.status !== 'OPEN'" mat-raised-button color="primary" (click)="saveInfo()">Salvare</button>
+    Grupa sange:
+    <mat-form-field>
+      <mat-select placeholder="-" [(ngModel)]="donation.bloodType" formControlName="bloodType">
+        <mat-option *ngFor="let type of types" [value]="type">{{type}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    RH:
+    <mat-form-field>
+      <mat-select placeholder="-" [(ngModel)]="donation.bloodRH" formControlName="bloodRH">
+        <mat-option *ngFor="let rh of rhs" [value]="rh">{{rh}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div *ngIf="donation.status === 'REJECTED'">
+    Rezultate analize:
+    <mat-form-field>
+      <mat-select placeholder="-" multiple [(ngModel)]="donation.healthIssues" formControlName="healthIssue">
+        <mat-option *ngFor="let healthIssue of healthIssues" [value]="healthIssue">{{healthIssue}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+  </div>
+</form>
+<button *ngIf="donation.status !== 'OPEN'" [disabled]="formGroup.invalid"
+        mat-raised-button color="primary" (click)="saveInfo()">Salvare
+</button>

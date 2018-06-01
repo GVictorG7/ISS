@@ -3,8 +3,8 @@ import {CommonModule} from '@angular/common';
 import {MenuComponent} from './menu/menu.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {
-  MatButtonModule,
-  MatFormFieldModule,
+  MatButtonModule, MatCardModule,
+  MatFormFieldModule, MatGridListModule,
   MatIconModule,
   MatInputModule,
   MatListModule,
@@ -22,6 +22,7 @@ import {DoctorDataComponent} from './register/doctor-data/doctor-data.component'
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {DonationDetailsComponent} from './donation-details/donation-details.component';
+import {DashboardComponent} from './dashboard/dashboard.component';
 
 @NgModule({
   imports: [
@@ -39,6 +40,8 @@ import {DonationDetailsComponent} from './donation-details/donation-details.comp
     MatInputModule,
     MatSnackBarModule,
     MatStepperModule,
+    MatGridListModule,
+    MatCardModule,
     ReactiveFormsModule
 
 
@@ -50,7 +53,8 @@ import {DonationDetailsComponent} from './donation-details/donation-details.comp
     DonorDataComponent,
     PersonnelDataComponent,
     DoctorDataComponent,
-    DonationDetailsComponent
+    DonationDetailsComponent,
+    DashboardComponent
   ],
   exports: [
     MenuComponent,
@@ -59,7 +63,8 @@ import {DonationDetailsComponent} from './donation-details/donation-details.comp
     PersonnelDataComponent,
     DoctorDataComponent,
     UserDataComponent,
-    DonationDetailsComponent
+    DonationDetailsComponent,
+    DashboardComponent
   ]
 })
 export class SharedModule {

@@ -6,6 +6,7 @@ import {Router} from '@angular/router';
 import {UserType} from '../../core/model/UserType';
 import {Donor} from '../../core/model/Donor';
 import {checkCompleted} from '../../shared/utils/utils';
+import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-register',
@@ -14,24 +15,20 @@ import {checkCompleted} from '../../shared/utils/utils';
 })
 export class RegisterComponent implements OnInit {
   user: User = {id: 0, username: '', password: '', userType: UserType.DONOR};
-  donor: Donor = {
-    id: 0,
-    firstName: '',
-    lastName: '',
-    cnp: '',
-    gender: '',
-    birthday: '',
-    address: '',
-    localAddress: '',
-    email: '',
-    phone: '',
-    userId: 0
-  };
+  donor: Donor = new Donor();
+  usernames: string[] = ['adrian'];
+  formGroup: FormGroup;
+  dataFormGroup: FormGroup;
 
-  constructor(private authService: AuthService, private snackBar: MatSnackBar, private router: Router) {
+  constructor(private formBuilder: FormBuilder, private authService: AuthService, private snackBar: MatSnackBar, private router: Router) {
   }
 
   ngOnInit() {
+    this.authService.getUsernames().subscribe(usernames => this.usernames = usernames);
+    this.formGroup = this.formBuilder.group({
+      username: ['', [Validators.required, this.checkUsername()]],
+      password: ['', Validators.required]
+    });
   }
 
 
@@ -51,5 +48,13 @@ export class RegisterComponent implements OnInit {
         () => this.snackBar.open('Nume de utilizator deja folosit!', 'Ok', {duration: 1000})
       );
     }
+  }
+
+  private checkUsername() {
+    return (control: AbstractControl): { [key: string]: any } => {
+      const username = this.usernames.find(user => user === control.value);
+      return username ? {'username': {value: null}} : null;
+
+    };
   }
 }

@@ -24,9 +24,32 @@ export class LoginComponent implements OnInit {
       this.router.navigateByUrl('');
     } else {
       this.authService.login(username, password).subscribe(
-        () => this.router.navigateByUrl(''),
+        () => this.navigateToHome(),
         (err) => console.log(err)
       );
+    }
+  }
+
+  navigateToHome() {
+    const token = JSON.parse(localStorage.getItem('token')).userType;
+    console.log(token);
+    switch (token) {
+      case 'ADMIN': {
+        this.router.navigateByUrl('administrator');
+        break;
+      }
+      case 'DONOR': {
+        this.router.navigateByUrl('donor');
+        break;
+      }
+      case 'PERSONNEL': {
+        this.router.navigateByUrl('personnel');
+        break;
+      }
+      case 'DOCTOR': {
+        this.router.navigateByUrl('doctor');
+        break;
+      }
     }
   }
 

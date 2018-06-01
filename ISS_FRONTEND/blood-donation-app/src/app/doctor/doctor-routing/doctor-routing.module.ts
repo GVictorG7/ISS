@@ -5,6 +5,7 @@ import {BloodRequestsComponent} from '../blood-requests/blood-requests.component
 
 
 const routes: Routes = [
+  {path: '', redirectTo: 'blood-requests'},
   {path: 'blood-requests', component: BloodRequestsComponent}
 ];
 

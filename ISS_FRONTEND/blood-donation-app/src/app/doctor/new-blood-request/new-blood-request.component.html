@@ -1,45 +1,56 @@
 <div>
-  <mat-form-field>
-    <input matInput placeholder="Pacient"
-           [(ngModel)]="request.person"
-           required
-    >
-  </mat-form-field>
-  <mat-form-field>
-    <input matInput placeholder="Prioritate"
-           [(ngModel)]="request.priority"
-           required
-    >
-  </mat-form-field>
-  <mat-form-field>
-    <mat-select placeholder="Stare" [(value)]="request.bloodCategory">
-      <mat-option *ngFor="let category of categories " [value]="category">
-        {{ category}}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-  <mat-form-field>
-    <mat-select placeholder="Grupa de sange" [(value)]="request.bloodType">
-      <mat-option *ngFor="let type of types " [value]="type">
-        {{ type }}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-  <mat-form-field>
-    <mat-select placeholder="RH" [(value)]="request.bloodRh">
-      <mat-option *ngFor="let rh of rhs " [value]="rh">
-        {{ rh}}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-  <mat-form-field>
-    <input matInput placeholder="Nr. de unitati"
-           [(ngModel)]="request.quantity"
-           required
-           type="number"
-    >
-  </mat-form-field>
-
-  <button mat-raised-button (click)="saveRequest()" color="primary">Salveaza</button>
+  <form [formGroup]="formGroup">
+    <mat-form-field>
+      <input matInput placeholder="Pacient"
+             [(ngModel)]="request.forPerson"
+             required
+             formControlName="forPerson"
+      >
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Prioritate"
+             [(ngModel)]="request.priority"
+             required
+             formControlName="priority"
+      >
+    </mat-form-field>
+    <mat-form-field>
+      <mat-select placeholder="Stare"
+                  [(value)]="request.bloodCategory"
+                  formControlName="bloodCategory"
+      >
+        <mat-option *ngFor="let category of categories " [value]="category">
+          {{ category}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-select placeholder="Grupa de sange"
+                  formControlName="bloodType"
+                  [(value)]="request.bloodType">
+        <mat-option *ngFor="let type of types " [value]="type">
+          {{ type }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-select placeholder="RH"
+                  formControlName="bloodRH"
+                  [(value)]="request.bloodRh">
+        <mat-option *ngFor="let rh of rhs " [value]="rh">
+          {{ rh}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Nr. de unitati"
+             [(ngModel)]="request.bloodQuantity"
+             required
+             formControlName="bloodQuantity"
+             type="number"
+      >
+    </mat-form-field>
+  </form>
+  <button mat-raised-button (click)="saveRequest()" [disabled]="formGroup.invalid" color="primary">Salveaza</button>
   <button mat-raised-button (click)="cancel()" color="warn">Revocare</button>
 </div>

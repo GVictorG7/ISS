@@ -5,12 +5,14 @@ import {HospitalsComponent} from './hospitals/hospitals.component';
 
 
 const routes: Routes = [
-  { path: 'accounts', component: AccountsComponent },
-  { path: 'hospitals', component: HospitalsComponent }
+  {path: '', redirectTo: ''},
+  {path: 'accounts', component: AccountsComponent},
+  {path: 'hospitals', component: HospitalsComponent}
 ];
 
 @NgModule({
-  imports: [ RouterModule.forChild(routes) ],
-  exports: [ RouterModule ]
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule]
 })
-export class AdministratorRoutingModule { }
+export class AdministratorRoutingModule {
+}

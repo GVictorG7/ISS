@@ -1,20 +1,30 @@
 <div class="example-container">
   <app-menu></app-menu>
-  <mat-form-field>
-    <input matInput placeholder="Nume de utilizator"
-           [(ngModel)]="user.username"
-           required
-    >
-  </mat-form-field>
-  <mat-form-field>
-    <input matInput placeholder="Parola"
-           type="password"
-           [(ngModel)]="user.password"
-           required
-    ></mat-form-field>
-  Date personale <br>
-  <app-donor-data [donor]="donor"></app-donor-data>
-
+  <mat-vertical-stepper #stepper [linear]="true">
+    <mat-step [stepControl]="formGroup">
+      <form [formGroup]="formGroup">
+        <ng-template matStepLabel>Detalii cont</ng-template>
+        <mat-form-field>
+          <input matInput placeholder="Nume de utilizator"
+                 [(ngModel)]="user.username"
+                 required
+                 formControlName="username"
+          >
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Parola"
+                 type="password"
+                 [(ngModel)]="user.password"
+                 required
+                 formControlName="password"
+          ></mat-form-field>
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Date personale</ng-template>
+      <app-donor-data [donor]="donor" [formValidation]="dataFormGroup"></app-donor-data>
+    </mat-step>
+  </mat-vertical-stepper>
   <button mat-button color="primary" (click)="register()">Inregistreaza-te!</button>
 
 </div>

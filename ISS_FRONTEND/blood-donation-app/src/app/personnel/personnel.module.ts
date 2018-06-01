@@ -6,8 +6,9 @@ import {PersonnelRoutingModule} from './personnel-routing/personnel-routing.modu
 import {SharedModule} from '../shared/shared.module';
 import {EditDonationComponent} from './analysis/edit-donation/edit-donation.component';
 import {MatButtonModule, MatPaginatorModule, MatSelectModule, MatSortModule, MatTableModule} from '@angular/material';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {PersonnelService} from './personnel.service';
+import {PersonnelDashboardComponent} from './personnel-dashboard/personnel-dashboard.component';
 
 @NgModule({
   imports: [
@@ -19,9 +20,10 @@ import {PersonnelService} from './personnel.service';
     MatPaginatorModule,
     MatSortModule,
     MatButtonModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
-  declarations: [AnalysisComponent, BloodRequestsComponent, EditDonationComponent],
+  declarations: [AnalysisComponent, BloodRequestsComponent, EditDonationComponent, PersonnelDashboardComponent],
   providers: [PersonnelService]
 })
 export class PersonnelModule {

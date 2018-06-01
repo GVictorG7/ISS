@@ -10,9 +10,9 @@ import {
   MatFormFieldModule,
   MatInputModule,
   MatSelectModule,
-  MatSnackBarModule
+  MatSnackBarModule, MatStepperModule
 } from '@angular/material';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {SharedModule} from '../shared/shared.module';
 
 @NgModule({
@@ -26,7 +26,9 @@ import {SharedModule} from '../shared/shared.module';
     MatSelectModule,
     FormsModule,
     SharedModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    ReactiveFormsModule,
+    MatStepperModule
 
   ],
   declarations: [

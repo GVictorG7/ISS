@@ -28,12 +28,12 @@
     </ng-container>
     <ng-container matColumnDef="person">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Nume pacient</th>
-      <td mat-cell *matCellDef="let element"> {{element.person}}</td>
+      <td mat-cell *matCellDef="let element"> {{element.forPerson}}</td>
     </ng-container>
     <!-- Weight Column -->
     <ng-container matColumnDef="bloodRH">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> RH</th>
-      <td mat-cell *matCellDef="let element"> {{element.bloodRh}}</td>
+      <td mat-cell *matCellDef="let element"> {{element.bloodRH}}</td>
     </ng-container>
     <ng-container matColumnDef="bloodQuantity">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Cantitate</th>
@@ -42,6 +42,16 @@
     <ng-container matColumnDef="status">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Status</th>
       <td mat-cell *matCellDef="let element"> {{element.status}}</td>
+    </ng-container>
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Actions</th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-raised-button
+                color="primary"
+                (click)="showSummary(element)">
+          Show details
+        </button>
+      </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -62,6 +72,6 @@
           (click)="newRequest()"
   >Cerere noua
   </button>
-  <app-new-blood-request *ngIf="visible" [request]="request"
+  <app-new-blood-request *ngIf="visible"
                          (viewChanged)="viewChanged($event)"></app-new-blood-request>
 </div>

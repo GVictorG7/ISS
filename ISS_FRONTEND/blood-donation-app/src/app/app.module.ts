@@ -7,14 +7,12 @@ import {HomeComponent} from './home/home.component';
 import {CoreModule} from './core/core.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {SharedModule} from './shared/shared.module';
-import {ExampleDashboardComponent} from './example-dashboard/example-dashboard.component';
 import {MatGridListModule, MatCardModule, MatMenuModule, MatIconModule, MatButtonModule} from '@angular/material';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
-    ExampleDashboardComponent
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -22,7 +20,6 @@ import {MatGridListModule, MatCardModule, MatMenuModule, MatIconModule, MatButto
     CoreModule,
     SharedModule,
     AppRoutingModule,
-    MatGridListModule,
     MatCardModule,
     MatMenuModule,
     MatIconModule,

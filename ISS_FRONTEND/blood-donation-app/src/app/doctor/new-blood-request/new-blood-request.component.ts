@@ -1,5 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {DoctorService} from '../doctor.service';
+import {Request} from '../../core/model/Request';
+import {AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-new-blood-request',
@@ -7,24 +9,26 @@ import {DoctorService} from '../doctor.service';
   styleUrls: ['./new-blood-request.component.css']
 })
 export class NewBloodRequestComponent implements OnInit {
-  @Input() request: any = {
-    person: '',
-    requestDate: new Date(),
-    priority: 0,
-    bloodCategory: 'Integral',
-    bloodRh: 'Pozitiv',
-    bloodType: 'A',
-    quantity: 0
-  };
   @Output() viewChanged = new EventEmitter<boolean>();
-  types = ['0', 'A', 'B', 'AB'];
-  rhs = ['Pozitiv', 'Negativ'];
-  categories = ['Integral', 'Plasma', 'Trombocite', 'Globule rosii'];
+  request: Request = new Request();
+  types = ['O', 'A', 'B', 'AB'];
+  rhs = ['POZITIVE', 'NEGATIVE'];
+  categories = ['WHOLE', 'PLASMA', 'THROMBOCYTE', 'REDCELL'];
 
-  constructor(private service: DoctorService) {
+  formGroup: FormGroup;
+
+  constructor(private service: DoctorService, private formBuilder: FormBuilder) {
   }
 
   ngOnInit() {
+    this.formGroup = this.formBuilder.group({
+      bloodType: ['', Validators.required],
+      bloodCategory: ['', Validators.required],
+      bloodRH: ['', Validators.required],
+      bloodQuantity: ['', [Validators.required, this.checkPositive()]],
+      forPerson: ['', Validators.required],
+      priority: ['', Validators.required]
+    });
   }
 
   saveRequest() {
@@ -37,4 +41,10 @@ export class NewBloodRequestComponent implements OnInit {
     this.viewChanged.emit(false);
   }
 
+  private checkPositive(): ValidatorFn {
+    return (control: AbstractControl): { [key: string]: any } => {
+      const n = control.value;
+      return n > 0 ? null : {'message': {value: null}};
+    };
+  }
 }

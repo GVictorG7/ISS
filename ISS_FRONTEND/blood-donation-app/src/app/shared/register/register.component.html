@@ -17,7 +17,7 @@
                formControlName="password"
         ></mat-form-field>
       <mat-form-field>
-        <mat-select placeholder="Rol in societate" [(value)]="user.userType" [formControl]="role"
+        <mat-select placeholder="Rol in societate" [(value)]="user.userType" formControlName="role"
         >
           <mat-option *ngFor="let role of roles" [value]="role.value">
             {{ role.viewValue }}

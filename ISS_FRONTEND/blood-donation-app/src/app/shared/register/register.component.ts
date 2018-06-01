@@ -17,7 +17,6 @@ export class RegisterComponent implements OnInit {
     {value: UserType.PERSONNEL, viewValue: 'Personal centru de donatie'},
     {value: UserType.DOCTOR, viewValue: 'Doctor'}
   ];
-  role = new FormControl('', [Validators.required]);
   @Input() firstFormGroup: FormGroup;
   @Input() secondFormGroup: FormGroup;
 
@@ -27,7 +26,8 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
     this.firstFormGroup = this._formBuilder.group({
       username: ['', Validators.required],
-      password: ['', Validators.required]
+      password: ['', Validators.required],
+      role: ['', Validators.required]
     });
   }
 }

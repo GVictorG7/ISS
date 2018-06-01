@@ -2,6 +2,7 @@ import {ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {ActivatedRoute, Router} from '@angular/router';
 import {DoctorService} from '../doctor.service';
+import {Request} from '../../core/model/Request';
 
 @Component({
   selector: 'app-blood-requests',
@@ -9,22 +10,14 @@ import {DoctorService} from '../doctor.service';
   styleUrls: ['./blood-requests.component.css']
 })
 export class BloodRequestsComponent implements OnInit {
-  requests;
-  dataSource = new MatTableDataSource<any>(this.requests);
-  displayedColumns = ['position', 'requestDate', 'priority', 'person', 'bloodCategory', 'bloodQuantity', 'bloodType', 'bloodRH', 'status'];
+  requests: Request[];
+  dataSource = new MatTableDataSource<Request>(this.requests);
+  displayedColumns = ['position', 'requestDate', 'priority', 'person', 'bloodCategory', 'bloodQuantity', 'bloodType', 'bloodRH', 'status', 'actions'];
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   visible = false;
-  request: any = {
-    person: '',
-    requestDate: new Date(),
-    priority: 0,
-    bloodCategory: 'Integral',
-    bloodRh: 'Pozitiv',
-    bloodType: 'A',
-    quantity: 0
-  };
+  request: Request;
 
   constructor(private service: DoctorService, private cdr: ChangeDetectorRef) {
   }
@@ -33,7 +26,7 @@ export class BloodRequestsComponent implements OnInit {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
     this.service.getRequests().subscribe(
-      (requests: any[]) => {
+      (requests: Request[]) => {
         this.requests = requests;
         this.dataSource.data = this.requests;
         this.cdr.detectChanges();

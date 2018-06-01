@@ -1,10 +1,10 @@
 <app-menu></app-menu>
 <form class="example-form">
   <mat-form-field>
-    <input matInput placeholder="Username" #username required>
+    <input matInput placeholder="Username" #username>
   </mat-form-field>
   <mat-form-field>
-    <input matInput placeholder="Password" #password required type="password">
+    <input matInput placeholder="Password" #password type="password">
   </mat-form-field>
 </form>
 <button mat-button (click)="login(username.value,password.value)">Login</button>

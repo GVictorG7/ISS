@@ -10,13 +10,13 @@ const httpOptions = {
 
 @Injectable()
 export class AuthService {
-  private authUrl: string = 'http://localhost:8090/auth';
+  private api: string = 'http://localhost:8090';
 
   constructor(private http: HttpClient) {
   }
 
   login(username: string, password: string) {
-    return this.http.post<string>(`${this.authUrl}/login`, {
+    return this.http.post<string>(`${this.api}/auth/login`, {
       username: username,
       password: password
     }, httpOptions).pipe(
@@ -25,10 +25,14 @@ export class AuthService {
   }
 
   checkAccount(user: User) {
-    return this.http.post<any>(`${this.authUrl}/signup`, user, httpOptions);
+    return this.http.post<any>(`${this.api}/auth/signup`, user, httpOptions);
   }
 
   register(account, type) {
-    return this.http.post<any>(`http://localhost:8090/${type.toLowerCase()}/save`, account, httpOptions);
+    return this.http.post<any>(`${this.api}/${type.toLowerCase()}/save`, account, httpOptions);
+  }
+
+  getUsernames() {
+    return this.http.get<string[]>(`${this.api}/auth/getUsernames`);
   }
 }
