@@ -36,7 +36,7 @@ public class RequestController {
             }
         }
 
-        requestService.save(new Request(requestFields.getPerson(),
+        requestService.save(new Request(requestFields.getForPerson(),
                 LocalDate.now(),
                 RequestPriority.valueOf(requestFields.getPriority()),
                 BloodCategory.valueOf(requestFields.getBloodCategory()),
@@ -74,7 +74,7 @@ public class RequestController {
         if (request == null || request.getStatus().equals(RequestStatus.ACCEPTED)) {
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST); // 400
             return null;
-        } else if (requestService.findDesireBlood(request.getBloodType(), request.getBloodRh(), request.getBloodCategory()) != null) {
+        } else if (requestService.findDesireBlood(request.getBloodType(), request.getBloodRH(), request.getBloodCategory()) != null) {
             request.setStatus(RequestStatus.ACCEPTED);
             requestService.save(request);
             response.setStatus(HttpServletResponse.SC_OK); // 200
@@ -82,7 +82,7 @@ public class RequestController {
         } else {
             request.setStatus(RequestStatus.IN_PROGRESS);
             response.setStatus(HttpServletResponse.SC_PRECONDITION_FAILED); //412
-            return requestService.getCopatibleDonors(request.getBloodType(),request.getBloodRh());
+            return requestService.getCopatibleDonors(request.getBloodType(),request.getBloodRH());
         }
     }
 }
