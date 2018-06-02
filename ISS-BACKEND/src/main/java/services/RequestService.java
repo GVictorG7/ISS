@@ -71,60 +71,75 @@ public class RequestService implements IRequestService {
         return null;
     }
 
+
     @Override
-    public Blood findDesireBlood(BloodType bloodType, BloodRH bloodRH, BloodCategory bloodCategory) {
+    public Blood findDesireBlood(BloodType bloodType, BloodRH bloodRH, BloodCategory bloodCategory, int bloodQuantity) {
         List<Blood> bloodList = bloodRepository.findBloodForRequest(bloodCategory, bloodRH, bloodType);
-        Blood blood=null;
-        if(!bloodList.isEmpty()) {
-            blood = bloodList.get(0);
-            blood.setUsed(true);
-            bloodRepository.save(blood);
+        Blood blood = null;
+        if (bloodList.size() >= bloodQuantity) {
+            for (int i = 0; i < bloodQuantity; i++) {
+                blood = bloodList.get(i);
+                blood.setUsed(true);
+                bloodRepository.save(blood);
+            }
 
         }
         if (blood == null) {
             List<Blood> bloodNotSepartedList = bloodRepository.findByBloodTypeAndBloodRh(bloodType, bloodRH);
-            Blood bloodNotSeparted=null;
-            if(!bloodList.isEmpty()) {
-                bloodNotSeparted = bloodList.get(0);
-            }
-            if (bloodNotSeparted == null)
-                return null;
-            else {
-                Blood bloodPart = saveSeparatedBlood(bloodNotSeparted, bloodCategory);
-                return bloodPart;
-            }
+            Blood bloodNotSeparted = null;
+            if (bloodNotSepartedList.size()+bloodList.size()>=bloodQuantity) {
+                for (int i = 0; i < bloodList.size(); i++) {
+                    blood = bloodList.get(i);
+                    blood.setUsed(true);
+                    bloodRepository.save(blood);
+                }
+                int counter=bloodQuantity-bloodList.size();
+                for (int j=0;j<counter;j++) {
+                    bloodNotSeparted = bloodNotSepartedList.get(j);
+                    saveSeparatedBlood(bloodNotSeparted, bloodCategory);
 
-        } else
-            return blood;
+                }
+            }
+            else
+                return bloodNotSeparted;
+//            if (bloodNotSeparted == null)
+//                return null;
+//            else {
+//
+//            }
+
+        }
+        return blood;
 
     }
 
     @Override
     public Blood saveSeparatedBlood(Blood blood, BloodCategory bloodCategory) {
 
-//        if (blood.getBloodCategory().equals(BloodCategory.WHOLE)) {
-
-        Blood bloodWithRedCellCategory = new Blood(blood.getBloodType(), blood.getBloodRH(), BloodCategory.REDCELL, blood.getUsed(),LocalDate.now().plusDays(Blood.getDaysToExpire(BloodCategory.REDCELL)));
-        Blood bloodWithThrombocyteCategory = new Blood(blood.getBloodType(), blood.getBloodRH(), BloodCategory.THROMBOCYTE, blood.getUsed(),LocalDate.now().plusDays(Blood.getDaysToExpire(BloodCategory.THROMBOCYTE)));
-        Blood bloodWithPlasmaCategory = new Blood(blood.getBloodType(), blood.getBloodRH(), BloodCategory.PLASMA, blood.getUsed(),LocalDate.now().plusDays(Blood.getDaysToExpire(BloodCategory.PLASMA)));
+        Blood bloodWithRedCellCategory = new Blood(blood.getBloodType(), blood.getBloodRH(), BloodCategory.REDCELL, blood.getUsed(), LocalDate.now().plusDays(Blood.getDaysToExpire(BloodCategory.REDCELL)));
+        Blood bloodWithThrombocyteCategory = new Blood(blood.getBloodType(), blood.getBloodRH(), BloodCategory.THROMBOCYTE, blood.getUsed(), LocalDate.now().plusDays(Blood.getDaysToExpire(BloodCategory.THROMBOCYTE)));
+        Blood bloodWithPlasmaCategory = new Blood(blood.getBloodType(), blood.getBloodRH(), BloodCategory.PLASMA, blood.getUsed(), LocalDate.now().plusDays(Blood.getDaysToExpire(BloodCategory.PLASMA)));
         blood.setUsed(true);
-        bloodRepository.save(blood);
-        bloodRepository.save(bloodWithRedCellCategory);
-        bloodRepository.save(bloodWithThrombocyteCategory);
-        bloodRepository.save(bloodWithPlasmaCategory);
 
-        bloodRepository.delete(blood);
-        if (bloodCategory.equals(BloodCategory.PLASMA.toString())) {
+        bloodRepository.save(blood);
+
+        if (bloodCategory.equals(BloodCategory.PLASMA)) {
             bloodWithPlasmaCategory.setUsed(true);
+            bloodRepository.save(bloodWithRedCellCategory);
+            bloodRepository.save(bloodWithThrombocyteCategory);
             bloodRepository.save(bloodWithPlasmaCategory);
             return bloodWithPlasmaCategory;
 
-        } else if (bloodCategory.equals(BloodCategory.REDCELL.toString())) {
+        } else if (bloodCategory.equals(BloodCategory.REDCELL)) {
             bloodWithRedCellCategory.setUsed(true);
+            bloodRepository.save(bloodWithThrombocyteCategory);
+            bloodRepository.save(bloodWithPlasmaCategory);
             bloodRepository.save(bloodWithRedCellCategory);
             return bloodWithRedCellCategory;
         } else {
             bloodWithThrombocyteCategory.setUsed(true);
+            bloodRepository.save(bloodWithRedCellCategory);
+            bloodRepository.save(bloodWithPlasmaCategory);
             bloodRepository.save(bloodWithThrombocyteCategory);
             return bloodWithThrombocyteCategory;
         }
@@ -132,11 +147,12 @@ public class RequestService implements IRequestService {
 
     @Override
     public List<Donor> getCopatibleDonors(BloodType bloodType, BloodRH bloodRh) {
-        List<Donation> listaDonatiiCompatibile=donationRepository.getAllByBloodTypeAndBloodRH(bloodType,bloodRh);
-        Set<Donor> donors= new  HashSet<> ();
+        List<Donation> listaDonatiiCompatibile = donationRepository.getAllByBloodTypeAndBloodRH(bloodType, bloodRh);
+        Set<Donor> donors = new HashSet<>();
 
-        for(Donation donation : listaDonatiiCompatibile){
-            donors.add(donation.getDonor());
+        for (Donation donation : listaDonatiiCompatibile) {
+            if (donation.getDonor().getLocalAddress().contains("Cluj-Napoca"))
+                donors.add(donation.getDonor());
         }
 
         List<Donor> donorsList = new ArrayList<>();

@@ -21,7 +21,7 @@ public interface IRequestService {
 
     List<Blood> getAll();
 
-    Blood findDesireBlood(BloodType bloodType, BloodRH bloodRH, BloodCategory bloodCategory);
+    Blood findDesireBlood(BloodType bloodType, BloodRH bloodRH, BloodCategory bloodCategory,int bloodQuantity);
 
     Blood saveSeparatedBlood(Blood blood, BloodCategory bloodCategory);
 
