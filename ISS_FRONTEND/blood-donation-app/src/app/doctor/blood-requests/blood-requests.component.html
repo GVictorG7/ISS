@@ -12,7 +12,7 @@
     </ng-container>
     <ng-container matColumnDef="requestDate">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Date</th>
-      <td mat-cell *matCellDef="let element"> {{element.requestDate}}</td>
+      <td mat-cell *matCellDef="let element"> {{dateAsString(element.requestDate)}}</td>
     </ng-container>
     <ng-container matColumnDef="bloodType">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Grupa de sange</th>
@@ -66,12 +66,15 @@
                  [showFirstLastButtons]="true">
   </mat-paginator>
 </div>
+<div *ngIf="visibleDetails">
+  <app-request-summary [request]="request"></app-request-summary>
+</div>
 <div>
-  <button *ngIf="!visible" mat-raised-button
+  <button *ngIf="!visibleNew && !visibleDetails" [disabled]="visibleDetails" mat-raised-button
           color="primary"
           (click)="newRequest()"
   >Cerere noua
   </button>
-  <app-new-blood-request *ngIf="visible"
+  <app-new-blood-request *ngIf="visibleNew"
                          (viewChanged)="viewChanged($event)"></app-new-blood-request>
 </div>

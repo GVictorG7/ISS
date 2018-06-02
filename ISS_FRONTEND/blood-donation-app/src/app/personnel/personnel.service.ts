@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Donation} from '../core/model/Donation';
+import {Request} from '../core/model/Request';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -14,7 +15,7 @@ export class PersonnelService {
   }
 
   getRequests() {
-    return this.http.get(this.api);
+    return this.http.get(`${this.api}/request/getRequestsOpen`);
   }
 
   getDonations() {
@@ -27,5 +28,9 @@ export class PersonnelService {
 
   updateDonation(donation: Donation) {
     return this.http.post<Donation>(`${this.api}/donation/changeStatus`, donation, httpOptions);
+  }
+
+  acceptRequest(request: Request) {
+    return this.http.post<any>(`${this.api}/request/modifyRequest`, request, httpOptions);
   }
 }

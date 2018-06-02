@@ -1,6 +1,8 @@
 import {ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
-import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
+import {MatPaginator, MatSnackBar, MatSort, MatTableDataSource} from '@angular/material';
 import {PersonnelService} from '../personnel.service';
+import {Request} from '../../core/model/Request';
+import {Donor} from '../../core/model/Donor';
 
 @Component({
   selector: 'app-blood-requests',
@@ -9,13 +11,14 @@ import {PersonnelService} from '../personnel.service';
 })
 export class BloodRequestsComponent implements OnInit {
   requests: any[];
-  displayedColumns = ['position', 'requestDate', 'bloodCategory', 'bloodType', 'bloodRh', 'bloodQuantity', 'status'];
+  displayedColumns = ['position', 'requestDate', 'forPerson', 'bloodCategory', 'bloodType', 'bloodRh', 'bloodQuantity', 'status', 'actions'];
   dataSource = new MatTableDataSource<any>(this.requests);
-  details: any = {visible: false, request: null};
+  visible = false;
+  eligibleDonors: Donor[];
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor(private service: PersonnelService, private cdr: ChangeDetectorRef) {
+  constructor(private service: PersonnelService, private cdr: ChangeDetectorRef, private snackBar: MatSnackBar) {
   }
 
   ngOnInit() {
@@ -31,12 +34,24 @@ export class BloodRequestsComponent implements OnInit {
 
   }
 
-  showDetails(request) {
-    if (this.details.request && this.details.request.date === request.date) {
-      this.details.visible = !this.details.visible;
-    } else {
-      this.details.visible = true;
-      this.details.request = request;
-    }
+  accept(request: Request) {
+    this.service.acceptRequest(request).subscribe(
+      () => this.snackBar.open('Cerere aprobata!', 'Ok', {duration: 3000}),
+      (donors) => {
+        this.eligibleDonors = donors.error;
+        this.visible = true;
+      }
+    )
+    ;
   }
+
+  closeModal(event) {
+    this.visible = event;
+  }
+
+  dateAsString(requestDate) {
+    return `${requestDate.dayOfMonth} ${requestDate.month} ${requestDate.year}`;
+  }
+
+
 }

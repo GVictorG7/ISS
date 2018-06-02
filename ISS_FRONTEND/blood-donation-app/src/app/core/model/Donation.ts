@@ -1,3 +1,5 @@
+import {Donor} from './Donor';
+
 export class Donation {
   id = 0;
   requestDate: any;
@@ -7,4 +9,5 @@ export class Donation {
   bloodRH = '';
   bloodType = '';
   healthIssues: string[] = [];
+  donor: Donor;
 }

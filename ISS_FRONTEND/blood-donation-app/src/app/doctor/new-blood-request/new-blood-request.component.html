@@ -8,11 +8,14 @@
       >
     </mat-form-field>
     <mat-form-field>
-      <input matInput placeholder="Prioritate"
-             [(ngModel)]="request.priority"
-             required
-             formControlName="priority"
+      <mat-select placeholder="Prioritate"
+                  [(value)]="request.priority"
+                  formControlName="priority"
       >
+        <mat-option *ngFor="let priority of priorities " [value]="priority">
+          {{ priority}}
+        </mat-option>
+      </mat-select>
     </mat-form-field>
     <mat-form-field>
       <mat-select placeholder="Stare"

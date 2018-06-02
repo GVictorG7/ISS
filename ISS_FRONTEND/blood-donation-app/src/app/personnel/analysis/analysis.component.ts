@@ -10,7 +10,7 @@ import {Donation} from '../../core/model/Donation';
 })
 export class AnalysisComponent implements OnInit {
   donations: Donation[];
-  displayedColumns = ['position', 'date', 'status', 'action'];
+  displayedColumns = ['position', 'date', 'donor', 'status', 'action'];
   dataSource = new MatTableDataSource<Donation>(this.donations);
   details: any = {visible: false, donation: null};
   @ViewChild(MatSort) sort: MatSort;

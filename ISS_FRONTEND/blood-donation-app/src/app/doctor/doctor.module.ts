@@ -8,6 +8,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {DoctorService} from './doctor.service';
 import {HttpClientModule} from '@angular/common/http';
 import {NewBloodRequestComponent} from './new-blood-request/new-blood-request.component';
+import { RequestSummaryComponent } from './request-summary/request-summary.component';
 
 @NgModule({
   imports: [
@@ -24,7 +25,7 @@ import {NewBloodRequestComponent} from './new-blood-request/new-blood-request.co
     HttpClientModule,
     ReactiveFormsModule
   ],
-  declarations: [BloodRequestsComponent, NewBloodRequestComponent],
+  declarations: [BloodRequestsComponent, NewBloodRequestComponent, RequestSummaryComponent],
   providers: [DoctorService]
 })
 export class DoctorModule {

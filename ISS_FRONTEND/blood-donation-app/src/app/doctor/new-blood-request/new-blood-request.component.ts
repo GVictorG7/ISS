@@ -11,8 +11,9 @@ import {AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators} from '
 export class NewBloodRequestComponent implements OnInit {
   @Output() viewChanged = new EventEmitter<boolean>();
   request: Request = new Request();
+  priorities = ['NORMAL', 'HIGH', 'LOW'];
   types = ['O', 'A', 'B', 'AB'];
-  rhs = ['POZITIVE', 'NEGATIVE'];
+  rhs = ['POSITIVE', 'NEGATIVE'];
   categories = ['WHOLE', 'PLASMA', 'THROMBOCYTE', 'REDCELL'];
 
   formGroup: FormGroup;

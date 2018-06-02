@@ -16,7 +16,8 @@ export class BloodRequestsComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  visible = false;
+  visibleNew = false;
+  visibleDetails = false;
   request: Request;
 
   constructor(private service: DoctorService, private cdr: ChangeDetectorRef) {
@@ -35,11 +36,19 @@ export class BloodRequestsComponent implements OnInit {
   }
 
   newRequest() {
-    this.visible = !this.visible;
+    this.visibleNew = !this.visibleNew;
   }
 
   viewChanged(event) {
-    this.visible = event;
+    this.visibleNew = event;
   }
 
+  dateAsString(requestDate) {
+    return `${requestDate.dayOfMonth} ${requestDate.month} ${requestDate.year}`;
+  }
+
+  showSummary(request) {
+    this.request = request;
+    this.visibleDetails = !this.visibleDetails;
+  }
 }

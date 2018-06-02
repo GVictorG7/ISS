@@ -10,6 +10,7 @@ export function checkCompleted(object: any): boolean {
   }
   return ok;
 }
+
 export function dateAsString(requestDate) {
   return `${requestDate.dayOfMonth} ${requestDate.month} ${requestDate.year}`;
 }
