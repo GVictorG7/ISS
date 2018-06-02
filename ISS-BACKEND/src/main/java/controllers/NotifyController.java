@@ -19,6 +19,8 @@ public class NotifyController {
 
     @PostMapping
     public void notifyUsers(@RequestBody String[] users) {
-        notifyService.sendMailToUsers(users);
+        new Thread(() -> {
+            notifyService.sendMailToUsers(users);
+        }).start();
     }
 }
