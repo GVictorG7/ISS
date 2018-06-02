@@ -31,8 +31,7 @@ public class Request implements Serializable {
     private BloodCategory bloodCategory;
 
     @Column(name = "blood_rh")
-    @Enumerated(EnumType.STRING)
-    private BloodRH bloodRh;
+    private BloodRH bloodRH;
 
     @Column(name = "blood_type")
     @Enumerated(EnumType.STRING)
@@ -50,12 +49,12 @@ public class Request implements Serializable {
     private Doctor doctor;
     public Request() {}
 
-    public Request(String forPerson, LocalDate requestDate, RequestPriority priority, BloodCategory bloodCategory, BloodRH bloodRh, BloodType bloodType, int bloodQuantity, RequestStatus status, Doctor doctor) {
+    public Request(String forPerson, LocalDate requestDate, RequestPriority priority, BloodCategory bloodCategory, BloodRH bloodRH, BloodType bloodType, int bloodQuantity, RequestStatus status, Doctor doctor) {
         this.forPerson = forPerson;
         this.requestDate = requestDate;
         this.priority = priority;
         this.bloodCategory = bloodCategory;
-        this.bloodRh = bloodRh;
+        this.bloodRH = bloodRH;
         this.bloodType = bloodType;
         this.bloodQuantity = bloodQuantity;
         this.status = status;
@@ -105,12 +104,12 @@ public class Request implements Serializable {
         this.bloodCategory = bloodCategory;
     }
 
-    public BloodRH getBloodRh() {
-        return bloodRh;
+    public BloodRH getBloodRH() {
+        return bloodRH;
     }
 
-    public void setBloodRh(BloodRH bloodRh) {
-        this.bloodRh = bloodRh;
+    public void setBloodRH(BloodRH bloodRH) {
+        this.bloodRH = bloodRH;
     }
 
     public BloodType getBloodType() {
@@ -144,4 +143,6 @@ public class Request implements Serializable {
     public void setDoctor(Doctor doctor) {
         this.doctor = doctor;
     }
+
+
 }

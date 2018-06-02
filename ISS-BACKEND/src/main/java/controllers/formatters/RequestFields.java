@@ -1,7 +1,7 @@
 package controllers.formatters;
 
 public class RequestFields {
-    private String person;
+    private String forPerson;
     private String priority;
     private String bloodCategory;
     private String bloodRh;
@@ -12,8 +12,8 @@ public class RequestFields {
     public RequestFields() {
     }
 
-    public RequestFields(String person, String priority, String bloodCategory, String bloodRh, String bloodType, int bloodQuantity, long idDoctor) {
-        this.person = person;
+    public RequestFields(String forPerson, String priority, String bloodCategory, String bloodRh, String bloodType, int bloodQuantity, long idDoctor) {
+        this.forPerson = forPerson;
         this.priority = priority;
         this.bloodCategory = bloodCategory;
         this.bloodRh = bloodRh;
@@ -32,12 +32,12 @@ public class RequestFields {
     }
     //status at new request will be open
 
-    public String getPerson() {
-        return person;
+    public String getForPerson() {
+        return this.forPerson;
     }
 
-    public void setPerson(String person) {
-        this.person = person;
+    public void setForPerson(String forPerson) {
+        this.forPerson = forPerson;
     }
 
     public String getPriority() {
