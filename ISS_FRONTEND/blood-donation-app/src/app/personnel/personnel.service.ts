@@ -33,4 +33,8 @@ export class PersonnelService {
   acceptRequest(request: Request) {
     return this.http.post<any>(`${this.api}/request/modifyRequest`, request, httpOptions);
   }
+
+  sendMails(strings: string[]) {
+    return this.http.post<any>(`${this.api}/notifyall`, strings, httpOptions);
+  }
 }
