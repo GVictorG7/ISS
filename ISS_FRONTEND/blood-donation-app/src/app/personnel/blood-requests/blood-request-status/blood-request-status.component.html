@@ -1,8 +1,8 @@
 <div class="my-modal">
   <div class="modal-content">
-    <b>Nu exista suficiente unitati de sange pentru a raspunde cererii !</b>
-    <h1>Donatori potriviti</h1>
-    <table mat-table #table [dataSource]="dataSource" matSort>
+    <h1>Not enough blood units found for request!</h1><br><br>
+    <h2>Donors suggestion</h2>
+    <table class="mat-elevation-z15" mat-table #table [dataSource]="dataSource" matSort>
 
       <!--- Note that these columns can be defined in any order.
             The actual rendered columns are set as a property on the row definition" -->
@@ -53,10 +53,12 @@
                    [pageSizeOptions]="[5, 10, 20]"
                    [showFirstLastButtons]="true">
     </mat-paginator>
-    <button mat-raised-button color="primary" (click)="sendMails()" [disabled]="!selection.selected.length>0">
-      Send Mails
-    </button>
-    <button mat-raised-button color="warn" (click)="close()">Close</button>
+    <div class="buttons">
+      <button mat-raised-button color="warn" (click)="close()">Close</button>
+      <button mat-raised-button color="primary" (click)="sendMails()" [disabled]="!selection.selected.length>0">
+        Send Mails
+      </button>
+    </div>
   </div>
 
 </div>

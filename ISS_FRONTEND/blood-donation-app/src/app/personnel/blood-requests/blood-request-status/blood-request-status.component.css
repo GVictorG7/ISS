@@ -23,3 +23,11 @@
 table {
   width: 80%;
 }
+button {
+  margin-right: 3px;
+}
+
+.buttons {
+  top: 50px;
+  text-align: right;
+}
