@@ -28,7 +28,7 @@ public class Request implements Serializable {
     private String bloodCategory;
 
     @Column(name = "blood_rh")
-    private String bloodRh;
+    private String bloodRH;
 
     @Column(name = "blood_type")
     private String bloodType;
@@ -46,12 +46,12 @@ public class Request implements Serializable {
     public Request() {
     }
 
-    public Request(String person, String requestDate, int priority, String bloodCategory, String bloodRh, String bloodType, int bloodQuantity, String status, Doctor doctor) {
+    public Request(String person, String requestDate, int priority, String bloodCategory, String bloodRH, String bloodType, int bloodQuantity, String status, Doctor doctor) {
         this.person = person;
         this.requestDate = requestDate;
         this.priority = priority;
         this.bloodCategory = bloodCategory;
-        this.bloodRh = bloodRh;
+        this.bloodRH = bloodRH;
         this.bloodType = bloodType;
         this.bloodQuantity = bloodQuantity;
         this.status = status;
@@ -122,12 +122,12 @@ public class Request implements Serializable {
         this.doctor = doctor;
     }
 
-    public String getBloodRh() {
-        return bloodRh;
+    public String getBloodRH() {
+        return bloodRH;
     }
 
-    public void setBloodRh(String bloodRh) {
-        this.bloodRh = bloodRh;
+    public void setBloodRH(String bloodRH) {
+        this.bloodRH = bloodRH;
     }
 
     public String getStatus() {
