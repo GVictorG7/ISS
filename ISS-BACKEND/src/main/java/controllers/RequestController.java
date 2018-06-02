@@ -3,8 +3,7 @@ package controllers;
 import controllers.formatters.ModifiedRequestFields;
 import controllers.formatters.RequestFields;
 import controllers.formatters.ResponseErrors;
-import model.Doctor;
-import model.Request;
+import model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +12,7 @@ import services.RequestService;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -37,13 +37,13 @@ public class RequestController {
         }
 
         requestService.save(new Request(requestFields.getPerson(),
-                requestFields.getRequestDate(),
-                requestFields.getPriority(),
-                requestFields.getBloodCategory(),
-                requestFields.getBloodRh(),
-                requestFields.getBloodType(),
+                LocalDate.now(),
+                RequestPriority.valueOf(requestFields.getPriority()),
+                BloodCategory.valueOf(requestFields.getBloodCategory()),
+                BloodRH.valueOf(requestFields.getBloodRh()),
+                BloodType.valueOf(requestFields.getBloodType()),
                 requestFields.getBloodQuantity(),
-                "open",
+                RequestStatus.OPEN,
                 requestService.getDoctor(requestFields.getIdDoctor())));
 
         response.setStatus(HttpServletResponse.SC_CREATED); // 201
@@ -62,16 +62,27 @@ public class RequestController {
         return requestService.getAllRequestsByDoctor(doctor);
     }
 
+    @GetMapping(value = "/getRequestsOpen")
+    public List<Request> getAllRequestsByStatusOpen(HttpServletResponse response) {
+        return requestService.getAllRequestsByStatus(RequestStatus.OPEN);
+    }
+
     // done by Personnel
     @PostMapping(value = "/modifyRequest")
-    public void modifyRequest(@Valid @RequestBody ModifiedRequestFields modifiedRequestFields, HttpServletResponse response) {
+    public List<Donor> modifyRequest(@Valid @RequestBody ModifiedRequestFields modifiedRequestFields, HttpServletResponse response) {
         Request request = requestService.getById(modifiedRequestFields.getId());
-        if (request == null) {
+        if (request == null || request.getStatus().equals(RequestStatus.ACCEPTED)) {
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST); // 400
-        } else {
-            request.setStatus(modifiedRequestFields.getNewStatus());
+            return null;
+        } else if (requestService.findDesireBlood(request.getBloodType(), request.getBloodRh(), request.getBloodCategory()) != null) {
+            request.setStatus(RequestStatus.ACCEPTED);
             requestService.save(request);
-            response.setStatus(HttpServletResponse.SC_ACCEPTED); // 202
+            response.setStatus(HttpServletResponse.SC_OK); // 200
+            return null;
+        } else {
+            request.setStatus(RequestStatus.IN_PROGRESS);
+            response.setStatus(HttpServletResponse.SC_PRECONDITION_FAILED); //412
+            return requestService.getCopatibleDonors(request.getBloodType(),request.getBloodRh());
         }
     }
 }

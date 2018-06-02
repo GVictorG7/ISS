@@ -68,7 +68,7 @@ public class DonationService implements IDonationService {
     @Override
     public void changeStatus(Long idDonatie,String forPerson,DonationStatus status, String bloodRH, String bloodType, Set<HealthIssue> healthIssues) {
         if (status.equals(DonationStatus.ACCEPTED)) {
-            Blood blood = new Blood(BloodType.valueOf(bloodType), BloodRH.valueOf(bloodRH), BloodCategory.WHOLE, false);
+            Blood blood = new Blood(BloodType.valueOf(bloodType), BloodRH.valueOf(bloodRH), BloodCategory.WHOLE, false,LocalDate.now().plusDays(Blood.getDaysToExpire(BloodCategory.WHOLE)));
             Donation donation = getById(idDonatie);
             donation.setCollectionDate(LocalDate.now());
             donation.setForPerson(forPerson);

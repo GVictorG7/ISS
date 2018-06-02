@@ -2,12 +2,10 @@ package controllers;
 
 import controllers.formatters.DonationFieldDOnor;
 import controllers.formatters.DonationFields;
-import model.BloodType;
 import model.Donation;
 import model.HealthIssue;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import services.DonationService;
 import services.interfaces.IDonationService;
 
 import java.util.List;
@@ -44,8 +42,8 @@ public class DonationController {
 
     @PostMapping(value = "/changeStatus")
     public void changeStatus(@RequestBody DonationFields donation) {
-        donationService.changeStatus(donation.getId(), donation.getForPerson(), donation.getStatus(), donation.getBloodRH(),donation.getBloodType(), donation.getHealthIssues());
 
+        donationService.changeStatus(donation.getId(), donation.getForPerson(), donation.getStatus(), donation.getBloodRH(), donation.getBloodType(), donation.getHealthIssues());
     }
 
     /**

@@ -15,7 +15,7 @@ public interface IDonationService {
 
     Donation deleteById(Long id);
 
-    void changeStatus(Long idDonatie,String forPerson, DonationStatus status, String bloodRH, String bloodType, Set<HealthIssue> healthIssues);
+    void changeStatus(Long idDonatie, String forPerson, DonationStatus status, String bloodRH, String bloodType, Set<HealthIssue> healthIssues);
 
     void save(Long idDonor);
 

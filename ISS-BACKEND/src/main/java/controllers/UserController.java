@@ -13,6 +13,7 @@ import services.interfaces.IUserService;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.io.IOException;
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/auth")
@@ -34,11 +35,11 @@ public class UserController {
         response.setStatus(HttpServletResponse.SC_OK);// 200
 
         if (user.getUserType().equals(UserType.DONOR.toString()))
-            return new ReturnObject(userService.getUserDonor(user.getId()),user.getUserType());
-        if(user.getUserType().equals(UserType.DOCTOR.toString()))
-            return new ReturnObject(userService.getUserDoctor(user.getId()),user.getUserType());
-        if(user.getUserType().equals(UserType.PERSONNEL.toString()))
-            return  new ReturnObject(userService.getUserPersonel(user.getId()),user.getUserType());
+            return new ReturnObject(userService.getUserDonor(user.getId()), user.getUserType());
+        if (user.getUserType().equals(UserType.DOCTOR.toString()))
+            return new ReturnObject(userService.getUserDoctor(user.getId()), user.getUserType());
+        if (user.getUserType().equals(UserType.PERSONNEL.toString()))
+            return new ReturnObject(userService.getUserPersonel(user.getId()), user.getUserType());
         return null;
     }
 
@@ -70,5 +71,10 @@ public class UserController {
         }
         response.setStatus(HttpServletResponse.SC_CREATED); // 201
         return userService.update(user);
+    }
+
+    @GetMapping(value = "getUsernames")
+    public List<String> getUsernames(){
+        return userService.getUsernames();
     }
 }
