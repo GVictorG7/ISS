@@ -8,11 +8,7 @@ import java.util.List;
 import java.util.Set;
 
 public class DonationFields implements HasDateFormat {
-    private Long idDonatie;
-
-    private Long idDonor;
-
-    private String collectionDate;
+    private Long id;
 
     private String forPerson;
 
@@ -20,22 +16,22 @@ public class DonationFields implements HasDateFormat {
 
     private DonationStatus status;
 
-    public Long getIdDonor() {
-        return idDonor;
-    }
-
-    public void setIdDonor(Long idDonor) {
-        this.idDonor = idDonor;
-    }
-
-    public String getCollectionDate() {
-//        LocalDate localDate=setCollectionDate(collectionDate);
-        return collectionDate;
-    }
-
     private String bloodRH;
 
     private String bloodType;
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getId() {
+
+        return id;
+    }
+
+    public DonationFields() {
+
+    }
 
     public String getForPerson() {
         return forPerson;
@@ -57,8 +53,6 @@ public class DonationFields implements HasDateFormat {
     @Override
     public String toString() {
         return "DonationFields{" +
-                "idDonor=" + idDonor +
-                ", collectionDate=" + collectionDate +
                 ", forPerson='" + forPerson + '\'' +
                 ", healthIssues=" + healthIssues +
                 '}';
@@ -72,14 +66,6 @@ public class DonationFields implements HasDateFormat {
         this.status = status;
     }
 
-
-    public Long getIdDonatie() {
-        return idDonatie;
-    }
-
-    public void setIdDonatie(Long idDonatie) {
-        this.idDonatie = idDonatie;
-    }
 
     public String getBloodRH() {
         return bloodRH;

@@ -1,9 +1,8 @@
 package controllers.formatters;
 
 public class RequestFields {
-    private String person;
-    private String requestDate;
-    private int priority;
+    private String forPerson;
+    private String priority;
     private String bloodCategory;
     private String bloodRh;
     private String bloodType;
@@ -13,9 +12,8 @@ public class RequestFields {
     public RequestFields() {
     }
 
-    public RequestFields(String person, String requestDate, int priority, String bloodCategory, String bloodRh, String bloodType, int bloodQuantity, long idDoctor) {
-        this.person = person;
-        this.requestDate = requestDate;
+    public RequestFields(String forPerson, String priority, String bloodCategory, String bloodRh, String bloodType, int bloodQuantity, long idDoctor) {
+        this.forPerson = forPerson;
         this.priority = priority;
         this.bloodCategory = bloodCategory;
         this.bloodRh = bloodRh;
@@ -24,13 +22,6 @@ public class RequestFields {
         this.idDoctor = idDoctor;
     }
 
-    public String getRequestDate() {
-        return requestDate;
-    }
-
-    public void setRequestDate(String requestDate) {
-        this.requestDate = requestDate;
-    }
 
     public long getIdDoctor() {
         return idDoctor;
@@ -41,19 +32,19 @@ public class RequestFields {
     }
     //status at new request will be open
 
-    public String getPerson() {
-        return person;
+    public String getForPerson() {
+        return this.forPerson;
     }
 
-    public void setPerson(String person) {
-        this.person = person;
+    public void setForPerson(String forPerson) {
+        this.forPerson = forPerson;
     }
 
-    public int getPriority() {
+    public String getPriority() {
         return priority;
     }
 
-    public void setPriority(int priority) {
+    public void setPriority(String priority) {
         this.priority = priority;
     }
 
