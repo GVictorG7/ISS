@@ -6,11 +6,10 @@ import model.Personnel;
 import model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import repositories.DoctorRepository;
-import repositories.DonorRepository;
-import repositories.PersonnelRepository;
-import repositories.UserRepository;
+import repositories.*;
 import services.interfaces.IUserService;
+
+import java.util.List;
 
 @Service
 public class UserService implements IUserService {
@@ -20,7 +19,7 @@ public class UserService implements IUserService {
     private final PersonnelRepository personnelRepository;
 
     @Autowired
-    public UserService(UserRepository userRepository, DonorRepository donorRepository, DoctorRepository doctorRepository, PersonnelRepository personnelRepository) {
+    public UserService(UserRepository userRepository, DonorRepository donorRepository, DoctorRepository doctorRepository, PersonnelRepository personnelRepository, DonationRepository donationRepository) {
         this.userRepository = userRepository;
         this.donorRepository = donorRepository;
         this.doctorRepository = doctorRepository;
@@ -52,6 +51,11 @@ public class UserService implements IUserService {
     @Override
     public Personnel getUserPersonel(Long id) {
         return personnelRepository.findByUser(userRepository.findById(id));
+    }
+
+    @Override
+    public List<String> getUsernames() {
+        return userRepository.getUsernames();
     }
 
     @Override

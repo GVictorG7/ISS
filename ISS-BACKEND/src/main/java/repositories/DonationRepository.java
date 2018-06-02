@@ -1,8 +1,6 @@
 package repositories;
 
-import model.Donation;
-import model.DonationStatus;
-import model.Donor;
+import model.*;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
@@ -18,5 +16,6 @@ public interface DonationRepository extends JpaRepository<Donation, Long> {
 
     List<Donation> getAllByDonor(Donor donor);
 
-    List<Donation> getAllByStatus(DonationStatus donationStatus);;
+    List<Donation> getAllByStatus(DonationStatus donationStatus);
+    List<Donation> getAllByBloodTypeAndBloodRH(BloodType bloodType, BloodRH bloodRh);
 }

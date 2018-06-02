@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import repositories.BloodRepository;
 import services.interfaces.IBloodService;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -20,12 +21,13 @@ public class BloodService implements IBloodService {
         this.bloodRepository = bloodRepository;
     }
     @Override
-    public Blood save(BloodType bloodType, BloodRH bloodRH, BloodCategory bloodCategory, Boolean used) {
+    public Blood save(BloodType bloodType, BloodRH bloodRH, BloodCategory bloodCategory, Boolean used, LocalDate exireDate) {
         return bloodRepository.save(new Blood(
                 bloodType,
                 bloodRH,
                 bloodCategory,
-                used
+                used,
+                exireDate
         ));
     }
 

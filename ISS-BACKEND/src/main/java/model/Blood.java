@@ -4,8 +4,8 @@ import org.springframework.validation.annotation.Validated;
 import validators.BloodValidator;
 
 import javax.persistence.*;
-
 import java.io.Serializable;
+import java.time.LocalDate;
 
 @Validated(value = BloodValidator.class)
 @Entity
@@ -21,36 +21,40 @@ public class Blood implements Serializable {
     @Column(name = "id")
     private final long id = 1L;
 
-    @Column(name = "type")
+    @Column(name = "blood_type")
     @Enumerated(EnumType.STRING)
-    private BloodType type;
+    private BloodType bloodType;
 
-    @Column(name = "RH")
+    @Column(name = "bloodRh")
     @Enumerated(EnumType.STRING)
-    private BloodRH RH;
+    private BloodRH bloodRh;
 
-    @Column(name = "category")
+    @Column(name = "blood_category")
     @Enumerated(EnumType.STRING)
-    private BloodCategory category;
+    private BloodCategory bloodCategory;
 
     @Column(name = "used")
     private Boolean used;
+    @Column(name = "expire_date")
+    private LocalDate expireDate;
 
     public Blood() {
     }
 
-    public Blood(BloodType bloodType, BloodRH bloodRH, Boolean used) {
-        this.type = bloodType;
-        this.RH = bloodRH;
-        this.category = BloodCategory.WHOLE;
+    public Blood(BloodType bloodType, BloodRH bloodRH, Boolean used, LocalDate expireDate) {
+        this.bloodType = bloodType;
+        this.bloodRh = bloodRH;
+        this.bloodCategory = BloodCategory.WHOLE;
         this.used = used;
+        this.expireDate = expireDate;
     }
 
-    public Blood(BloodType bloodType, BloodRH bloodRH, BloodCategory bloodCategory, Boolean used) {
-        this.type = bloodType;
-        this.RH = bloodRH;
-        this.category = bloodCategory;
+    public Blood(BloodType bloodType, BloodRH bloodRH, BloodCategory bloodCategory, Boolean used, LocalDate expireDate) {
+        this.bloodType = bloodType;
+        this.bloodRh = bloodRH;
+        this.bloodCategory = bloodCategory;
         this.used = used;
+        this.expireDate = expireDate;
     }
 
     public long getId() {
@@ -58,27 +62,27 @@ public class Blood implements Serializable {
     }
 
     public BloodType getBloodType() {
-        return type;
+        return bloodType;
     }
 
     public void setBloodType(BloodType bloodType) {
-        this.type = bloodType;
+        this.bloodType = bloodType;
     }
 
     public BloodRH getBloodRH() {
-        return RH;
+        return bloodRh;
     }
 
     public void setBloodRH(BloodRH bloodRH) {
-        this.RH = bloodRH;
+        this.bloodRh = bloodRH;
     }
 
     public BloodCategory getBloodCategory() {
-        return category;
+        return bloodCategory;
     }
 
     public void setBloodCategory(BloodCategory bloodCategory) {
-        this.category = bloodCategory;
+        this.bloodCategory = bloodCategory;
     }
 
     public Boolean getUsed() {
@@ -89,13 +93,25 @@ public class Blood implements Serializable {
         this.used = used;
     }
 
-    public int getDaysToExpire() throws RuntimeException {
-        switch (this.category){
-            case PLASMA:return PLASMA_EXPIRATION_DATE;
-            case REDCELL:return REDCELL_EXPIRATION_DATE;
-            case THROMBOCYTE:return THROMBOCYTE_EXPIRATION_DATE;
-            case WHOLE:return Math.min(Math.min(PLASMA_EXPIRATION_DATE,REDCELL_EXPIRATION_DATE),THROMBOCYTE_EXPIRATION_DATE);
+    public static int getDaysToExpire(BloodCategory bloodCategory) throws RuntimeException {
+        switch (bloodCategory) {
+            case PLASMA:
+                return PLASMA_EXPIRATION_DATE;
+            case REDCELL:
+                return REDCELL_EXPIRATION_DATE;
+            case THROMBOCYTE:
+                return THROMBOCYTE_EXPIRATION_DATE;
+            case WHOLE:
+                return Math.min(Math.min(PLASMA_EXPIRATION_DATE, REDCELL_EXPIRATION_DATE), THROMBOCYTE_EXPIRATION_DATE);
         }
         throw new RuntimeException("Invalid BloodCategory");
+    }
+
+    public LocalDate getExpireDate() {
+        return expireDate;
+    }
+
+    public void setExpireDate(LocalDate expireDate) {
+        this.expireDate = expireDate;
     }
 }

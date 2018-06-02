@@ -5,6 +5,8 @@ import model.Donor;
 import model.Personnel;
 import model.User;
 
+import java.util.List;
+
 public interface IUserService {
     User save(User user);
 
@@ -17,4 +19,6 @@ public interface IUserService {
     Doctor getUserDoctor(Long id);
 
     Personnel getUserPersonel(Long id);
+
+    List<String> getUsernames();
 }
