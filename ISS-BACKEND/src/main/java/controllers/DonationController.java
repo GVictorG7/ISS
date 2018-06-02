@@ -76,4 +76,9 @@ public class DonationController {
     public List<Donation> getAllOpenDonations() {
         return donationService.getAllOpenDonations();
     }
+
+    @GetMapping(value = "/openDonationsCounter")
+    public int getAllOpenDonationsCounter() {
+        return donationService.getAllOpenDonations().size();
+    }
 }

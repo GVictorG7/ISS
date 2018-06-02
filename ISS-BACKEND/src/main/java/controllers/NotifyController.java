@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import services.interfaces.INotifyService;
 
 @RestController
-@RequestMapping("/notifyall")
+@RequestMapping("/notify")
 public class NotifyController {
     private final INotifyService notifyService;
 
@@ -17,7 +17,7 @@ public class NotifyController {
         this.notifyService = notifyService;
     }
 
-    @PostMapping
+    @PostMapping(value = "/donors/mail")
     public void notifyUsers(@RequestBody String[] users) {
         new Thread(() -> {
             notifyService.sendMailToUsers(users);
