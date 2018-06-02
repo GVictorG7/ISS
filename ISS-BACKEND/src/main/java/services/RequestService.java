@@ -99,6 +99,7 @@ public class RequestService implements IRequestService {
                     saveSeparatedBlood(bloodNotSeparted, bloodCategory);
 
                 }
+                return bloodNotSeparted;
             }
             else
                 return bloodNotSeparted;
