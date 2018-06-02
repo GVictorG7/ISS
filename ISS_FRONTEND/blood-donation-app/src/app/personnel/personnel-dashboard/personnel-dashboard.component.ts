@@ -28,8 +28,8 @@ export class PersonnelDashboardComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.service.getCounterDonation().subscribe(counter => this.cards[0].counter = counter);
-    this.service.getCounterRequest().subscribe(counter => this.cards[1].counter = counter);
+    this.service.getCounterDonation().subscribe((counter: number) => this.cards[0].counter = counter);
+    this.service.getCounterRequest().subscribe((counter: number) => this.cards[1].counter = counter);
   }
 
 }

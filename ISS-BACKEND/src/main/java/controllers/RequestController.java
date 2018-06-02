@@ -36,7 +36,7 @@ public class RequestController {
             }
         }
 
-        Request request=new Request(requestFields.getForPerson(),
+        Request request = new Request(requestFields.getForPerson(),
                 LocalDate.now(),
                 RequestPriority.valueOf(requestFields.getPriority()),
                 BloodCategory.valueOf(requestFields.getBloodCategory()),
@@ -65,18 +65,19 @@ public class RequestController {
     }
 
     @GetMapping(value = "/getRequestsOpen")
-    public int getAllRequestsByStatusOpen(HttpServletResponse response) {
-        return requestService.getAllRequestsByStatus(RequestStatus.OPEN).size();
+    public List<Request> getAllRequestsByStatusOpen(HttpServletResponse response) {
+        return requestService.getAllRequestsByStatus(RequestStatus.OPEN);
     }
 
     // done by Personnel
     @PostMapping(value = "/modifyRequest")
     public List<Donor> modifyRequest(@Valid @RequestBody ModifiedRequestFields modifiedRequestFields, HttpServletResponse response) {
+        System.out.println();
         Request request = requestService.getById(modifiedRequestFields.getId());
         if (request == null || request.getStatus().equals(RequestStatus.ACCEPTED)) {
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST); // 400
             return null;
-        } else if (requestService.findDesireBlood(request.getBloodType(), request.getBloodRH(), request.getBloodCategory(),request.getBloodQuantity()) != null) {
+        } else if (requestService.findDesireBlood(request.getBloodType(), request.getBloodRH(), request.getBloodCategory(), request.getBloodQuantity()) != null) {
             request.setStatus(RequestStatus.ACCEPTED);
             requestService.save(request);
             response.setStatus(HttpServletResponse.SC_OK); // 200
@@ -86,7 +87,7 @@ public class RequestController {
             request.setSummary("Looking for donors as quick as we can");
             response.setStatus(HttpServletResponse.SC_PRECONDITION_FAILED); //412
             requestService.save(request);
-            return requestService.getCopatibleDonors(request.getBloodType(),request.getBloodRH());
+            return requestService.getCopatibleDonors(request.getBloodType(), request.getBloodRH());
         }
     }
 }
