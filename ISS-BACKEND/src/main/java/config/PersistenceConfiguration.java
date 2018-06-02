@@ -43,7 +43,7 @@ public class PersistenceConfiguration {
         ds.setDriverClassName("com.mysql.jdbc.Driver");
         ds.setUrl("jdbc:mysql://localhost:3306/iss_db?autoReconnect=true&useSSL=false");
         ds.setUsername("root");
-        ds.setPassword("root");
+        ds.setPassword("denisa");
         return ds;
     }
 

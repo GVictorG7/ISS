@@ -12,6 +12,8 @@ public class DonorFields {
     private String phone;
     private Long userId;
 
+    public DonorFields(){}
+
     public DonorFields(String firstName, String lastName, String cnp, String gender, String birthday, String address, String localAddress, String email, String phone, Long userId) {
         this.firstName = firstName;
         this.lastName = lastName;

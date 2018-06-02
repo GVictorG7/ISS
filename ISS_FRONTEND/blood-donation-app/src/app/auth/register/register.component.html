@@ -1,20 +1,46 @@
 <div class="example-container">
   <app-menu></app-menu>
-  <mat-form-field>
-    <input matInput placeholder="Nume de utilizator"
-           [(ngModel)]="user.username"
-           required
-    >
-  </mat-form-field>
-  <mat-form-field>
-    <input matInput placeholder="Parola"
-           type="password"
-           [(ngModel)]="user.password"
-           required
-    ></mat-form-field>
-  Date personale <br>
+
+  <div class="headerClass" id="headerID">
+    <h1 id="titleID"> Give blood. Give life. </h1>
+    <h6> Someone needs blood every <b style="color:#fc321a;" >2 seconds</b> .<br>
+      Donate blood takes only <b style="color:#fc321a">10 minutes</b> !
+    </h6>
+    <div class="dropOfBloodContainer">
+      <p class="dropOfBloodTheme">
+        <a href="#" id="principal">
+          <span class="glyphicon glyphicon-tint"></span>
+        </a>
+      </p>
+    </div>
+  </div>
+<div id="divContext">
+  <div id="title"> <b id="titleStyle">Be a hero, become a donor! </b> </div>
+
+  <div class="fields">
+    <mat-form-field style="padding-right:10px">
+      <input class="inputField" matInput placeholder="Nume de utilizator"
+             [(ngModel)]="user.username"
+             required
+      >
+    </mat-form-field>
+    <mat-form-field>
+      <input class="inputField" matInput placeholder="Parola"
+             type="password"
+             [(ngModel)]="user.password"
+             required
+      ></mat-form-field>
+</div>
+  <b id="text">Date personale</b>
+
   <app-donor-data [donor]="donor"></app-donor-data>
 
   <button mat-button color="primary" (click)="register()">Inregistreaza-te!</button>
+</div>
+  <!--Footer-->
+  <footer class="footerClass">
+    <h6> Blood can't be manufactured. <br> It can only count for a donant <span>like you</span>. </h6>
+    <h6> Design by: </h6>
+  </footer>
 
 </div>

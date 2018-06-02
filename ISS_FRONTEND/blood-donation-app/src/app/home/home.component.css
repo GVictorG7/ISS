@@ -1,5 +1,5 @@
 html, body{
-  font-family: Verdana, sans-serif;
+  font-family: 'Libre Baskerville', serif; ;
   font-size: 15px;
   line-height: 1;
 }
@@ -15,9 +15,7 @@ html, body{
 }
 .parallax {
   /* The image used */
-  background-image: url(/scrollDown.jpg);
-
-
+  background-image: url(https://www.um.edu.mt/__data/assets/image/0007/305296/varieties/banner.jpg);
   /* Set a specific height */
   min-height: 500px;
 
@@ -25,7 +23,15 @@ html, body{
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: 100% 100%;
+}
+
+#processImg{
+  min-height: 60px;
+  width: 60%;
+  -webkit-align-content: center;
+  align-content: center;
+  padding: 5px;
 }
 
 .glyphicon{
@@ -61,23 +67,23 @@ span{
   text-decoration-style: wavy;
   font-size: 14px;
   padding-left: 5px;
+  text-indent: 30px;
+  line-height: 26px;
 }
 .bloodgroup{
   padding-left: 10px;
   color:#fc321a ;
 }
 
+.entry-content { border-bottom: 3px solid #666; padding: 0 0 15px 0; margin-bottom: 8px; }
+
 .tabContent{
   height:auto;
   background-color:#303030;
-  font-size:23px
-}
-img {
-  border: 1px solid  #fc321a;
-  border-radius: 4px;
+  font-size:23px;
   padding: 5px;
-  width: 150px;
 }
+
 
 .links{
   padding: 10px;
@@ -95,3 +101,4 @@ img {
   bottom: 0;
   width: 100%;
 }
+

@@ -1,3 +1,26 @@
+html, body{
+  font-family: 'Libre Baskerville', serif; ;
+  font-size: 15px;
+  line-height: 1;
+}
+
+.headerClass {
+  color: white;
+  background-color: #303030;
+  padding: 8px 16px;
+  align-content: center;
+  text-align: center;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+#divContext{
+  border: solid 3px #fc321a;
+  height: 425px;
+  padding-left: 20px;
+}
+
 .example-container {
   display: flex;
   flex-direction: column;
@@ -6,3 +29,72 @@
 .example-container > * {
   width: 100%;
 }
+
+.fields{
+ padding-left: 20px;
+}
+.inputField{
+  height: 100%;
+  width: 600px;
+  font-size: 18px;
+  color: #fc321a;
+  padding: 12px 20px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  display: block;
+}
+
+#title{
+  border: none;
+  color: white;
+  padding: 20px;
+  margin: 4px 2px;
+  font-size: 20px;
+  text-align: left;
+  width: 100%;
+}
+#titleStyle{
+  background-color: #fc321a;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+#text{
+  color: #fc321a;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-indent: 20px;
+  font-size: 20px;
+}
+
+button{
+  background-color: #fc321a;
+  color: white;
+  padding-left: 20px;
+}
+
+.glyphicon{
+  font-size: 40px;
+}
+
+span{
+  color: #fc321a;
+  text-decoration-style: solid;
+  font-size: 16px;
+}
+
+.footerClass{
+  color: white;
+  background-color: #303030;
+  padding: 8px 16px;
+  align-content: center;
+  text-align: center;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+

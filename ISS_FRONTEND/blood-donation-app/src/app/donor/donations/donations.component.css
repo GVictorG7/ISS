@@ -1,3 +1,72 @@
-table{
-  width:100%;
+html, body{
+  font-family: 'Libre Baskerville', serif; ;
+  font-size: 15px;
+  line-height: 1;
+}
+
+.headerClass {
+  color: white;
+  background-color: #303030;
+  padding: 8px 16px;
+  align-content: center;
+  text-align: center;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+.title{
+  padding-left: 10px;
+  font-size: 24px;
+  display: inline-block;
+  word-spacing: 1px;
+  color: white;
+}
+.glyphicon{
+  font-size: 22px;
+  color: #fc321a;
+}
+
+
+span{
+  color: #fc321a;
+  text-decoration-style: solid;
+  font-size: 16px;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even){background-color: #fc321a}
+
+tr:hover {background-color: #ff8080}
+
+th {
+  background-color:#303030;
+  color: white;
+}
+
+button{
+  color: #303030;
+  text-decoration-style: double;
+}
+
+
+.footerClass{
+  color: white;
+  background-color: #303030;
+  padding: 8px 16px;
+  align-content: center;
+  text-align: center;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
 }

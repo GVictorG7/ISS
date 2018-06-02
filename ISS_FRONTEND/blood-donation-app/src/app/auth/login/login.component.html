@@ -1,10 +1,35 @@
 <app-menu></app-menu>
-<form class="example-form">
-  <mat-form-field>
-    <input matInput placeholder="Username" #username required>
-  </mat-form-field>
-  <mat-form-field>
-    <input matInput placeholder="Password" #password required type="password">
-  </mat-form-field>
-</form>
-<button mat-button (click)="login(username.value,password.value)">Login</button>
+
+<div class="headerClass" id="headerID">
+  <h1 id="titleID"> Give blood. Give life. </h1>
+  <h6> Someone needs blood every <b style="color:#fc321a;" >2 seconds</b> .<br>
+    Donate blood takes only <b style="color:#fc321a">10 minutes</b> !
+  </h6>
+  <div class="dropOfBloodContainer">
+    <p class="dropOfBloodTheme">
+      <a href="#" id="principal">
+        <span class="glyphicon glyphicon-tint"></span>
+      </a>
+    </p>
+  </div>
+</div>
+
+<div id="formDiv">
+  <form class="example-form">
+      <div id="title"> <b id="titleStyle"> Login to your account</b> </div>
+      <mat-form-field>
+        <input class="inputField" matInput placeholder="Username" #username required>
+      </mat-form-field>
+      <p></p>
+      <mat-form-field>
+        <input class="inputField" matInput placeholder="Password" #password required type="password">
+      </mat-form-field>
+  </form>
+  <button mat-button (click)="login(username.value,password.value)">Login</button>
+</div>
+
+<!--Footer-->
+<footer class="footerClass">
+  <h6> Blood can't be manufactured. <br> It can only count for a donant <span>like you</span>. </h6>
+  <h6> Design by: </h6>
+</footer>
