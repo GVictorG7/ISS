@@ -15,6 +15,7 @@ public class Blood implements Serializable {
     private static final int PLASMA_EXPIRATION_DATE = 112;
     private static final int REDCELL_EXPIRATION_DATE = 42;
     private static final int THROMBOCYTE_EXPIRATION_DATE = 5;
+    private static final int WHOLE_EXPIRATION_DATE = 21;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -102,7 +103,7 @@ public class Blood implements Serializable {
             case THROMBOCYTE:
                 return THROMBOCYTE_EXPIRATION_DATE;
             case WHOLE:
-                return Math.min(Math.min(PLASMA_EXPIRATION_DATE, REDCELL_EXPIRATION_DATE), THROMBOCYTE_EXPIRATION_DATE);
+                return WHOLE_EXPIRATION_DATE;
         }
         throw new RuntimeException("Invalid BloodCategory");
     }

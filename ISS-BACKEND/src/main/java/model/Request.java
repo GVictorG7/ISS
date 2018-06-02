@@ -31,6 +31,7 @@ public class Request implements Serializable {
     private BloodCategory bloodCategory;
 
     @Column(name = "blood_rh")
+    @Enumerated(EnumType.STRING)
     private BloodRH bloodRH;
 
     @Column(name = "blood_type")
@@ -43,7 +44,8 @@ public class Request implements Serializable {
     @Column(name = "status")
     @Enumerated(EnumType.STRING)
     private RequestStatus status;
-
+    @Column(name = "summary")
+    private String summary;
     @ManyToOne
     @JoinColumn(name = "doctor_id")
     private Doctor doctor;
@@ -58,6 +60,7 @@ public class Request implements Serializable {
         this.bloodType = bloodType;
         this.bloodQuantity = bloodQuantity;
         this.status = status;
+        this.summary = "";
         this.doctor = doctor;
     }
 
@@ -145,4 +148,11 @@ public class Request implements Serializable {
     }
 
 
+    public String getSummary() {
+        return summary;
+    }
+
+    public void setSummary(String summary) {
+        this.summary = summary;
+    }
 }
