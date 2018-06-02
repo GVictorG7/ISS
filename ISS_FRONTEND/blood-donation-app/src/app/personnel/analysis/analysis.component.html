@@ -1,5 +1,4 @@
 <app-menu></app-menu>
-<h1>Donatii</h1>
 <div>
   <table mat-table #table [dataSource]="dataSource" matSort>
 
@@ -18,7 +17,7 @@
       <td mat-cell *matCellDef="let element"> {{dateAsString(element.requestDate)}}</td>
     </ng-container>
     <ng-container matColumnDef="donor">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Donator</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Donor</th>
       <td mat-cell *matCellDef="let element"> {{element.donor.lastName}} {{element.donor.firstName}}</td>
     </ng-container>
     <!-- Weight Column -->

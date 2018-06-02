@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Request} from '../../core/model/Request';
 
 @Component({
@@ -8,6 +8,7 @@ import {Request} from '../../core/model/Request';
 })
 export class RequestSummaryComponent implements OnInit {
   @Input() request: Request;
+  @Output() closeRequestDetails = new EventEmitter<boolean>();
 
   constructor() {
   }
@@ -15,4 +16,11 @@ export class RequestSummaryComponent implements OnInit {
   ngOnInit() {
   }
 
+  dateAsString(requestDate) {
+    return `${requestDate.dayOfMonth} ${requestDate.month} ${requestDate.year}`;
+  }
+
+  close() {
+    this.closeRequestDetails.emit(false);
+  }
 }

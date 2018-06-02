@@ -22,7 +22,6 @@ import {DoctorDataComponent} from './register/doctor-data/doctor-data.component'
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {DonationDetailsComponent} from './donation-details/donation-details.component';
-import {DashboardComponent} from './dashboard/dashboard.component';
 
 @NgModule({
   imports: [
@@ -40,8 +39,6 @@ import {DashboardComponent} from './dashboard/dashboard.component';
     MatInputModule,
     MatSnackBarModule,
     MatStepperModule,
-    MatGridListModule,
-    MatCardModule,
     ReactiveFormsModule
 
 
@@ -54,7 +51,6 @@ import {DashboardComponent} from './dashboard/dashboard.component';
     PersonnelDataComponent,
     DoctorDataComponent,
     DonationDetailsComponent,
-    DashboardComponent
   ],
   exports: [
     MenuComponent,
@@ -64,7 +60,6 @@ import {DashboardComponent} from './dashboard/dashboard.component';
     DoctorDataComponent,
     UserDataComponent,
     DonationDetailsComponent,
-    DashboardComponent
   ]
 })
 export class SharedModule {

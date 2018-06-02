@@ -1,6 +1,5 @@
 import {ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
-import {ActivatedRoute, Router} from '@angular/router';
 import {DonorService} from '../donor.service';
 import {Donation} from '../../core/model/Donation';
 
@@ -23,9 +22,9 @@ export class DonationsComponent implements OnInit {
 
   tooltip: any = {disabled: false, message: ''};
 
+  donationForm: boolean;
+
   constructor(private service: DonorService,
-              private router: Router,
-              private activatedRoute: ActivatedRoute,
               private cdr: ChangeDetectorRef) {
   }
 
@@ -55,16 +54,16 @@ export class DonationsComponent implements OnInit {
   }
 
   newDonation() {
-    this.router.navigate(['../donation-form'], {relativeTo: this.activatedRoute});
+    this.donationForm = true;
   }
 
   showDetails(donation: Donation) {
-    if (this.details.donation && this.details.donation.requestDate === donation.requestDate) {
-      this.details.visible = !this.details.visible;
-    } else {
-      this.details.visible = true;
-      this.details.donation = donation;
-    }
+    this.details.visible = true;
+    this.details.donation = donation;
+  }
+
+  closeModal(event) {
+    this.details.visible = event;
   }
 
   private checkDate() {
@@ -81,6 +80,10 @@ export class DonationsComponent implements OnInit {
     }
     const valid = new Date().getMilliseconds() - new Date(date).getMilliseconds() > sixMonths;
     return {date, valid};
+  }
+
+  closeNewDonation(event) {
+    this.donationForm = event;
   }
 
   private checkOpen() {

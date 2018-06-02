@@ -32,20 +32,22 @@ export class MenuComponent implements OnInit {
   private getMenuItems(personType: string) {
     switch (personType) {
       case 'PERSONNEL': {
-        return [{title: 'Analize', path: 'personnel/analysis'},
-          {title: 'Cereri sange', path: 'personnel/blood-requests'}
+        return [{title: 'Dashboard', path: 'personnel/dashboard'},
+          {title: 'Donations analysis', path: 'personnel/analysis'},
+          {title: 'Blood requests', path: 'personnel/blood-requests'},
+          {title: 'Blood bank statistics', path: 'personnel/blood-bank'}
         ];
       }
       case 'DOCTOR': {
-        return [{title: 'Cereri sange', path: 'doctor/blood-requests'}
+        return [{title: 'Blood requests', path: 'doctor/blood-requests'}
         ];
       }
       case 'DONOR': {
-        return [{title: 'Donatii', path: 'donor/donations'}];
+        return [{title: 'Donations', path: 'donor/donations'}];
       }
       case 'ADMIN': {
-        return [{title: 'Spitale', path: 'administrator/hospitals'},
-          {title: 'Inregistrare conturi', path: 'administrator/accounts'}
+        return [{title: 'Hospitals', path: 'administrator/hospitals'},
+          {title: 'Accounts register', path: 'administrator/accounts'}
         ];
       }
 

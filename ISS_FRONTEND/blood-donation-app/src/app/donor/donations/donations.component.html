@@ -1,6 +1,6 @@
 <app-menu></app-menu>
 <div>
-  <table mat-table #table [dataSource]="dataSource" matSort>
+  <table class="mat-elevation-z15" mat-table #table [dataSource]="dataSource" matSort>
 
     <!--- Note that these columns can be defined in any order.
           The actual rendered columns are set as a property on the row definition" -->
@@ -45,10 +45,11 @@
   </mat-paginator>
 </div>
 <div *ngIf="details.visible">
-  <app-donation-details [donation]="details.donation"></app-donation-details>
+  <app-donation-details [donation]="details.donation" (closeModal)="closeModal(event)"></app-donation-details>
 </div>
 <div>
   <button mat-raised-button
+          class="action-button"
           [disabled]="tooltip.disabled"
           color="primary"
           (click)="newDonation()"
@@ -56,4 +57,7 @@
           matTooltipPosition="right"
   >Vreau sa donez!
   </button>
+  <div *ngIf="donationForm">
+    <app-donation-form (closeModal)="closeNewDonation(event)"></app-donation-form>
+  </div>
 </div>

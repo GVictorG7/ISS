@@ -1,5 +1,4 @@
 <app-menu></app-menu>
-<h1>Cereri de sange</h1>
 <div>
   <table mat-table #table [dataSource]="dataSource" matSort>
 
@@ -12,7 +11,7 @@
       <td mat-cell *matCellDef="let element"> {{requests.indexOf(element)+1}}</td>
     </ng-container>
     <ng-container matColumnDef="forPerson">
-      <th mat-header-cell *matHeaderCellDef> Pentru</th>
+      <th mat-header-cell *matHeaderCellDef> For</th>
       <td mat-cell *matCellDef="let element"> {{element.forPerson}}</td>
     </ng-container>
 
@@ -22,20 +21,20 @@
       <td mat-cell *matCellDef="let element"> {{dateAsString(element.requestDate)}}</td>
     </ng-container>
     <ng-container matColumnDef="bloodType">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Grupa de sange</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Blood type</th>
       <td mat-cell *matCellDef="let element"> {{element.bloodType}}</td>
     </ng-container>
     <ng-container matColumnDef="bloodCategory">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Stare</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Blood category</th>
       <td mat-cell *matCellDef="let element"> {{element.bloodCategory}}</td>
     </ng-container>
     <!-- Weight Column -->
     <ng-container matColumnDef="bloodRh">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> RH</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Blood RH</th>
       <td mat-cell *matCellDef="let element"> {{element.bloodRH}}</td>
     </ng-container>
     <ng-container matColumnDef="bloodQuantity">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Cantitate</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Quantity</th>
       <td mat-cell *matCellDef="let element"> {{element.bloodQuantity}}</td>
     </ng-container>
     <ng-container matColumnDef="status">

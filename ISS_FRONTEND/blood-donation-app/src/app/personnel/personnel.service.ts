@@ -35,6 +35,14 @@ export class PersonnelService {
   }
 
   sendMails(strings: string[]) {
-    return this.http.post<any>(`${this.api}/notifyall`, strings, httpOptions);
+    return this.http.post<any>(`${this.api}/notify/donors/mail`, strings, httpOptions);
+  }
+
+  getCounterDonation() {
+    return this.http.get(`${this.api}/donation/openDonationsCounter`);
+  }
+
+  getCounterRequest() {
+    return this.http.get(`${this.api}/donation/openDonationsCounter`);
   }
 }

@@ -3,11 +3,23 @@
      Every toolbar row uses a flexbox row layout. */
   flex: 1 1 auto;
 }
-a, a:active,a:visited{
+
+a, a:active, a:visited {
   text-decoration: none;
-  color:white;
+  color: white;
   padding-right: 8px;
+  margin-right: 10px;
+  border-right: 1px solid white;
 }
-.logout-menu{
+
+mat-nav-list :last-child {
+  border-right: 0;
+}
+
+.app-name {
+  border-right: 0;
+}
+
+.logout-menu {
   color: black;
 }

@@ -1,6 +1,5 @@
 import {ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
-import {ActivatedRoute, Router} from '@angular/router';
 import {DoctorService} from '../doctor.service';
 import {Request} from '../../core/model/Request';
 
@@ -36,7 +35,7 @@ export class BloodRequestsComponent implements OnInit {
   }
 
   newRequest() {
-    this.visibleNew = !this.visibleNew;
+    this.visibleNew = true;
   }
 
   viewChanged(event) {
@@ -45,6 +44,10 @@ export class BloodRequestsComponent implements OnInit {
 
   dateAsString(requestDate) {
     return `${requestDate.dayOfMonth} ${requestDate.month} ${requestDate.year}`;
+  }
+
+  closeRequestDetails(event) {
+    this.visibleDetails = event;
   }
 
   showSummary(request) {

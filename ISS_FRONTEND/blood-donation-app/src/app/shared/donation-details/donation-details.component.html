@@ -1,16 +1,27 @@
-<div>
-  <h1>
-    Rezultate analize
-  </h1>
-  <b>
-    Grupa de sange: {{donation.bloodType}} <br>
-    RH: {{donation.bloodRH}}
-  </b>
-  <div *ngIf="donation.status === 'REJECTED'">
-    <b>Probleme de sanatat: <br>
-      <ul>
-        <li *ngFor="let healthIssue of donation.healthIssues">{{healthIssue}}</li>
-      </ul>
+<div class="my-modal">
+
+  <div class="modal-content">
+    <button class="x-button" mat-button (click)="close()">X</button>
+    <div align="center">
+      <h1 *ngIf="donation.status=='ACCEPTED'">Thank you for your donation,
+        {{donation.donor.firstName}}!
+      </h1>
+      <h1 *ngIf="donation.status=='REJECTED'">Sorry for the results,
+        {{donation.donor.firstName}}!
+      </h1>
+    </div>
+    <br><br>
+    <b>
+      Collection date: {{dateAsString(donation.collectionDate)}} <br><br>
+      Blood type: {{donation.bloodType}} <br><br>
+      Blood RH: {{donation.bloodRH}}
     </b>
+    <div *ngIf="donation.status === 'REJECTED'">
+      <b>Health issues: <br>
+        <ul>
+          <li *ngFor="let healthIssue of donation.healthIssues">{{healthIssue}}</li>
+        </ul>
+      </b>
+    </div>
   </div>
 </div>

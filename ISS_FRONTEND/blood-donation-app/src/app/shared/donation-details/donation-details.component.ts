@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Donation} from '../../core/model/Donation';
 
 @Component({
@@ -8,11 +8,20 @@ import {Donation} from '../../core/model/Donation';
 })
 export class DonationDetailsComponent implements OnInit {
   @Input() donation: Donation;
+  @Output() closeModal = new EventEmitter<boolean>();
 
   constructor() {
   }
 
   ngOnInit() {
+  }
+
+  close() {
+    this.closeModal.emit(false);
+  }
+
+  dateAsString(requestDate) {
+    return `${requestDate.dayOfMonth} ${requestDate.month} ${requestDate.year}`;
   }
 
 }

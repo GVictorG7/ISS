@@ -5,8 +5,7 @@ import {DonationFormComponent} from './donation-form/donation-form.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'donations'},
-  {path: 'donations', component: DonationsComponent},
-  {path: 'donation-form', component: DonationFormComponent}
+  {path: 'donations', component: DonationsComponent}
 ];
 
 @NgModule({

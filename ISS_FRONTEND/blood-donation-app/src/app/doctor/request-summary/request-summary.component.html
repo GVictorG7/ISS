@@ -1,4 +1,11 @@
-<div>
-  Pentru pacientul: {{request.forPerson}}<br>
-  Detalii:{{request.summary}}
+<div class="my-modal">
+  <div class="modal-content">
+    <button class="x-button" mat-button (click)="close()">X</button>
+    <h1 align="center">Request details</h1><br><br>
+    <b>
+      Request date: {{dateAsString(request.requestDate)}} <br><br>
+      Patient: {{request.forPerson}}<br><br>
+      Summary: {{request.summary || 'Thank you for you patience !'}}
+    </b>
+  </div>
 </div>
