@@ -1,9 +1,7 @@
 package services.interfaces;
 
-import model.Blood;
-import model.BloodCategory;
-import model.BloodRH;
-import model.BloodType;
+import controllers.formatters.BloodCounterTypes;
+import model.*;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -16,4 +14,6 @@ public interface IBloodService {
     List<Blood> getAll();
 
     Blood findById(Long id);
+
+    BloodCounterTypes getBloodCounter();
 }
