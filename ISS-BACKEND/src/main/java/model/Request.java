@@ -108,8 +108,8 @@ public class Request implements Serializable {
         return bloodRH;
     }
 
-    public void setBloodRH(BloodRH bloodRh) {
-        this.bloodRH = bloodRh;
+    public void setBloodRH(BloodRH bloodRH) {
+        this.bloodRH = bloodRH;
     }
 
     public BloodType getBloodType() {
