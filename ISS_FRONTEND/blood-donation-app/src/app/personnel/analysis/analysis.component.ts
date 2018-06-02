@@ -32,16 +32,16 @@ export class AnalysisComponent implements OnInit {
   }
 
   showDetails(donation: Donation) {
-    if (this.details.donation && this.details.donation.requestdate === donation.requestDate) {
-      this.details.visible = !this.details.visible;
-    } else {
-      this.details.visible = true;
-      this.details.donation = JSON.parse(JSON.stringify(donation));
-    }
+    this.details.visible = true;
+    this.details.donation = JSON.parse(JSON.stringify(donation));
   }
 
   dateAsString(requestDate) {
     return `${requestDate.dayOfMonth} ${requestDate.month} ${requestDate.year}`;
+  }
+
+  closeModal(event) {
+    this.details.visible = event;
   }
 
 }

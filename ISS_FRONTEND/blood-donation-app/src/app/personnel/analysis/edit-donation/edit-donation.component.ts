@@ -1,4 +1,4 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
 import {Donation} from '../../../core/model/Donation';
 import {PersonnelService} from '../../personnel.service';
 import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
@@ -10,6 +10,7 @@ import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/form
 })
 export class EditDonationComponent implements OnInit, OnDestroy {
   @Input() donation: Donation;
+  @Output() closeCompleteDonation = new EventEmitter<boolean>();
   statuses: any[] = ['OPEN', 'ACCEPTED', 'REJECTED'];
   healthIssues: string[];
   types = ['O', 'A', 'B', 'AB'];
@@ -45,5 +46,9 @@ export class EditDonationComponent implements OnInit, OnDestroy {
       }
       return null;
     };
+  }
+
+  close() {
+    this.closeCompleteDonation.emit(false);
   }
 }
