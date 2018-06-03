@@ -44,4 +44,11 @@ export class AnalysisComponent implements OnInit {
     this.details.visible = event;
   }
 
+  updateTable(event) {
+    if (event) {
+      const index = this.donations.findIndex(donation => donation.id === this.details.donation.id);
+      this.donations = this.donations.splice(index, 1, this.details.donation);
+      this.cdr.detectChanges();
+    }
+  }
 }

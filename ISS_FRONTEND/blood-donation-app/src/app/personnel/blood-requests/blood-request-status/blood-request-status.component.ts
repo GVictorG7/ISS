@@ -1,6 +1,6 @@
 import {AfterViewInit, ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {Donor} from '../../../core/model/Donor';
-import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
+import {MatPaginator, MatSnackBar, MatSort, MatTableDataSource} from '@angular/material';
 import {SelectionModel} from '@angular/cdk/collections';
 import {PersonnelService} from '../../personnel.service';
 
@@ -18,7 +18,7 @@ export class BloodRequestStatusComponent implements OnInit, AfterViewInit {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor(private service: PersonnelService, private cdr: ChangeDetectorRef) {
+  constructor(private service: PersonnelService, private cdr: ChangeDetectorRef, private snackBar: MatSnackBar) {
   }
 
   ngOnInit() {
@@ -47,7 +47,14 @@ export class BloodRequestStatusComponent implements OnInit, AfterViewInit {
 
   sendMails() {
     this.service.sendMails(this.selection.selected.map(donor => donor.email)).subscribe(
-      () => this.close()
+      () => {
+        this.snackBar.open('Donors notified succesfully!', 'Ok', {duration: 3000});
+        this.close();
+      },
+      () => {
+        this.snackBar.open('Something went wrong. Sorry!', 'Ok', {duration: 3000});
+        this.close();
+      }
     );
   }
 

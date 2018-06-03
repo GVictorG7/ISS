@@ -43,6 +43,10 @@
                  [pageSizeOptions]="[5, 10, 20]"
                  [showFirstLastButtons]="true">
   </mat-paginator>
-  <app-edit-donation *ngIf="details.visible" [donation]="details.donation" (closeCompleteDonation)="closeModal(event)"></app-edit-donation>
+  <app-edit-donation *ngIf="details.visible"
+                     [donation]="details.donation"
+                     (closeCompleteDonation)="closeModal(event)"
+                      (donationEdited)="updateTable(event)"
+  ></app-edit-donation>
 </div>
 

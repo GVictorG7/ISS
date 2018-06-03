@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {DoctorService} from '../doctor.service';
 import {Request} from '../../core/model/Request';
 import {AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators} from '@angular/forms';
+import {MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-new-blood-request',
@@ -18,7 +19,7 @@ export class NewBloodRequestComponent implements OnInit {
 
   formGroup: FormGroup;
 
-  constructor(private service: DoctorService, private formBuilder: FormBuilder) {
+  constructor(private service: DoctorService, private formBuilder: FormBuilder, private snackBar: MatSnackBar) {
   }
 
   ngOnInit() {
@@ -34,7 +35,11 @@ export class NewBloodRequestComponent implements OnInit {
 
   saveRequest() {
     this.service.newRequest(this.request).subscribe(
-      () => this.viewChanged.emit(false)
+      () => {
+        this.viewChanged.emit(false);
+        this.snackBar.open('Request saved succesfully!', 'Ok', {duration: 3000});
+      },
+      () => this.snackBar.open('Sorry. We couldn\'t save the request!', 'Dismiss', {duration: 3000})
     );
   }
 
