@@ -18,6 +18,9 @@ public interface BloodRepository extends JpaRepository<Blood, Long> {
     @Transactional
     Blood save(Blood blood);
 
+    @Query("select b from Blood b where b.expireDate>current_date and b.used=false")
+    List<Blood> findAllValid();
+
     Blood deleteById(Long id);
 
     @Query("select b from Blood b where b.bloodCategory=?1 and b.bloodRh=?2 and b.bloodType=?3 and b.used=false and b.expireDate>current_date")

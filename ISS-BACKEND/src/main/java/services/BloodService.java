@@ -52,7 +52,7 @@ public class BloodService implements IBloodService {
     public BloodCounterTypes getBloodCounter() {
         BloodCounterTypes bloodCounterTypes = new BloodCounterTypes();
 
-        List<Blood> bloodList = this.getAll();
+        List<Blood> bloodList = bloodRepository.findAllValid();
         for (Blood blood : bloodList) {
             switch (blood.getBloodType()) {
                 case O:

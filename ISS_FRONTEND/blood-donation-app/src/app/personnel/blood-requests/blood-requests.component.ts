@@ -11,7 +11,7 @@ import {Donor} from '../../core/model/Donor';
 })
 export class BloodRequestsComponent implements OnInit {
   requests: any[];
-  displayedColumns = ['position', 'requestDate', 'forPerson', 'bloodCategory', 'bloodType', 'bloodRh', 'bloodQuantity', 'status', 'actions'];
+  displayedColumns = ['position', 'requestDate', 'priority', 'forPerson', 'bloodCategory', 'bloodType', 'bloodRh', 'bloodQuantity', 'status', 'actions'];
   dataSource = new MatTableDataSource<any>(this.requests);
   visible = false;
   eligibleDonors: Donor[];

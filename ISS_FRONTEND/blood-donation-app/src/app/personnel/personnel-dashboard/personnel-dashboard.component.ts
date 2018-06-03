@@ -12,14 +12,14 @@ export class PersonnelDashboardComponent implements OnInit {
       title: 'New donations',
       cols: 1,
       rows: 1,
-      imageUrl: 'https://png.kisspng.com/20180331/jhq/kisspng-heart-rate-blood-donation-pulse-donation-blood-5abf4b58afa173.0345391415224861047194.png',
+      imageUrl: 'assets/personnel/dashboard/new-donation.png',
       counter: 2
     },
     {
       title: 'New blood requests',
       cols: 1,
       rows: 1,
-      imageUrl: 'https://cdn0.iconfinder.com/data/icons/hand-color/100/Hand__5-512.png',
+      imageUrl: 'assets/personnel/dashboard/new-blood-request.png',
       counter: 7
     }
   ];
