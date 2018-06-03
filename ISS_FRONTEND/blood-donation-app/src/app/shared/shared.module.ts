@@ -22,6 +22,7 @@ import {DoctorDataComponent} from './register/doctor-data/doctor-data.component'
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {DonationDetailsComponent} from './donation-details/donation-details.component';
+import {BannerComponent} from './banner/banner.component';
 
 @NgModule({
   imports: [
@@ -51,6 +52,7 @@ import {DonationDetailsComponent} from './donation-details/donation-details.comp
     PersonnelDataComponent,
     DoctorDataComponent,
     DonationDetailsComponent,
+    BannerComponent,
   ],
   exports: [
     MenuComponent,
@@ -60,6 +62,7 @@ import {DonationDetailsComponent} from './donation-details/donation-details.comp
     DoctorDataComponent,
     UserDataComponent,
     DonationDetailsComponent,
+    BannerComponent
   ]
 })
 export class SharedModule {

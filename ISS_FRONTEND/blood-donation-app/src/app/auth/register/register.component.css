@@ -1,8 +1,11 @@
-.example-container {
-  display: flex;
-  flex-direction: column;
+.indent{
+  padding-top: 20px;
+  padding-left:30%;
 }
 
-.example-container > * {
-  width: 100%;
+mat-form-field{
+  width: 20%;
+}
+button{
+  margin-left: 2%;
 }

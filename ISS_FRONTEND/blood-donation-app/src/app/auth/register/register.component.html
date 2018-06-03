@@ -1,5 +1,6 @@
-<div class="example-container">
-  <app-menu></app-menu>
+<app-menu></app-menu>
+<app-banner></app-banner>
+<div class="indent">
   <mat-vertical-stepper #stepper [linear]="true">
     <mat-step [stepControl]="formGroup">
       <form [formGroup]="formGroup">
@@ -11,6 +12,7 @@
                  formControlName="username"
           >
         </mat-form-field>
+        <br>
         <mat-form-field>
           <input matInput placeholder="Parola"
                  type="password"
@@ -25,6 +27,5 @@
       <app-donor-data [donor]="donor" [formValidation]="dataFormGroup"></app-donor-data>
     </mat-step>
   </mat-vertical-stepper>
-  <button mat-button color="primary" (click)="register()">Inregistreaza-te!</button>
-
+  <button mat-raised-button color="primary" (click)="register()">Inregistreaza-te!</button>
 </div>
