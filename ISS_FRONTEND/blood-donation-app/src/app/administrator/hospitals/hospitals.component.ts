@@ -2,7 +2,7 @@ import {ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
 import {Hospital} from '../../core/model/Hospital';
 import {AdministratorService} from '../administrator.service';
 import {checkCompleted} from '../../shared/utils/utils';
-import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
+import {MatPaginator, MatSnackBar, MatSort, MatTableDataSource} from '@angular/material';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
@@ -21,7 +21,10 @@ export class HospitalsComponent implements OnInit {
 
   formGroup: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private adminService: AdministratorService, private cdr: ChangeDetectorRef) {
+  constructor(private snackBar: MatSnackBar,
+              private formBuilder: FormBuilder,
+              private adminService: AdministratorService,
+              private cdr: ChangeDetectorRef) {
   }
 
   ngOnInit() {
@@ -37,17 +40,15 @@ export class HospitalsComponent implements OnInit {
 
 
   newHospital() {
-    if (checkCompleted(this.hospital)) {
-      this.adminService.saveHospitals(this.hospital).subscribe(
-        () => {
-          this.hospitals.push(JSON.parse(JSON.stringify(this.hospital)));
-          this.hospitals = [...this.hospitals];
-          this.cdr.detectChanges();
-        }
-      );
-    } else {
-      console.log('completeaza campurile');
-    }
+    this.adminService.saveHospitals(this.hospital).subscribe(
+      () => {
+        this.snackBar.open('Hospital saved succesfully!', 'Ok', {duration: 3000});
+        this.hospitals.push(JSON.parse(JSON.stringify(this.hospital)));
+        this.hospitals = [...this.hospitals];
+        this.cdr.detectChanges();
+      },
+      (err) => this.snackBar.open('Hospital save succesfully!', 'Ok', {duration: 3000})
+    );
   }
 
   private buildForm() {

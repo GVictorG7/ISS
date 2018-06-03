@@ -1,5 +1,5 @@
 <app-menu></app-menu>
-<table mat-table #table [dataSource]="dataSource" matSort>
+<table class="mat-elevation-z15" mat-table #table [dataSource]="dataSource" matSort>
 
   <!--- Note that these columns can be defined in any order.
         The actual rendered columns are set as a property on the row definition" -->
@@ -41,6 +41,7 @@
              formControlName="name"
       >
     </mat-form-field>
+    <br>
     <mat-form-field>
       <input matInput placeholder="Adresa"
              [(ngModel)]="hospital.address"

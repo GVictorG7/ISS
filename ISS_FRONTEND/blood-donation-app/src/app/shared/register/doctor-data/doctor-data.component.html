@@ -14,6 +14,7 @@
              required
       >
     </mat-form-field>
+    <br>
     <mat-form-field>
       <mat-select placeholder="Spital" [(value)]="doctor.hospitalId" [formControl]="hValidator">
         <mat-option *ngFor="let hospital of hospitals " [value]="hospital.id">
