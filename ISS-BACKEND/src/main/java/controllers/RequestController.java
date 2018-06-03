@@ -64,11 +64,15 @@ public class RequestController {
         return requestService.getAllRequestsByDoctor(doctor);
     }
 
-    @GetMapping(value = "/getRequestsOpen")
+    @GetMapping(value = "/getRequestsOpenCounter")
     public int getAllRequestsByStatusOpen(HttpServletResponse response) {
-        return requestService.getAllRequestsByStatus(RequestStatus.OPEN).size();
+        return requestService.getAllRequestsByStatus();
     }
 
+    @GetMapping(value = "/getRequestsOpen")
+    public List<Request> getAllRequestsByStatusOpenINPROGRESS(HttpServletResponse response) {
+        return requestService.findAllNotDone();
+    }
     // done by Personnel
     @PostMapping(value = "/modifyRequest")
     public List<Donor> modifyRequest(@Valid @RequestBody ModifiedRequestFields modifiedRequestFields, HttpServletResponse response) {

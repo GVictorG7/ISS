@@ -11,8 +11,6 @@ public interface IRequestService {
 
     List<Request> getAllRequest();
 
-    List<Request> getAllRequestsByStatus(RequestStatus status);
-
     List<Request> getAllRequestsByDoctor(Doctor doctor);
 
     Doctor getDoctor(Long id);
@@ -21,9 +19,13 @@ public interface IRequestService {
 
     List<Blood> getAll();
 
-    Blood findDesireBlood(BloodType bloodType, BloodRH bloodRH, BloodCategory bloodCategory,int bloodQuantity);
+    Blood findDesireBlood(BloodType bloodType, BloodRH bloodRH, BloodCategory bloodCategory, int bloodQuantity);
 
     Blood saveSeparatedBlood(Blood blood, BloodCategory bloodCategory);
 
     List<Donor> getCopatibleDonors(BloodType bloodType, BloodRH bloodRh);
+
+    List<Request> findAllNotDone();
+
+    int getAllRequestsByStatus();
 }

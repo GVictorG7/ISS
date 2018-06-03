@@ -79,6 +79,6 @@ public class DonationController {
 
     @GetMapping(value = "/openDonationsCounter")
     public int getAllOpenDonationsCounter() {
-        return donationService.getAllOpenDonations().size();
+        return donationService.getAllOpenDonationsCounter();
     }
 }

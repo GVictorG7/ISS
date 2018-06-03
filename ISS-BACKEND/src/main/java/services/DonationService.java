@@ -123,7 +123,10 @@ public class DonationService implements IDonationService {
         return donationRepository.getAllByStatus(DonationStatus.OPEN);
     }
 
-
+    @Override
+    public int getAllOpenDonationsCounter() {
+        return donationRepository.findAllByStatusOpne();
+    }
 
 
 }

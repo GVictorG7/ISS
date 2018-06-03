@@ -7,6 +7,7 @@ import model.BloodType;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 
@@ -14,7 +15,7 @@ public interface BloodRepository extends JpaRepository<Blood, Long> {
     Blood getById(Long id);
 
     List<Blood> findAll();
-
+    @Transactional
     Blood save(Blood blood);
 
     Blood deleteById(Long id);
