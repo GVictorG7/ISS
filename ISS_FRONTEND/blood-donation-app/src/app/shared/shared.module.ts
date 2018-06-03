@@ -23,6 +23,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {DonationDetailsComponent} from './donation-details/donation-details.component';
 import {BannerComponent} from './banner/banner.component';
+import {NgxSpinnerModule} from 'ngx-spinner';
 
 @NgModule({
   imports: [
@@ -40,6 +41,7 @@ import {BannerComponent} from './banner/banner.component';
     MatInputModule,
     MatSnackBarModule,
     MatStepperModule,
+    NgxSpinnerModule,
     ReactiveFormsModule
 
 
