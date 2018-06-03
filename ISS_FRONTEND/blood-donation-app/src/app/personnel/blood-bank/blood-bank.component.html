@@ -1,0 +1,18 @@
+<app-menu></app-menu>
+<div class="grid-container ">
+  <mat-grid-list cols="4" rowHeight="350px">
+    <mat-grid-tile *ngFor="let card of cards" [colspan]="card.cols" [rowspan]="card.rows">
+      <mat-card class="dashboard-card mat-elevation-z14">
+        <mat-card-content class="dashboard-card-content">
+          <div><img src="{{card.imageUrl}}"><br>
+            <b>WHOLE: {{card.whole}}<br>
+              PLASMA: {{card.plasma}}<br>
+              REDCELL: {{card.redcell}}<br>
+              THROMBOCYTE: {{card.thrombocyte}}
+            </b>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

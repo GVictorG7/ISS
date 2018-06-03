@@ -45,4 +45,8 @@ export class PersonnelService {
   getCounterRequest() {
     return this.http.get(`${this.api}/donation/openDonationsCounter`);
   }
+
+  getBloodCounter() {
+    return this.http.get(`${this.api}/blood/getCounter`);
+  }
 }
