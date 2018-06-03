@@ -26,5 +26,7 @@ public interface IDonationService {
 
     List<Donation> getAllOpenDonations();
 
+    int getAllOpenDonationsCounter();
+
 
 }

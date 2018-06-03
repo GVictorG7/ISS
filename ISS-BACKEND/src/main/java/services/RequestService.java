@@ -46,8 +46,8 @@ public class RequestService implements IRequestService {
     }
 
     @Override
-    public List<Request> getAllRequestsByStatus(RequestStatus status) {
-        return requestRepository.findAllByStatus(status);
+    public int getAllRequestsByStatus() {
+        return requestRepository.findAllByStatusOpne();
     }
 
     @Override
@@ -99,6 +99,7 @@ public class RequestService implements IRequestService {
                     saveSeparatedBlood(bloodNotSeparted, bloodCategory);
 
                 }
+                return bloodNotSeparted;
             }
             else
                 return bloodNotSeparted;
@@ -120,11 +121,14 @@ public class RequestService implements IRequestService {
         Blood bloodWithThrombocyteCategory = new Blood(blood.getBloodType(), blood.getBloodRH(), BloodCategory.THROMBOCYTE, blood.getUsed(), LocalDate.now().plusDays(Blood.getDaysToExpire(BloodCategory.THROMBOCYTE)));
         Blood bloodWithPlasmaCategory = new Blood(blood.getBloodType(), blood.getBloodRH(), BloodCategory.PLASMA, blood.getUsed(), LocalDate.now().plusDays(Blood.getDaysToExpire(BloodCategory.PLASMA)));
         blood.setUsed(true);
-
+        bloodRepository.delete(blood);
         bloodRepository.save(blood);
-
+//        bloodRepository.save(bloodWithRedCellCategory);
+//        bloodRepository.save(bloodWithPlasmaCategory);
+//        bloodRepository.save(bloodWithThrombocyteCategory);
         if (bloodCategory.equals(BloodCategory.PLASMA)) {
             bloodWithPlasmaCategory.setUsed(true);
+//            bloodRepository.save(bloodWithPlasmaCategory);
             bloodRepository.save(bloodWithRedCellCategory);
             bloodRepository.save(bloodWithThrombocyteCategory);
             bloodRepository.save(bloodWithPlasmaCategory);
@@ -132,12 +136,14 @@ public class RequestService implements IRequestService {
 
         } else if (bloodCategory.equals(BloodCategory.REDCELL)) {
             bloodWithRedCellCategory.setUsed(true);
+            bloodRepository.save(bloodWithRedCellCategory);
             bloodRepository.save(bloodWithThrombocyteCategory);
             bloodRepository.save(bloodWithPlasmaCategory);
             bloodRepository.save(bloodWithRedCellCategory);
             return bloodWithRedCellCategory;
         } else {
             bloodWithThrombocyteCategory.setUsed(true);
+//            bloodRepository.save(bloodWithThrombocyteCategory);
             bloodRepository.save(bloodWithRedCellCategory);
             bloodRepository.save(bloodWithPlasmaCategory);
             bloodRepository.save(bloodWithThrombocyteCategory);
@@ -160,6 +166,11 @@ public class RequestService implements IRequestService {
             donorsList.add(donor);
 
         return donorsList;
+    }
+
+    @Override
+    public List<Request> findAllNotDone() {
+        return requestRepository.findAllNotDone();
     }
 //        }
 
