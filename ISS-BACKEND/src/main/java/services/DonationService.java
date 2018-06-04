@@ -80,11 +80,6 @@ public class DonationService implements IDonationService {
             donation.setHealthIssues(healthIssues);
             donationRepository.save(donation);
             bloodRepository.save(blood);
-            if(!forPerson.isEmpty()){
-                Request request=requestRepository.findFirstByForPerson(forPerson);
-                request.setPriority(RequestPriority.HIGH);
-                requestRepository.save(request);
-            }
         } else if (status.equals(DonationStatus.REJECTED)) {
             Donation donation = getById(idDonatie);
             donation.setCollectionDate(null);
