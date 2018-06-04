@@ -16,6 +16,7 @@ export class AccountsComponent implements OnInit {
   person: any = {id: 0};
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
+
   constructor(private adminService: AdministratorService, private snackBar: MatSnackBar, private router: Router) {
   }
 
@@ -31,11 +32,14 @@ export class AccountsComponent implements OnInit {
           this.user.id = userId;
           this.person.userId = userId;
           this.adminService.register(this.person, this.user.userType).subscribe(
-            () => this.router.navigateByUrl('home'),
-            () => this.snackBar.open('Date personale completate gresit!', 'Ok', {duration: 1000})
+            () => {
+              this.snackBar.open('Saved succesfully!', 'Ok', {duration: 3000});
+              this.router.navigateByUrl('home');
+            },
+            () => this.snackBar.open('Fields completed wrong!', 'Ok', {duration: 3000})
           );
         },
-        () => this.snackBar.open('Nume de utilizator deja folosit!', 'Ok', {duration: 1000})
+        () => this.snackBar.open('Username already in use !', 'Ok', {duration: 3000})
       );
     }
   }

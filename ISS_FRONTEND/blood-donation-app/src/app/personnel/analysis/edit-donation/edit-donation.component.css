@@ -18,13 +18,15 @@
   margin: auto;
   padding: 20px;
   border: 1px solid #888;
-  height: 60%;
+  height: auto;
   width: 30%;
   min-height: 400px;
 }
-mat-form-field{
+
+mat-form-field {
   margin-left: 10px;
 }
+
 button {
   margin-right: 3px;
 }
@@ -33,7 +35,8 @@ button {
   top: 50px;
   text-align: right;
 }
-.x-button{
+
+.x-button {
   margin-left: 85%;
-  margin-right:0;
+  margin-right: 0;
 }

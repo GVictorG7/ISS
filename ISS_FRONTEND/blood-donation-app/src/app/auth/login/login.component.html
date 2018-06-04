@@ -1,7 +1,6 @@
 <app-menu></app-menu>
 <app-banner></app-banner>
 <form [formGroup]="formGroup">
-  <div class="login">
     <div class="login-box">
       <h4>Login</h4>
       <br>
@@ -17,7 +16,6 @@
       <button [disabled]="formGroup.invalid" mat-raised-button color="primary"
               (click)="login(username.value,password.value)">Login</button>
       </span>
-    </div>
   </div>
 
 </form>

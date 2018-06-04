@@ -13,14 +13,16 @@ export class PersonnelDashboardComponent implements OnInit {
       cols: 1,
       rows: 1,
       imageUrl: 'assets/personnel/dashboard/new-donation.png',
-      counter: 2
+      counter: 2,
+      redirect: 'personnel/analysis'
     },
     {
       title: 'New blood requests',
       cols: 1,
       rows: 1,
       imageUrl: 'assets/personnel/dashboard/new-blood-request.png',
-      counter: 7
+      counter: 7,
+      redirect: 'personnel/blood-requests'
     }
   ];
 
