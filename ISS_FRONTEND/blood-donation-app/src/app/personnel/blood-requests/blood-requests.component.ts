@@ -36,7 +36,7 @@ export class BloodRequestsComponent implements OnInit {
 
   accept(request: Request) {
     this.service.acceptRequest(request).subscribe(
-      () => this.snackBar.open('Cerere aprobata!', 'Ok', {duration: 3000}),
+      () => this.snackBar.open('Request accepted successfully!', 'Ok', {duration: 3000}),
       (donors) => {
         this.eligibleDonors = donors.error;
         this.visible = true;

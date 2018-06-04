@@ -47,7 +47,7 @@ export class HospitalsComponent implements OnInit {
         this.hospitals = [...this.hospitals];
         this.cdr.detectChanges();
       },
-      (err) => this.snackBar.open('Hospital save succesfully!', 'Ok', {duration: 3000})
+      (err) => this.snackBar.open('Something went wrong. Sorry!', 'Ok', {duration: 3000})
     );
   }
 

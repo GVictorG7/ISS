@@ -39,13 +39,13 @@ export class DonationsComponent implements OnInit {
         if (this.checkOpen()) {
           this.tooltip = {
             disabled: true,
-            message: `Aveti donatii in asteptare`
+            message: `You have pending donation to complete`
           };
         } else {
           const result = this.checkDate();
           result.valid ? this.tooltip.disabled = false : this.tooltip = {
             disabled: true,
-            message: `Trebuie sa treaca 6 luni dupa ultima donatie(${this.dateAsString(result.date)})`
+            message: `6 months have to pass after the last donation(${this.dateAsString(result.date)})`
           };
         }
       }

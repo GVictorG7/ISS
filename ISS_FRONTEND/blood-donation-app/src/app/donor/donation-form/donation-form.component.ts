@@ -41,11 +41,11 @@ export class DonationFormComponent implements OnInit {
     if (checkCompleted(this.donationForm)) {
       this.service.saveDonation(this.donationForm).subscribe(
         () => {
-          this.snackBar.open('Salvat cu succes', 'Ok', {duration: 3000});
+          this.snackBar.open('Saved!', 'Ok', {duration: 3000});
           this.router.navigateByUrl('');
         });
     } else {
-      this.snackBar.open('Date completate gresit!', 'Ok', {duration: 3000});
+      this.snackBar.open('Fields completed incorrectly!', 'Ok', {duration: 3000});
     }
   }
 

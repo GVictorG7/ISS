@@ -25,7 +25,7 @@ export class AccountsComponent implements OnInit {
 
   saveAccount() {
     if (!checkCompleted(this.user) || !checkCompleted(this.person)) {
-      this.snackBar.open('Date completate gresit!', 'Ok', {duration: 1000});
+      this.snackBar.open('Fields completed incorrectly!', 'Ok', {duration: 1000});
     } else {
       this.adminService.checkAccount(this.user).subscribe(
         (userId) => {

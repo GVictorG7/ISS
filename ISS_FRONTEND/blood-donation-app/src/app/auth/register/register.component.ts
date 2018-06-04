@@ -34,18 +34,21 @@ export class RegisterComponent implements OnInit {
 
   register() {
     if (!checkCompleted(this.user) || !checkCompleted(this.donor)) {
-      this.snackBar.open('Date completate gresit!', 'Ok', {duration: 1000});
+      this.snackBar.open('Fields completed incorrectly!', 'Ok', {duration: 3000});
     } else {
       this.authService.checkAccount(this.user).subscribe(
         (userId) => {
           this.user.id = userId;
           this.donor.userId = userId;
           this.authService.register(this.donor, this.user.userType).subscribe(
-            () => this.router.navigateByUrl('home'),
-            () => this.snackBar.open('Date personale completate gresit!', 'Ok', {duration: 1000})
+            () => {
+              this.snackBar.open('Account created! Please login!', 'Ok', {duration: 3000});
+              this.router.navigateByUrl('home');
+            },
+            () => this.snackBar.open('Fields completed incorrectly!', 'Ok', {duration: 3000})
           );
         },
-        () => this.snackBar.open('Nume de utilizator deja folosit!', 'Ok', {duration: 1000})
+        () => this.snackBar.open('Username taken!', 'Ok', {duration: 3000})
       );
     }
   }
