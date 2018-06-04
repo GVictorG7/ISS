@@ -6,26 +6,27 @@ import org.springframework.stereotype.Service;
 import repositories.BloodRepository;
 import repositories.DonationRepository;
 import repositories.DonorRepository;
+import repositories.RequestRepository;
 import services.interfaces.IDonationService;
 
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Set;
 
-import static controllers.formatters.HasDateFormat.dateFormat;
-
 @Service
 public class DonationService implements IDonationService {
     private final DonationRepository donationRepository;
     private final DonorRepository donorRepository;
     private final BloodRepository bloodRepository;
+    private final RequestRepository requestRepository;
 
 
     @Autowired
-    public DonationService(DonationRepository donationRepository, DonorRepository donorRepository, BloodRepository bloodRepository, BloodRepository bloodRepository1) {
+    public DonationService(DonationRepository donationRepository, DonorRepository donorRepository, BloodRepository bloodRepository, BloodRepository bloodRepository1, RequestRepository requestRepository) {
         this.donationRepository = donationRepository;
         this.donorRepository = donorRepository;
         this.bloodRepository = bloodRepository1;
+        this.requestRepository = requestRepository;
     }
 
     @Override
@@ -48,6 +49,7 @@ public class DonationService implements IDonationService {
                 bloodRH,
                 bloodType,
                 healthIssues));
+
     }
 
 
@@ -78,6 +80,11 @@ public class DonationService implements IDonationService {
             donation.setHealthIssues(healthIssues);
             donationRepository.save(donation);
             bloodRepository.save(blood);
+            if(!forPerson.isEmpty()){
+                Request request=requestRepository.findFirstByForPerson(forPerson);
+                request.setPriority(RequestPriority.HIGH);
+                requestRepository.save(request);
+            }
         } else if (status.equals(DonationStatus.REJECTED)) {
             Donation donation = getById(idDonatie);
             donation.setCollectionDate(null);

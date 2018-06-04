@@ -71,6 +71,7 @@ public class RequestController {
 
     @GetMapping(value = "/getRequestsOpen")
     public List<Request> getAllRequestsByStatusOpenINPROGRESS(HttpServletResponse response) {
+
         return requestService.findAllNotDone();
     }
     // done by Personnel

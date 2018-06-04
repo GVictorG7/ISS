@@ -2,7 +2,6 @@ package repositories;
 
 import model.Doctor;
 import model.Request;
-import model.RequestStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -15,7 +14,9 @@ public interface RequestRepository extends JpaRepository<Request, Long> {
 
     Request findById(Long id);
 
-    List<Request> findAllByDoctorOrderByRequestDate(Doctor doctor);
+    List<Request> findAllByDoctorOrderByRequestDateDesc(Doctor doctor);
+
+    Request findFirstByForPerson(String forPerson);
 
     @Query("SELECT COUNT(u) FROM Request u WHERE u.status='OPEN'")
     int findAllByStatusOpne();
