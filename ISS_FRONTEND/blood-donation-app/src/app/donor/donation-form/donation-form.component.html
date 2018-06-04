@@ -1,0 +1,76 @@
+<div class="my-modal">
+
+  <div class="modal-content">
+    <h1>Vreau sa donez sange!</h1>
+    <div class="left">
+      <h2>Date de identitate</h2>
+      <mat-form-field>
+        <input matInput placeholder="Last name"
+               [(ngModel)]="donationForm.lastName"
+               required
+        >
+
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input matInput placeholder="Fisrt name"
+               [(ngModel)]="donationForm.firstName"
+               required
+        >
+        <br>
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input matInput placeholder="Birthday"
+               [(ngModel)]="donationForm.birthday"
+               required
+        >
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input matInput placeholder="Address (from ID)"
+               [(ngModel)]="donationForm.address.address"
+               required
+        >
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input matInput placeholder="Locall address (current address)"
+               [(ngModel)]="donationForm.localAddress.address"
+               required
+        >
+      </mat-form-field>
+      <hr>
+    </div>
+    <div class="right">
+      <h2>Date de contact</h2>
+      <mat-form-field>
+        <input matInput placeholder="Email"
+               [(ngModel)]="donationForm.email"
+               required
+        >
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input matInput placeholder="Phone"
+               [(ngModel)]="donationForm.phone"
+               required
+        >
+      </mat-form-field>
+    </div><br><br>
+    <div class="buttons">
+      <button mat-raised-button
+              color="warn"
+              (click)="close()"
+      >Cancel
+      </button>
+      <button mat-raised-button
+              color="primary"
+              (click)="saveDonation()"
+      >Donate
+      </button>
+
+
+    </div>
+  </div>
+</div>

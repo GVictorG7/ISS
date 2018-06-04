@@ -1,0 +1,18 @@
+.container{
+  overflow: auto;
+}
+body{
+  height: 100%;
+  width: 100%;
+}
+.footerClass{
+  color: white;
+  background-color: #303030;
+  padding: 8px 16px;
+  align-content: center;
+  text-align: center;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}

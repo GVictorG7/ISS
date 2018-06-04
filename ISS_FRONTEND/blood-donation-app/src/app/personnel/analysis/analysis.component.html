@@ -1,0 +1,52 @@
+<app-menu></app-menu>
+<div>
+  <table mat-table #table class="mat-elevation-z15" [dataSource]="dataSource" matSort>
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="position">
+      <th mat-header-cell *matHeaderCellDef> No.</th>
+      <td mat-cell *matCellDef="let element"> {{donations.indexOf(element)+1}}</td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="date">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Date</th>
+      <td mat-cell *matCellDef="let element"> {{dateAsString(element.requestDate)}}</td>
+    </ng-container>
+    <ng-container matColumnDef="donor">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Donor</th>
+      <td mat-cell *matCellDef="let element"> {{element.donor.lastName}} {{element.donor.firstName}}</td>
+    </ng-container>
+    <!-- Weight Column -->
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Status</th>
+      <td mat-cell *matCellDef="let element"> {{element.status}}</td>
+    </ng-container>
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Actions</th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-raised-button color="primary" (click)="showDetails(element)">Complete donation</button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+    ></tr>
+
+
+  </table>
+  <mat-paginator #paginator
+                 [pageSize]="10"
+                 [pageSizeOptions]="[5, 10, 20]"
+                 [showFirstLastButtons]="true">
+  </mat-paginator>
+  <app-edit-donation *ngIf="details.visible"
+                     [donation]="details.donation"
+                     (closeCompleteDonation)="closeModal(event)"
+                      (donationEdited)="updateTable(event)"
+  ></app-edit-donation>
+</div>
+

@@ -1,0 +1,24 @@
+<mat-sidenav-container>
+  <mat-toolbar color="warn">
+    <a class="app-name" href="/home"><span>Blood donation</span></a>
+    <span class="example-fill-remaining-space"></span>
+    <mat-nav-list>
+      <a *ngFor="let menuItem of mainMenuItems"
+         href="{{menuItem.path}}">
+        <span>{{menuItem.title}}</span>
+      </a>
+    </mat-nav-list>
+    <div *ngIf="loggedUser">
+      <button mat-raised-button [matMenuTriggerFor]="dropdownMenu">
+        {{loggedUser.userData.firstName}}
+      </button>
+      <mat-menu #dropdownMenu x-position="before" >
+        <a class="logout-menu" mat-menu-item  href="" (click)="onLogout($event)">
+          <mat-icon>exit_to_app</mat-icon>
+          <span class="logout-menu">Logout</span>
+        </a>
+      </mat-menu>
+    </div>
+  </mat-toolbar>
+</mat-sidenav-container>
+

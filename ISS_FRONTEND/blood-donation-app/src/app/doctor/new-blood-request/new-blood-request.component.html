@@ -1,0 +1,69 @@
+<div class="my-modal">
+  <div class="modal-content">
+    <h1>New blood request</h1>
+    <form [formGroup]="formGroup">
+      <mat-form-field>
+        <input matInput placeholder="Pacient"
+               [(ngModel)]="request.forPerson"
+               required
+               formControlName="forPerson"
+        >
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <mat-select placeholder="Prioritate"
+                    [(value)]="request.priority"
+                    formControlName="priority"
+        >
+          <mat-option *ngFor="let priority of priorities " [value]="priority">
+            {{ priority}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <mat-select placeholder="Stare"
+                    [(value)]="request.bloodCategory"
+                    formControlName="bloodCategory"
+        >
+          <mat-option *ngFor="let category of categories " [value]="category">
+            {{ category}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <mat-select placeholder="Grupa de sange"
+                    formControlName="bloodType"
+                    [(value)]="request.bloodType">
+          <mat-option *ngFor="let type of types " [value]="type">
+            {{ type }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <mat-select placeholder="RH"
+                    formControlName="bloodRH"
+                    [(value)]="request.bloodRh">
+          <mat-option *ngFor="let rh of rhs " [value]="rh">
+            {{ rh}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input matInput placeholder="Nr. de unitati"
+               [(ngModel)]="request.bloodQuantity"
+               required
+               formControlName="bloodQuantity"
+               type="number"
+        >
+      </mat-form-field>
+    </form>
+    <div class="buttons">
+      <button mat-raised-button (click)="cancel()" color="warn">Revocare</button>
+      <button mat-raised-button (click)="saveRequest()" [disabled]="formGroup.invalid" color="primary">Salveaza</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,52 @@
+<div class="my-modal">
+  <div class="modal-content">
+    <button class="x-button" mat-button (click)="close()">X</button>
+    <h1>Complete donation</h1><br><br>
+    <b>Donor: {{donation.donor.lastName}}-{{donation.donor.firstName}}</b><br><br>
+    <b>Status: </b>
+    <mat-form-field>
+      <mat-select placeholder="-" [(ngModel)]="donation.status">
+        <mat-option *ngFor="let status of statuses" [value]="status">
+          {{ status }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <br>
+    <form [formGroup]="formGroup">
+      <div *ngIf="donation.status !== 'OPEN'">
+
+        <b>Blood type:</b>
+        <mat-form-field>
+          <mat-select placeholder="-" [(ngModel)]="donation.bloodType" formControlName="bloodType">
+            <mat-option *ngFor="let type of types" [value]="type">{{type}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <br>
+        <b>Blood RH:</b>
+        <mat-form-field>
+          <mat-select placeholder="-" [(ngModel)]="donation.bloodRH" formControlName="bloodRH">
+            <mat-option *ngFor="let rh of rhs" [value]="rh">{{rh}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <br>
+      </div>
+
+      <div *ngIf="donation.status === 'REJECTED'">
+        <b>Health issues:</b>
+        <mat-form-field>
+          <mat-select placeholder="-" multiple [(ngModel)]="donation.healthIssues" formControlName="healthIssue">
+            <mat-option *ngFor="let healthIssue of healthIssues" [value]="healthIssue">{{healthIssue}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </form>
+    <div class="buttons">
+      <button *ngIf="donation.status !== 'OPEN'"
+              mat-raised-button color="warn" (click)="close()">Cancel
+      </button>
+      <button *ngIf="donation.status !== 'OPEN'" [disabled]="formGroup.invalid"
+              mat-raised-button color="primary" (click)="saveInfo()">Save
+      </button>
+    </div>
+  </div>
+</div>

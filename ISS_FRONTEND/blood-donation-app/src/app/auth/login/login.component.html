@@ -1,0 +1,22 @@
+<app-menu></app-menu>
+<app-banner></app-banner>
+<form [formGroup]="formGroup">
+    <div class="login-box">
+      <h4>Login</h4>
+      <br>
+      <mat-form-field>
+        <input matInput placeholder="Username" #username formControlName="userName">
+      </mat-form-field>
+      <br><br>
+      <mat-form-field>
+        <input matInput placeholder="Password" #password type="password" formControlName="password">
+      </mat-form-field>
+      <br><br>
+      <span class="center">
+      <button [disabled]="formGroup.invalid" mat-raised-button color="primary"
+              (click)="login(username.value,password.value)">Login</button>
+      </span>
+  </div>
+
+</form>
+

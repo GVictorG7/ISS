@@ -1,0 +1,56 @@
+<app-menu></app-menu>
+<table class="mat-elevation-z15" mat-table #table [dataSource]="dataSource" matSort>
+
+  <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+
+  <!-- Position Column -->
+  <ng-container matColumnDef="position">
+    <th mat-header-cell *matHeaderCellDef> No.</th>
+    <td mat-cell *matCellDef="let element"> {{hospitals.indexOf(element)+1}}</td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Nume</th>
+    <td mat-cell *matCellDef="let element"> {{element.name}}</td>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="address">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Adresa</th>
+    <td mat-cell *matCellDef="let element"> {{element.address}}</td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+
+</table>
+<mat-paginator #paginator
+               [pageSize]="10"
+               [pageSizeOptions]="[5, 10, 20]"
+               [showFirstLastButtons]="true">
+</mat-paginator>
+<div>
+  <form [formGroup]="formGroup">
+    <mat-form-field>
+      <input matInput placeholder="Nume"
+             [(ngModel)]="hospital.name"
+             required
+             formControlName="name"
+      >
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <input matInput placeholder="Adresa"
+             [(ngModel)]="hospital.address"
+             required
+             formControlName="address"
+      >
+    </mat-form-field>
+  </form>
+</div>
+<button [disabled]="formGroup.invalid" mat-raised-button color="primary" (click)="newHospital()">Adauga spital nou
+</button>
+
