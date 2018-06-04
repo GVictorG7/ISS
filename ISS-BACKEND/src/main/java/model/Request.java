@@ -10,7 +10,7 @@ import java.time.LocalDate;
 @Validated(value = RequestValidator.class)
 @Entity
 @Table(name = "Requests")
-public class Request implements Serializable {
+public class Request implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")

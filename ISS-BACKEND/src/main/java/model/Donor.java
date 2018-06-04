@@ -46,7 +46,7 @@ public class Donor implements Serializable {
 
     @JsonIgnore
     @OneToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id",unique = true)
     private User user;
 
     public Donor() {

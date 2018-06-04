@@ -44,6 +44,8 @@ public class DonationController {
     public void changeStatus(@RequestBody DonationFields donation) {
 
         donationService.changeStatus(donation.getId(), donation.getForPerson(), donation.getStatus(), donation.getBloodRH(), donation.getBloodType(), donation.getHealthIssues());
+
+
     }
 
     /**

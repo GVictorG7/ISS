@@ -10,10 +10,7 @@ import repositories.RequestRepository;
 import services.interfaces.IRequestService;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Service
 public class RequestService implements IRequestService {
@@ -52,7 +49,7 @@ public class RequestService implements IRequestService {
 
     @Override
     public List<Request> getAllRequestsByDoctor(Doctor doctor) {
-        return requestRepository.findAllByDoctorOrderByRequestDate(doctor);
+        return requestRepository.findAllByDoctorOrderByRequestDateDesc(doctor);
     }
 
     // used in controller
@@ -170,7 +167,18 @@ public class RequestService implements IRequestService {
 
     @Override
     public List<Request> findAllNotDone() {
-        return requestRepository.findAllNotDone();
+        List<Request> requests=requestRepository.findAllNotDone();
+        Collections.sort(requests, new Comparator<Request>() {
+            @Override
+            public int compare(Request request1, Request request2) {
+                if (request1.getPriority() == request2.getPriority()) {
+                    return request1.getPriority().compareTo(request2.getPriority());
+                } else {
+                    return request2.getPriority().compareTo(request1.getPriority());
+                }
+            }
+        });
+        return requests;
     }
 //        }
 
